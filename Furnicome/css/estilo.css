@@ -7,6 +7,16 @@ footer{
 margin-top: 25px;
 }
 
+section{
+    display: flex;
+}
+
+.filtros{
+    margin-top: 100px;
+    margin-right: 50px;
+    margin-left: 50px;
+    background-color: #D1B7A1;
+}
 
 #c1{
     color: rgb(255, 255, 255) !important;
@@ -15,7 +25,11 @@ margin-top: 25px;
 .col-md-8{
     background-color: #FAF5F0 !important;
 }
-s
+
+#mg{
+    margin-right: 100px;
+}
+
 .mg, #mg, .fo1{
     margin-top: 70px;
 }
