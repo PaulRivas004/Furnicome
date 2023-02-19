@@ -7,8 +7,14 @@ footer{
 margin-top: 25px;
 }
 
-section{
-    display: flex;
+#iconosIndex{
+    margin-bottom: 50px;
+    
+}
+
+
+#bordeimgindex{
+    border-radius: 100%;
 }
 
 .filtros{

@@ -9,7 +9,7 @@
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<link rel="stylesheet" href="../css/estilo.css">
+  <link rel="stylesheet" href="../css/estilo.css">
   <title>Furnicome</title>
 </head>
 
@@ -39,19 +39,39 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <!-- Navbar brand -->
           <a class="navbar-brand mt-2 mt-lg-0" href="#">
-            <img src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp" height="15" alt="MDB Logo"
-              loading="lazy" />
+            <img src="../recursos/FURNICOM.png" height="60" alt="Furnicom logo" loading="lazy" />
           </a>
           <!-- Left links -->
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" href="#">Dashboard</a>
+              <a class="nav-link" href="#">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Team</a>
+              <a class="nav-link" href="#" id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown"
+                aria-expanded="false">Muebles</a>
+              <!--   
+                          <a class="text-reset me-3 dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                          role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                      </a>
+                      
+                      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                          <li>
+                              <a class="dropdown-item" href="#">Some news</a>
+                          </li>
+                          <li>
+                              <a class="dropdown-item" href="#">Another news</a>
+                          </li>
+                          <li>
+                              <a class="dropdown-item" href="#">Something else here</a>
+                          </li>
+                      </ul>
+                      -->
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Projects</a>
+              <a class="nav-link" href="#">Descuentos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Sobre nosotros</a>
             </li>
           </ul>
           <!-- Left links -->
@@ -61,17 +81,14 @@
         <!-- Right elements -->
         <div class="d-flex align-items-center">
           <!-- Icon -->
+
           <a class="text-reset me-3" href="#">
             <i class="fas fa-shopping-cart"></i>
           </a>
 
+
           <!-- Notifications -->
           <div class="dropdown">
-            <a class="text-reset me-3 dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink" role="button"
-              data-mdb-toggle="dropdown" aria-expanded="false">
-              <i class="fas fa-bell"></i>
-              <span class="badge rounded-pill badge-notification bg-danger">1</span>
-            </a>
 
           </div>
           <!-- Avatar -->
@@ -100,18 +117,14 @@
 
     </nav>
 
+
     <!-- Background image -->
-    <div class="p-5 text-center bg-image" style="
-  background-image: url('https://mdbcdn.b-cdn.net/img/new/slides/041.webp');
-  height: 400px;
+    <div class="p-5  bg-image" style="
+  background-image: url('../recursos/pindex.png');
+  height: 700px;
 ">
       <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
         <div class="d-flex justify-content-center align-items-center h-100">
-          <div class="text-white">
-            <h1 class="mb-3">Heading</h1>
-            <h4 class="mb-3">Subheading</h4>
-            <a class="btn btn-outline-light btn-lg" href="#!" role="button">Call to action</a>
-          </div>
         </div>
       </div>
     </div>
@@ -120,57 +133,52 @@
 
 
   <br>
-  <section class="container">
+  <section>
 
     <div class="container">
       <p>Documentation and examples for powerful, responsive navigation header - MDB navbar. Includes support for
         branding, navigation, and more, including support for our collapse plugin.</p>
     </div>
 
-    <div class="container">
+    <div class="container" id="iconosIndex">
       <div class="row">
         <div class="col order-last">
-          <div class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="...">
+          <div class="card" style="width: 20rem; background-color: #FBF6F2;">
+            <img src="../recursos/icono3.jpg" class="card-img-top" alt="..." id="bordeimgindex">
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <a href="">
+                <h5 class="card-title">Cocina</h5>
+              </a>
             </div>
           </div>
         </div>
         <div class="col">
-          <div class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="...">
+          <div class="card" style="width: 20rem; background-color: #FBF6F2;">
+            <img src="../recursos/icono2.jpg" class="card-img-top" alt="..." id="bordeimgindex">
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <a href="">
+                <h5 class="card-title">Sala</h5>
+              </a>
             </div>
           </div>
         </div>
         <div class="col order-first">
-          <div class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="...">
+          <div class="card" style="width: 20rem; background-color: #FBF6F2;">
+            <img src="../recursos/icono1.jpg" class="card-img-top" alt="..." id="bordeimgindex">
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <a href="">
+                <h5 class="card-title">Dormitorio</h5>
+              </a>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <br>
-
   </section>
 
   <div>
-    <section>
+    <section class="container">
       <div>
         <!-- Carousel wrapper -->
         <div id="carouselMaterialStyle" class="carousel slide carousel-fade" data-mdb-ride="carousel">
@@ -188,8 +196,7 @@
           <div class="carousel-inner rounded-5 shadow-4-strong">
             <!-- Single item -->
             <div class="carousel-item active">
-              <img src="https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(15).webp" class="d-block w-100"
-                alt="Sunset Over the City" />
+              <img src="../recursos/slide1.jpg" class="d-block w-100" alt="Sunset Over the City" />
               <div class="carousel-caption d-none d-md-block">
                 <h5>First slide label</h5>
                 <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
@@ -198,8 +205,7 @@
 
             <!-- Single item -->
             <div class="carousel-item">
-              <img src="https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(22).webp" class="d-block w-100"
-                alt="Canyon at Nigh" />
+              <img src="../recursos/slide2.jpg" class="d-block w-100" alt="Canyon at Nigh" />
               <div class="carousel-caption d-none d-md-block">
                 <h5>Second slide label</h5>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -208,8 +214,7 @@
 
             <!-- Single item -->
             <div class="carousel-item">
-              <img src="https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(23).webp" class="d-block w-100"
-                alt="Cliff Above a Stormy Sea" />
+              <img src="../recursos/slide3.jpg" class="d-block w-100" alt="Cliff Above a Stormy Sea" />
               <div class="carousel-caption d-none d-md-block">
                 <h5>Third slide label</h5>
                 <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
@@ -238,7 +243,7 @@
   <br>
   <div class="fo1">
     <!-- Footer -->
-    <footer class="text-center text-lg-start  text-muted"  id="c1">
+    <footer class="text-center text-lg-start  text-muted" id="c1">
       <!-- Section: Social media -->
       <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
         <!-- Left -->
