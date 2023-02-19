@@ -23,7 +23,7 @@
 
     <header>
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" >
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
             <!-- Container wrapper -->
             <div class="container-fluid">
                 <!-- Toggle button -->
@@ -37,39 +37,21 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Navbar brand -->
                     <a class="navbar-brand mt-2 mt-lg-0" href="#">
-                        <img src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp" height="15"
-                            alt="MDB Logo" loading="lazy" />
+                        <img src="../recursos/FURNICOM.png" height="60" alt="Furnicom logo" loading="lazy" />
                     </a>
                     <!-- Left links -->
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Dashboard</a>
+                            <a class="nav-link" href="#">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Team</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Projects</a>
-                        </li>
-                    </ul>
-                    <!-- Left links -->
-                </div>
-                <!-- Collapsible wrapper -->
-
-                <!-- Right elements -->
-                <div class="d-flex align-items-center">
-                    <!-- Icon -->
-                    <a class="text-reset me-3" href="#">
-                        <i class="fas fa-shopping-cart"></i>
-                    </a>
-
-                    <!-- Notifications -->
-                    <div class="dropdown">
-                        <a class="text-reset me-3 dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink"
+                            <a class="nav-link" href="#" id="navbarDropdownMenuLink"
+                            role="button" data-mdb-toggle="dropdown" aria-expanded="false">Muebles</a>
+                         <!--   
+                            <a class="text-reset me-3 dropdown-toggle" href="#" id="navbarDropdownMenuLink"
                             role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-bell"></i>
-                            <span class="badge rounded-pill badge-notification bg-danger">1</span>
                         </a>
+                        
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                             <li>
                                 <a class="dropdown-item" href="#">Some news</a>
@@ -81,6 +63,31 @@
                                 <a class="dropdown-item" href="#">Something else here</a>
                             </li>
                         </ul>
+                        -->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Descuentos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Sobre nosotros</a>
+                        </li>
+                    </ul>
+                    <!-- Left links -->
+                </div>
+                <!-- Collapsible wrapper -->
+
+                <!-- Right elements -->
+                <div class="d-flex align-items-center">
+                    <!-- Icon -->
+                    
+                    <a class="text-reset me-3" href="#">
+                        <i class="fas fa-shopping-cart"></i>
+                    </a>
+                     
+
+                    <!-- Notifications -->
+                    <div class="dropdown">
+                        
                     </div>
                     <!-- Avatar -->
                     <div class="dropdown">
@@ -114,15 +121,15 @@
 
 
 
-
     <section class="mg">
-        <div class="container">
-            <div class="card mb-3" style="max-width: 1400px;">
+        <div class="container" id="container-card">
+            <div class="card mb-3" style="max-width: 1000px;" id="card-product">
                 <div class="row g-0">
-                    <div class="col-md-4">
-                        <img src="../recursos/vista_p/safa-cama-barato-amazon.jpeg" class="img-fluid rounded-start" alt="...">
+                    <div class="col-md-6" >
+                        <img src="../recursos/vista_p/safa-cama-barato-amazon.jpeg" class="img-fluid rounded-start"
+                            alt="...">
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-6">
                         <div class="card-body">
                             <h5 class="card-title">Sofá cama</h5>
                             <hr>
@@ -155,9 +162,11 @@
                                     </div>
                                 </li>
                             </ul>
-                            <button type="button" class="btn btn-light" data-mdb-ripple-color="dark">Agregar al
+                            <button type="button" class="btn btn-light" data-mdb-ripple-color="dark" id="btn-card">Agregar al
                                 carrito</button>
-                            <button type="button" class="btn btn-dark">Cantidad</button>
+                                <label for="">
+                                    <input placeholder="cantidad" type="number" id="username">
+                                </label>
                         </div>
                     </div>
                 </div>
@@ -173,7 +182,7 @@
             qui.</p>
     </div>
 
-    <div class="container" >
+    <div class="container">
         <h1>Valoraciones</h1>
         <hr>
         <div class="card-group">
@@ -213,7 +222,7 @@
 
     <div class="fo1">
         <!-- Footer -->
-        <footer class="text-center text-lg-start  text-muted"  id="c1">
+        <footer class="text-center text-lg-start  text-muted" id="c1">
             <!-- Section: Social media -->
             <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
                 <!-- Left -->

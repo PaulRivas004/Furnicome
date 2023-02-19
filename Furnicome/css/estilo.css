@@ -31,12 +31,34 @@ section{
 }
 
 .mg, #mg, .fo1{
-    margin-top: 70px;
+    margin-top: 150px;
 }
 
-.card-body{
-    background-color: #F5F5F5 !important;
+#container-card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+#btn-card{
+    margin-left: 30px;
+    background-color: #D1B7A1;
+    color: black ;
+}
+
+#card-product{
+    background-color: #FAF5F0;
+}
+
+.mg-body{
+    margin-top: 10px;
+}
+
+.nav-item{
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
 .D1{
     margin: 0;
     padding: 0;
