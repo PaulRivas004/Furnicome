@@ -13,7 +13,6 @@ margin-top: 25px;
 }
 
 
-
 #bordeimgindex{
     border-radius: 100%;
 }
@@ -85,7 +84,6 @@ margin-top: 25px;
     font-size: 6px;
 }
 
-
 form{
     display: flex;
     flex-direction: column;
@@ -94,8 +92,6 @@ form{
     padding: 40px 45px;
     box-shadow: 0 5px 10px rgba(71, 3, 6, 0.7);
 }
-
-
 
 form .title{
     color: #252525;
