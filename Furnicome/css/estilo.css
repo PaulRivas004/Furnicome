@@ -74,6 +74,10 @@ section{
     font-family: sans-serif;
 }
 
+#labelfont{
+    font-size: 6px;
+}
+
 form{
     display: flex;
     flex-direction: column;
