@@ -1,4 +1,4 @@
-body{
+body {
     margin: 0;
     padding: 10px;
     box-sizing: border-box;
@@ -14,11 +14,11 @@ body{
 }
 
 
-#labelfont{
+#labelfont {
     font-size: 6px;
 }
 
-form{
+form {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -32,7 +32,7 @@ form{
     box-shadow: 0 5px 10px rgba(71, 3, 6, 0.7);
 }
 
-form .title{
+form .title {
     color: #252525;
     font-size: 35px;
     font-weight: 800;
@@ -40,7 +40,7 @@ form .title{
     margin-bottom: 70px;
 }
 
-form label{
+form label {
     align-items: center;
     justify-content: center;
     margin-bottom: 50px;
@@ -48,35 +48,36 @@ form label{
     margin-right: 30px;
 }
 
-form .label2{
+form .label2 {
     margin-bottom: 50px;
-    
+
 
 }
-form label input.largo{
-    color: #252525;
-     border-bottom: solid 1px  #D1B7A1;
-     padding: 0 15px;
-     font-size: 13px;
-    
-     margin-bottom: 50px;
- }
 
- @media only screen and (max-width: 576px) {
-    .form{
+form label input.largo {
+    color: #252525;
+    border-bottom: solid 1px #D1B7A1;
+    padding: 0 15px;
+    font-size: 13px;
+
+    margin-bottom: 50px;
+}
+
+@media only screen and (max-width: 576px) {
+    .form {
         height: 200px;
         display: flex;
         flex-direction: column;
-    } 
+    }
 
-    .user-detail{
+    .user-detail {
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
     }
 
-    .form label{
+    .form label {
         align-items: center;
         display: flex;
         flex-direction: column;
@@ -86,7 +87,7 @@ form label input.largo{
         margin-right: 30px;
     }
 
-    form{
+    form {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -101,27 +102,27 @@ form label input.largo{
     }
 }
 
-form label input{
-   outline: none;
-   border: none;
-   color: #252525;
-    border-bottom: solid 1px  #D1B7A1;
+form label input {
+    outline: none;
+    border: none;
+    color: #252525;
+    border-bottom: solid 1px #D1B7A1;
     padding: 0 15px;
     font-size: 13px;
 }
 
-form label input::placeholder{
-    color: rgba(37, 37,  37, 0.5);
+form label input::placeholder {
+    color: rgba(37, 37, 37, 0.5);
     font-size: small;
 }
 
-form .link{
+form .link {
     color: #252525;
     margin-top: 30px;
     font-size: small;
 }
 
-.button{
+.button {
     border-radius: 4px;
     outline: #252525;
     color: black;
@@ -131,20 +132,19 @@ form .link{
     cursor: pointer;
 }
 
-.container form .user-detail{
+.container form .user-detail {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
 }
 
-.container form .user-detail2{
+.container form .user-detail2 {
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
 
-.form-check{
+.form-check {
     margin-bottom: 20px;
 }
-
