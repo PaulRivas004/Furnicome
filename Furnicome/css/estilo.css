@@ -172,4 +172,26 @@ a{
     #filtros{
         max-height: 700px;
     }
-    }
+}
+
+.container h2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container .card{
+    background-color: #FAF5F0;
+    justify-content: center;
+    margin-bottom: 40px;
+    margin-left: 10px;
+}
+
+.container .logo{
+    display: flex;
+    max-width: 900px;
+    max-height: 900px;
+    align-items: center;
+    justify-content: center;
+}
+
