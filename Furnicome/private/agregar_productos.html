@@ -124,68 +124,74 @@
             </button>
 
             <!-- Modal -->
-            <div class=" modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Agregar Producto</h5>
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Productos</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form class="row g-3 needs-validation" novalidate>
-                                <div class="col-md-4">
-                                    <label for="validationCustom01" class="form-label">Nombre</label>
-                                    <input type="text" class="form-control" id="validationCustom01" value="" required>
-                                    <div class="valid-feedback">
-                                        Looks good!
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="validationCustom02" class="form-label">Descripcion</label>
-                                    <input type="text" class="form-control" id="validationCustom02" value="" required>
-                                    <div class="valid-feedback">
-                                        Looks good!
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="validationCustomUsername" class="form-label">Precio</label>
-                                    <div class="input-group has-validation">
-                                        <span class="input-group-text" id="inputGroupPrepend">$</span>
-                                        <input type="text" class="form-control" id="validationCustomUsername"
-                                            aria-describedby="inputGroupPrepend" required>
-                                        <div class="invalid-feedback">
-                                            Please choose a username.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="formFile" class="form-label">Imagen</label>
-                                    <input class="form-control" type="file" id="formFile">
-                                </div>
-                                <div class="col-md-3">
-                                    <label for="validationCustom04" class="form-label">Estado</label>
-                                    <select class="form-select" id="validationCustom04" required>
-                                        <option selected disabled value="">Elige uno...</option>
-                                        <option>Activo</option>
+                            <form>
+                                <div class="mb-3">
+                                    <p>Seleccione una SubCategoria</p>
+                                    <select class="form-select" aria-label="Seleccione Categoria">
+                                        <option selected>Abrir para seleccionar</Abbr></option>
+                                        <option value="1">Si</option>
+                                        <option value="2">Cocaina</option>
+                                        <option value="3">bbb</option>
                                     </select>
-                                    <div class="invalid-feedback">
-                                        Please select a valid state.
-                                    </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <label for="validationCustom05" class="form-label">N° de productos</label>
-                                    <input type="text" class="form-control" id="validationCustom05" required>
-                                    <div class="invalid-feedback">
-                                        Please provide a valid zip.
-                                    </div>
+                                <div class="mb-3">
+                                    <p>Seleccione un usuario</p>
+                                    <select class="form-select" aria-label="Seleccione Categoria">
+                                        <option selected>Abrir para seleccionar</Abbr></option>
+                                        <option value="1">Gutilin</option>
+                                        <option value="2">Yoñi</option>
+                                        <option value="3">Ferguson</option>
+                                    </select>
                                 </div>
-                                <div class="col-12">
+                                <div class="mb-3">
+                                    <label for="recipient-name" class="col-form-label">Nombre:</label>
+                                    <input type="text" class="form-control" id="recipient-name">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="message-text" class="col-form-label">Descripcion:</label>
+                                    <textarea class="form-control" id="message-text"></textarea>
+                                </div>
+                                <p>Precio del producto:</p>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">$</span>
+                                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="formFileMultiple" class="form-label">Seleccione una imagen</label>
+                                    <input class="form-control" type="file" id="formFileMultiple" multiple />
+                                </div>
+                                <div class="mb-3">
+                                    <p>Estado del producto</p>
+                                    <select class="form-select" aria-label="Seleccione Categoria">
+                                        <option selected>Abrir para seleccionar</Abbr></option>
+                                        <option value="1">si</option>
+                                        <option value="2">no</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <p>Existencias de producto</p>
+                                    <select class="form-select" aria-label="Seleccione Categoria">
+                                        <option selected>Abrir para seleccionar</Abbr></option>
+                                        <option value="1">si</option>
+                                        <option value="2">no</option>
+                                    </select>
+                                </div>
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button onclick="Agregar()" type="button" class="btn btn-primary">Save changes</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-primary">Guardar</button>
                         </div>
                     </div>
                 </div>
@@ -194,97 +200,47 @@
 
         <br>
 
-        <table class=" container table align-middle mb-0 bg-white">
-            <thead class="bg-light">
-                <tr>
-                    <th>Name</th>
-                    <th>Title</th>
-                    <th>Status</th>
-                    <th>Position</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <div class="d-flex align-items-center">
-                            <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt=""
-                                style="width: 45px; height: 45px" class="rounded-circle" />
-                            <div class="ms-3">
-                                <p class="fw-bold mb-1">John Doe</p>
-                                <p class="text-muted mb-0">john.doe@gmail.com</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <p class="fw-normal mb-1">Software engineer</p>
-                        <p class="text-muted mb-0">IT department</p>
-                    </td>
-                    <td>
-                        <span class="badge badge-success rounded-pill d-inline">Active</span>
-                    </td>
-                    <td>Senior</td>
-                    <td>
-                        <button type="button" class="btn btn-link btn-sm btn-rounded">
-                            Edit
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="d-flex align-items-center">
-                            <img src="https://mdbootstrap.com/img/new/avatars/6.jpg" class="rounded-circle" alt=""
-                                style="width: 45px; height: 45px" />
-                            <div class="ms-3">
-                                <p class="fw-bold mb-1">Alex Ray</p>
-                                <p class="text-muted mb-0">alex.ray@gmail.com</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <p class="fw-normal mb-1">Consultant</p>
-                        <p class="text-muted mb-0">Finance</p>
-                    </td>
-                    <td>
-                        <span class="badge badge-primary rounded-pill d-inline">Onboarding</span>
-                    </td>
-                    <td>Junior</td>
-                    <td>
-                        <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold"
-                            data-mdb-ripple-color="dark">
-                            Edit
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="d-flex align-items-center">
-                            <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt=""
-                                style="width: 45px; height: 45px" />
-                            <div class="ms-3">
-                                <p class="fw-bold mb-1">Kate Hunington</p>
-                                <p class="text-muted mb-0">kate.hunington@gmail.com</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <p class="fw-normal mb-1">Designer</p>
-                        <p class="text-muted mb-0">UI/UX</p>
-                    </td>
-                    <td>
-                        <span class="badge badge-warning rounded-pill d-inline">Awaiting</span>
-                    </td>
-                    <td>Senior</td>
-                    <td>
-                        <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold"
-                            data-mdb-ripple-color="dark">
-                            Edit
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
+        <div class="container">
+            <table class="table table-responsive-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Subcategoria</th>
+                        <th scope="col">Usuario</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Imagen</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Existencia</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                        <td>@mdo</td>
+                        <td>Thornton</td>
+                        <td>Thornton</td>
+                        <td>Thornton</td>
+                        <td>@mdo</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
 
     <script src="https://kit.fontawesome.com/eb496ab1a0.js" crossorigin="anonymous"></script>

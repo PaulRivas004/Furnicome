@@ -11,7 +11,7 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/estilo.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <title>Agregar Categoria</title>
+    <title>Cliente</title>
 </head>
 
 <body>
@@ -20,6 +20,7 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
 
 
 
@@ -116,7 +117,7 @@
     <section>
 
         <div class="container">
-            <H4>Agregar Categoria</H4>
+            <H4>Agregar Clientes</H4>
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Agregar
@@ -129,18 +130,46 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Categorias</h1>
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Productos</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <form>
                                 <div class="mb-3">
-                                    <label for="recipient-name" class="col-form-label">Nombre:</label>
+                                    <label for="recipient-name" class="col-form-label">Nombre</label>
                                     <input type="text" class="form-control" id="recipient-name">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="message-text" class="col-form-label">Descripcion:</label>
-                                    <textarea class="form-control" id="message-text"></textarea>
+                                    <label for="recipient-name" class="col-form-label">Apellido</label>
+                                    <input type="text" class="form-control" id="recipient-name">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="recipient-name" class="col-form-label">Dui</label>
+                                    <input type="text" class="form-control" id="recipient-name">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="recipient-name" class="col-form-label">Correo</label>
+                                    <input type="text" class="form-control" id="recipient-name">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="recipient-name" class="col-form-label">Apellido</label>
+                                    <input type="text" class="form-control" id="recipient-name">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleFormControlTextarea1" class="form-label">Dirección</label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleFormControlTextarea1" class="form-label">Contraseña</label>
+                                    <input type="password" class="form-control" id="recipient-name">
+                                </div>
+                                <div class="mb-3">
+                                    <p>Estado del cliente</p>
+                                    <select class="form-select" aria-label="Seleccione Categoria">
+                                        <option selected>Abrir para seleccionar</Abbr></option>
+                                        <option value="1">si</option>
+                                        <option value="2">no</option>
+                                    </select>
                                 </div>
                             </form>
                         </div>
@@ -155,13 +184,19 @@
 
         <br>
 
+        <!-- Tabla de datos -->
         <div class="container">
             <table class="table table-responsive-sm">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Nombre</th>
-                        <th scope="col">Descripción</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Dui</th>
+                        <th scope="col">Correo</th>
+                        <th scope="col">Dirección</th>
+                        <th scope="col">Clave</th>
+                        <th scope="col">Estado</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -169,21 +204,30 @@
                         <th scope="row">1</th>
                         <td>Mark</td>
                         <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
                     </tr>
                     <tr>
                         <th scope="row">2</th>
                         <td>Jacob</td>
                         <td>Thornton</td>
-
+                        <td>@fat</td>
+                        <td>@mdo</td>
+                        <td>Thornton</td>
+                        <td>Thornton</td>
+                        <td>Thornton</td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </section>
 
-
+    <script src="https://kit.fontawesome.com/eb496ab1a0.js" crossorigin="anonymous"></script>
     <br>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
+
 </body>
 
 </html>
