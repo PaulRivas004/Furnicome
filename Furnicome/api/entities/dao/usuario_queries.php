@@ -1,8 +1,6 @@
 <?php
 require_once('../../helpers/database.php');
-/*
-*	Clase para manejar el acceso a datos de la entidad USUARIO.
-*/
+
 class UsuarioQueries
 {
     /*
