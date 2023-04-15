@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         location.href = 'dashboard.html';
     } else if (JSON.status) {
         // Se muestra el formulario para iniciar sesión.
-        document.getElementById('login-container').classList.remove('hide');
+        document.getElementById('login-container-div').classList.remove('hide');
         sweetAlert(4, JSON.message, true);
     } else {
         // Se muestra el formulario para registrar el primer usuario.

@@ -1,6 +1,5 @@
 <?php
-require_once('../../entities/dto/usuario.php');
-
+require_once('../entities/dto/usuario.php');
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
     // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
