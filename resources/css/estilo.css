@@ -1,0 +1,198 @@
+h5 {
+    text-align: center;
+}
+
+footer {
+    background-color: #9E8671 !important;
+    margin-top: 25px;
+}
+
+#iconosIndex {
+    margin-bottom: 50px;
+
+};
+
+
+#bordeimgindex {
+    border-radius: 100%;
+}
+
+
+#c1 {
+    color: rgb(255, 255, 255) !important;
+}
+
+.col-md-8 {
+    background-color: #FAF5F0 !important;
+}
+
+
+.mg,
+#mg,
+.fo1 {
+    margin-top: 150px;
+}
+
+#container-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#btn-card {
+    margin-left: 30px;
+    background-color: #D1B7A1;
+    color: black;
+}
+
+.card-footer .btn{
+    background-color: #9E8671;
+    align-items: center !important;
+    justify-content: center;
+
+}
+
+#card-product {
+    background-color: #FAF5F0;
+}
+
+.mg-body {
+    margin-top: 10px;
+}
+
+.nav-item {
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+.D1 {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: url(../../recursos/login2.png);
+    background-size: cover;
+    background-position: center;
+    font-family: sans-serif;
+}
+
+#labelfont {
+    font-size: 6px;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    text-align: center;
+    padding: 40px 45px;
+    box-shadow: 0 5px 10px rgba(71, 3, 6, 0.7);
+}
+
+
+
+form .title {
+    color: #252525;
+    font-size: 35px;
+    font-weight: 800;
+    font-family: serif;
+    margin-bottom: 30px;
+}
+
+form label {
+    margin-bottom: 35px;
+}
+
+form label input {
+    outline: none;
+    border: none;
+    color: #252525;
+    border-bottom: solid 1px #D1B7A1;
+    padding: 0 15px;
+    font-size: 18px;
+}
+
+form label input::placeholder {
+    color: rgba(37, 37, 37, 0.5);
+    font-size: small;
+}
+
+form .link {
+    color: #252525;
+    margin-top: 30px;
+    font-size: small;
+}
+
+form button {
+    color: #fff;
+    border: none;
+    background: linear-gradient(to right, #D1B7A1, #D1B7A1);
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.container .estrellas{
+    align-items: center;
+    justify-content: center;
+    color: rgba(233, 233, 7, 0.911);
+    padding: .5rem 0;
+}
+
+#filtros{
+    max-height: 630px;
+    max-width: 350px;
+    margin-top: 170px;
+    background-color: #FAF5F0;
+    margin-left: 30px;
+    border-radius: 20px;
+
+}
+
+.form-check{
+    margin-left: 20px;
+}
+
+.tt1,.pp{
+    margin-top: 20px;
+    margin-left: 20px;
+    font-weight: bold;
+}
+
+
+a{
+    color: black !important;
+}
+
+@media only screen and (max-width: 1159px) {
+    #filtros{
+        max-height: 700px;
+    }
+}
+
+.container h2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    ;
+}
+
+.container .card{
+    background-color: #FAF5F0;
+    justify-content: center;
+    margin-bottom: 40px;
+    margin-left: 10px;
+}
+
+.container .logo{
+    display: flex;
+    max-width: 900px;
+    max-height: 900px;
+    align-items: center;
+    justify-content: center;
+}
+
