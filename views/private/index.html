@@ -12,17 +12,17 @@
 </head>
 <body class="D1">
     <div class="hide" id="login-container-div">
-        <form method="post" id="login-container">
+        <form method="post" id="login-form">
             <div>
                 <h1 class="title">Private Login</h1>
             </div>
             <label for="usuario" id="labelfont">
                 <img src="../../recursos/iconos/user.png" width="15" height="15" alt="">
-                <input placeholder="Usuario" type="text" id="username" class="validate" required>
+                <input placeholder="Usuario" type="text" id="alias" name="alias" class="validate" required>
             </label>
             <label for="contraseña">
                 <img src="../../recursos/iconos/lock.png" width="15" height="15" alt="">
-                <input placeholder="Contraseña" type="password" id="password" class="validate" required>
+                <input placeholder="Contraseña" type="password" id="clave" name="clave" class="validate" required>
             </label>
             <a href="">
                 <button class="button tooltipped" input type="submit" value="Registrar" data-tooltip="Ingresar">iniciar
@@ -36,6 +36,6 @@
     <script type="text/javascript" src="../../recursos/js/sweetalert.min.js"></script>
     <script type="text/javascript" src="../../controllers/components.js"></script>
     <script type="text/javascript" src="../../controllers/dashboard/index.js"></script>
-    <script type="text/javascript" src="../../controllers/dashboard/account.js"></script>
+    <script type="text/javascript" src="../../controllers/dashboard/account2.js"></script>
 </body>
 </html>

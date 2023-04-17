@@ -194,11 +194,13 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['exception'] = Database::getException();
                 }
-                break;
+                break; 
+                print_r ($_POST);           
             case 'login':
                 $_POST = Validator::validateForm($_POST);
                 if (!$usuario->checkUser($_POST['alias'])) {
                     $result['exception'] = 'Alias incorrecto';
+                    print_r ($_POST);
                 } elseif ($usuario->checkPassword($_POST['clave'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Autenticación correcta';

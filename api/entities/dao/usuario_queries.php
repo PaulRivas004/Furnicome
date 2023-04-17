@@ -43,7 +43,7 @@ class UsuarioQueries
 
     public function readProfile()
     {
-        $sql = 'SELECT id_usuario,  nombre_usuario, apellido_usuario, correo_usuario, alias_usuario, clave_usuario, estado_usuario
+        $sql = 'SELECT id_usuario, nombre_usuario, apellido_usuario, correo_usuario, alias_usuario, clave_usuario
                 FROM usuarios
                 WHERE id_usuario = ?';
         $params = array($_SESSION['id_usuario']);
@@ -64,7 +64,7 @@ class UsuarioQueries
     */
     public function searchRows($value)
     {
-        $sql = 'SELECT id_usuario,  nombre_usuario, apellido_usuario, correo_usuario, alias_usuario, clave_usuario
+        $sql = 'SELECT id_usuario, nombre_usuario, apellido_usuario, correo_usuario, alias_usuario, clave_usuario
                 FROM usuarios
                 WHERE apellido_usuario ILIKE ? OR nombre_usuario ILIKE ?
                 ORDER BY apellido_usuario';
