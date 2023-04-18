@@ -194,13 +194,11 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['exception'] = Database::getException();
                 }
-                break; 
-                print_r ($_POST);           
+                break;           
             case 'login':
                 $_POST = Validator::validateForm($_POST);
                 if (!$usuario->checkUser($_POST['alias'])) {
                     $result['exception'] = 'Alias incorrecto';
-                    print_r ($_POST);
                 } elseif ($usuario->checkPassword($_POST['clave'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Autenticación correcta';
@@ -212,6 +210,7 @@ if (isset($_GET['action'])) {
                 break;
             default:
                 $result['exception'] = 'Acción no disponible fuera de la sesión';
+
         }
     }
     // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.

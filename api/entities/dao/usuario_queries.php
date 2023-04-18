@@ -76,7 +76,7 @@ class UsuarioQueries
     {
         $sql = 'INSERT INTO usuarios(
             nombre_usuario, apellido_usuario, correo_usuario, alias_usuario, clave_usuario)
-            VALUES ( ?, ?, ?, ?, ?, ?)';
+            VALUES ( ?, ?, ?, ?, ?)';
         $params = array($this->nombre_usuario, $this->apellido_usuario, $this->correo_usuario, $this->alias_usuario, $this->clave_usuario);
         return Database::executeRow($sql, $params);
     }

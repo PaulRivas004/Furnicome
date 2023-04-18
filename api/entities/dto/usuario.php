@@ -60,7 +60,7 @@ class Usuario extends UsuarioQueries
     public function setClave($value)
     {
         if (Validator::validateString($value, 1, 40)) {
-            $this->clave_usuario= $value;
+            $this->clave_usuario= password_hash($value, PASSWORD_DEFAULT);
             return true;
         } else {
             return false;
