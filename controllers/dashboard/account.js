@@ -60,11 +60,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <div class="d-flex align-items-center">
                     <!-- Icon -->
 
-                    <a class="text-reset me-3" href="#">
-                        <i class="fas fa-shopping-cart"></i>
-                    </a>
-
-
                     <!-- Notifications -->
                     <div class="dropdown">
 
