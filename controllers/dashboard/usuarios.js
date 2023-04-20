@@ -14,6 +14,12 @@ const OPTIONS = {
     dismissible: false
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+    // Llamada a la función para llenar la tabla con los registros disponibles.
+    fillTable();
+});
+
+
 // Método manejador de eventos para cuando se envía el formulario de guardar.
 SAVE_FORM.addEventListener('submit', async (event) => {
     // Se evita recargar la página web después de enviar el formulario.
@@ -27,7 +33,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (JSON.status) {
         // Se carga nuevamente la tabla para visualizar los cambios.
-        //fillTable();
+        fillTable();
         console.log("Entro al json");
         // Se muestra un mensaje de éxito.
         sweetAlert(1, JSON.message, true);
@@ -36,4 +42,45 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     }
 });
 
+async function fillTable(form = null) {
+    // Se inicializa el contenido de la tabla.
+    TBODY_ROWS.innerHTML = '';
+    RECORDS.textContent = '';
+    // Se verifica la acción a realizar.
+    (form) ? action = 'search' : action = 'readAll';
+    // Petición para obtener los registros disponibles.
+    const JSON = await dataFetch(USUARIO_API, action, form);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (JSON.status) {
+        // Se recorre el conjunto de registros fila por fila.
+        JSON.dataset.forEach(row => {
+            // Se crean y concatenan las filas de la tabla con los datos de cada registro.
+            
+            TBODY_ROWS.innerHTML += `
+                <tr>
+                <td>${row.id_usuario}</td>
+                    <td>${row.nombre_usuario}</td>
+                    <td>${row.apellido_usuario}</td>
+                    <td>${row.correo_usuario}</td>
+                    <td>${row.alias_usuario}</td>
+                    <td>${row.clave_usuario}</td>
+                    <td>
+                        <a onclick="openUpdate(${row.id_usuario})" class="btn waves-effect blue tooltipped" data-tooltip="Actualizar">
+                            <i class="material-icons">mode_edit</i>
+                        </a>
+                        <a onclick="openDelete(${row.id_usuario})" class="btn waves-effect red tooltipped" data-tooltip="Eliminar">
+                            <i class="material-icons">delete</i>
+                        </a>
+                    </td>
+                </tr>
+            `;
+            
+        });
+        // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
+        // Se muestra un mensaje de acuerdo con el resultado.
+        RECORDS.textContent = JSON.message;
+    } else {
+        sweetAlert(4, JSON.exception, true);
+    }
+}
 
