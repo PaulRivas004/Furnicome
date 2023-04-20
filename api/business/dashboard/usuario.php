@@ -129,13 +129,13 @@ if (isset($_GET['action'])) {
                 break;
             case 'update':
                 $_POST = Validator::validateForm($_POST);
-                if (!$usuario->setId($_POST['id'])) {
+                if (!$usuario->setId($_POST['id_usuario'])) {
                     $result['exception'] = 'Usuario incorrecto';
                 } elseif (!$usuario->readOne()) {
                     $result['exception'] = 'Usuario inexistente';
-                } elseif (!$usuario->setNombres($_POST['nombres'])) {
+                } elseif (!$usuario->setNombres($_POST['nombre'])) {
                     $result['exception'] = 'Nombres incorrectos';
-                } elseif (!$usuario->setApellidos($_POST['apellidos'])) {
+                } elseif (!$usuario->setApellidos($_POST['apellido'])) {
                     $result['exception'] = 'Apellidos incorrectos';
                 } elseif (!$usuario->setCorreo($_POST['correo'])) {
                     $result['exception'] = 'Correo incorrecto';

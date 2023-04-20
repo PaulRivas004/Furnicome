@@ -9,16 +9,19 @@ const MODAL_TITLE = document.getElementById('modal-title');
 // Constantes para establecer el contenido de la tabla.
 const TBODY_ROWS = document.getElementById('tbody-rows');
 const RECORDS = document.getElementById('records');
-// Constante tipo objeto para establecer las opciones del componente Modal.
-const OPTIONS = {
-    dismissible: false
-}
 
 document.addEventListener('DOMContentLoaded', () => {
     // Llamada a la función para llenar la tabla con los registros disponibles.
     fillTable();
 });
 
+function limpiarCampos() {
+    document.getElementById("nombre").value = "";
+    document.getElementById("apellido").value = "";
+    document.getElementById("correo").value = "";
+    document.getElementById("alias").value = "";
+    document.getElementById("clave").value = "";
+  }
 
 // Método manejador de eventos para cuando se envía el formulario de guardar.
 SAVE_FORM.addEventListener('submit', async (event) => {
@@ -34,7 +37,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     if (JSON.status) {
         // Se carga nuevamente la tabla para visualizar los cambios.
         fillTable();
-        console.log("Entro al json");
+        limpiarCampos();
         // Se muestra un mensaje de éxito.
         sweetAlert(1, JSON.message, true);
     } else {
@@ -63,24 +66,111 @@ async function fillTable(form = null) {
                     <td>${row.apellido_usuario}</td>
                     <td>${row.correo_usuario}</td>
                     <td>${row.alias_usuario}</td>
-                    <td>${row.clave_usuario}</td>
                     <td>
-                        <a onclick="openUpdate(${row.id_usuario})" class="btn waves-effect blue tooltipped" data-tooltip="Actualizar">
-                            <i class="material-icons">mode_edit</i>
-                        </a>
+                    <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#exampleModal" onclick="openUpdate(${row.id_usuario})">
+                    Editar
+                </button>
                         <a onclick="openDelete(${row.id_usuario})" class="btn waves-effect red tooltipped" data-tooltip="Eliminar">
-                            <i class="material-icons">delete</i>
+                            <i class="material-icons">Eliminar</i>
                         </a>
                     </td>
                 </tr>
             `;
             
         });
-        // Se inicializa el componente Tooltip para que funcionen las sugerencias textuales.
         // Se muestra un mensaje de acuerdo con el resultado.
         RECORDS.textContent = JSON.message;
     } else {
         sweetAlert(4, JSON.exception, true);
     }
 }
+
+
+async function openUpdate(id_usuario) {
+    // Se define una constante tipo objeto con los datos del registro seleccionado.
+    const FORM = new FormData();
+    FORM.append('id_usuario', id_usuario);
+    // Petición para obtener los datos del registro solicitado.
+    const JSON = await dataFetch(USUARIO_API, 'readOne', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (JSON.status) {
+        // Se deshabilitan los campos necesarios.
+        document.getElementById('alias').disabled = true;
+        document.getElementById('clave').disabled = true;
+        // Se inicializan los campos del formulario.
+        document.getElementById('id_usuario').value = JSON.dataset.id_usuario;
+        document.getElementById('nombre').value = JSON.dataset.nombre_usuario;
+        document.getElementById('apellido').value = JSON.dataset.apellido_usuario;
+        document.getElementById('correo').value = JSON.dataset.correo_usuario;
+        document.getElementById('alias').value = JSON.dataset.alias_usuario;
+
+    } else {
+        sweetAlert(2, JSON.exception, false);
+    }
+}
+
+async function openDelete(id_usuario) {
+    // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
+    const RESPONSE = await confirmAction('¿Desea eliminar el usuario de forma permanente?');
+    // Se verifica la respuesta del mensaje.
+    if (RESPONSE) {
+        // Se define una constante tipo objeto con los datos del registro seleccionado.
+        const FORM = new FormData();
+        FORM.append('id_usuario', id_usuario);
+        // Petición para eliminar el registro seleccionado.
+        const JSON = await dataFetch(USUARIO_API, 'delete', FORM);
+        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+        if (JSON.status) {
+            // Se carga nuevamente la tabla para visualizar los cambios.
+            fillTable();
+            // Se muestra un mensaje de éxito.
+            sweetAlert(1, JSON.message, true);
+        } else {
+            sweetAlert(2, JSON.exception, false);
+        }
+    }
+}
+
+//Buscador
+(function(document) {
+    'buscador';
+
+    var LightTableFilter = (function(Arr) {
+
+      var _input;
+
+      function _onInputEvent(e) {
+        _input = e.target;
+        var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
+        Arr.forEach.call(tables, function(table) {
+          Arr.forEach.call(table.tBodies, function(tbody) {
+            Arr.forEach.call(tbody.rows, _filter);
+          });
+        });
+      }
+
+      function _filter(row) {
+        var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
+        row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+      }
+
+      return {
+        init: function() {
+          var inputs = document.getElementsByClassName('light-table-filter');
+          Arr.forEach.call(inputs, function(input) {
+            input.oninput = _onInputEvent;
+          });
+        }
+      };
+    })(Array.prototype);
+
+    document.addEventListener('readystatechange', function() {
+      if (document.readyState === 'complete') {
+        LightTableFilter.init();
+      }
+    });
+
+  })(document);
+
+
 
