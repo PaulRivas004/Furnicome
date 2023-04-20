@@ -67,12 +67,12 @@ async function fillTable(form = null) {
                     <td>${row.correo_usuario}</td>
                     <td>${row.alias_usuario}</td>
                     <td>
-                    <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#exampleModal" onclick="openUpdate(${row.id_usuario})">
-                    Editar
-                </button>
-                        <a onclick="openDelete(${row.id_usuario})" class="btn waves-effect red tooltipped" data-tooltip="Eliminar">
-                            <i class="material-icons">Eliminar</i>
-                        </a>
+                    <button onclick="openUpdate(${row.id_usuario})" type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
+                Actualizar
+            </button>
+                    <button onclick="openDelete(${row.id_usuario})" type="button" class="btn btn-danger">Eliminar</button>
+                    <button onclick="openReport(${row.id_usuario})" type="button" class="btn btn-warning">Reporte</button>
+                    </td>
                     </td>
                 </tr>
             `;
