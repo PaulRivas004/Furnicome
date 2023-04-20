@@ -70,25 +70,12 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Nombre incorrecto';
                 } elseif (!$categoria->setDescripcion($_POST['descripcion'])) {
                     $result['exception'] = 'Descripción incorrecta';
-                } elseif (!is_uploaded_file($_FILES['archivo']['tmp_name'])) {
-                    if ($categoria->updateRow($data['imagen_categoria'])) {
+                } elseif ($categoria->updateRow()) {
                         $result['status'] = 1;
                         $result['message'] = 'Categoría modificada correctamente';
                     } else {
                         $result['exception'] = Database::getException();
                     }
-                } elseif (!$categoria->setImagen($_FILES['archivo'])) {
-                    $result['exception'] = Validator::getFileError();
-                } elseif ($categoria->updateRow($data['imagen_categoria'])) {
-                    $result['status'] = 1;
-                    if (Validator::saveFile($_FILES['archivo'], $categoria->getRuta(), $categoria->getImagen())) {
-                        $result['message'] = 'Categoría modificada correctamente';
-                    } else {
-                        $result['message'] = 'Categoría modificada pero no se guardó la imagen';
-                    }
-                } else {
-                    $result['exception'] = Database::getException();
-                }
                 break;
             case 'delete':
                 if (!$categoria->setId($_POST['id_categoria'])) {
@@ -96,12 +83,8 @@ if (isset($_GET['action'])) {
                 } elseif (!$data = $categoria->readOne()) {
                     $result['exception'] = 'Categoría inexistente';
                 } elseif ($categoria->deleteRow()) {
-                    $result['status'] = 1;
-                    if (Validator::deleteFile($categoria->getRuta(), $data['imagen_categoria'])) {
-                        $result['message'] = 'Categoría eliminada correctamente';
-                    } else {
-                        $result['message'] = 'Categoría eliminada pero no se borró la imagen';
-                    }
+                    $result['status'] = 1;                   
+                    $result['message'] = 'Categoría eliminada correctamente';
                 } else {
                     $result['exception'] = Database::getException();
                 }

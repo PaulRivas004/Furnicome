@@ -34,10 +34,13 @@
     <section>
         <div class="container">
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target=".exampleModal">
+            <button onclick="openCreate()" type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target=".exampleModal">
                 Ingresar categoría
             </button>
-
+            <div class="container col-6">
+                <label>Buscar categoria:</label>
+                <input class="form-control me-2 light-table-filter" data-table="table" type="text">
+            </div>
             <!-- Modal -->
             <div class="modal exampleModal" id="save-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
@@ -75,7 +78,6 @@
                 <thead>
                     <tr id="records"></tr>
                     <tr>
-                        <th scope="col">#</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Descripción</th>
                     </tr>

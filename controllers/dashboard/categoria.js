@@ -14,6 +14,12 @@ const OPTIONS = {
     dismissible: false
 }
 
+// Método manejador de eventos para cuando el documento ha cargado.
+document.addEventListener('DOMContentLoaded', () => {
+    // Llamada a la función para llenar la tabla con los registros disponibles.
+    fillTable();
+});
+
 // Método manejador de eventos para cuando se envía el formulario de guardar.
 SAVE_FORM.addEventListener('submit', async (event) => {
     // Se evita recargar la página web después de enviar el formulario.
@@ -27,7 +33,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (JSON.status) {
         // Se carga nuevamente la tabla para visualizar los cambios.
-        //fillTable();
+        fillTable();
         
         // Se muestra un mensaje de éxito.
         sweetAlert(1, JSON.message, true);
@@ -59,16 +65,14 @@ async function fillTable(form = null) {
                     <td>${row.nombre_categoria}</td>
                     <td>${row.descripcion_categoria}</td>
                     <td>
-                        <a onclick="openUpdate(${row.id_categoria})" class="btn blue tooltipped" data-tooltip="Actualizar">
-                        </a>
-                        <a onclick="openDelete(${row.id_categoria})" class="btn red tooltipped" data-tooltip="Eliminar">
-                        </a>
-                        <a onclick="openReport(${row.id_categoria})" class="btn amber tooltipped" data-tooltip="Reporte">
-                        </a>
+                    <button onclick="openUpdate(${row.id_categoria})" type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target=".exampleModal">
+                Actualizar
+            </button>
+                    <button onclick="openDelete(${row.id_categoria})" type="button" class="btn btn-danger">Eliminar</button>
+                    <button onclick="openReport(${row.id_categoria})" type="button" class="btn btn-warning">Reporte</button>
                     </td>
                 </tr>
-            `;
-            
+            `;      
         });
         RECORDS.textContent = JSON.message;
     } else {
@@ -84,7 +88,111 @@ async function fillTable(form = null) {
 function openCreate() {
     // Se restauran los elementos del formulario.
     SAVE_FORM.reset();
-    // Se asigna título a la caja de diálogo.
-    MODAL_TITLE.textContent = 'Crear categoría';
-    // Se establece el campo de archivo como obligatorio.
 }
+
+/*
+*   Función asíncrona para preparar el formulario al momento de actualizar un registro.
+*   Parámetros: id (identificador del registro seleccionado).
+*   Retorno: ninguno.
+*/
+async function openUpdate(id) {
+    // Se define una constante tipo objeto con los datos del registro seleccionado.
+    const FORM = new FormData();
+    FORM.append('id_categoria', id);
+    // Petición para obtener los datos del registro solicitado.
+    const JSON = await dataFetch(CATEGORIA_API, 'readOne', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (JSON.status) {
+        // Se restauran los elementos del formulario.
+        SAVE_FORM.reset();
+        // Se inicializan los campos del formulario.
+        document.getElementById('id').value = JSON.dataset.id_categoria;
+        document.getElementById('nombre').value = JSON.dataset.nombre_categoria;
+        document.getElementById('descripcion').value = JSON.dataset.descripcion_categoria;
+        // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
+    } else {
+        sweetAlert(2, JSON.exception, false);
+    }
+}
+
+/*
+*   Función asíncrona para eliminar un registro.
+*   Parámetros: id (identificador del registro seleccionado).
+*   Retorno: ninguno.
+*/
+async function openDelete(id) {
+    // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
+    const RESPONSE = await confirmAction('¿Desea eliminar la categoría de forma permanente?');
+    // Se verifica la respuesta del mensaje.
+    if (RESPONSE) {
+        // Se define una constante tipo objeto con los datos del registro seleccionado.
+        const FORM = new FormData();
+        FORM.append('id_categoria', id);
+        // Petición para eliminar el registro seleccionado.
+        const JSON = await dataFetch(CATEGORIA_API, 'delete', FORM);
+        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+        if (JSON.status) {
+            // Se carga nuevamente la tabla para visualizar los cambios.
+            fillTable();
+            // Se muestra un mensaje de éxito.
+            sweetAlert(1, JSON.message, true);
+        } else {
+            sweetAlert(2, JSON.exception, false);
+        }
+    }
+}
+
+/*
+*   Función para abrir el reporte de productos de una categoría.
+*   Parámetros: id (identificador del registro seleccionado).
+*   Retorno: ninguno.
+*/
+function openReport(id) {
+    // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
+    const PATH = new URL(`${SERVER_URL}reports/dashboard/productos_categoria.php`);
+    // Se agrega un parámetro a la ruta con el valor del registro seleccionado.
+    PATH.searchParams.append('id_categoria', id);
+    // Se abre el reporte en una nueva pestaña del navegador web.
+    window.open(PATH.href);
+}
+
+//Buscador
+(function(document) {
+    'buscador';
+
+    var LightTableFilter = (function(Arr) {
+
+      var _input;
+
+      function _onInputEvent(e) {
+        _input = e.target;
+        var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
+        Arr.forEach.call(tables, function(table) {
+          Arr.forEach.call(table.tBodies, function(tbody) {
+            Arr.forEach.call(tbody.rows, _filter);
+          });
+        });
+      }
+
+      function _filter(row) {
+        var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
+        row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+      }
+
+      return {
+        init: function() {
+          var inputs = document.getElementsByClassName('light-table-filter');
+          Arr.forEach.call(inputs, function(input) {
+            input.oninput = _onInputEvent;
+          });
+        }
+      };
+    })(Array.prototype);
+
+    document.addEventListener('readystatechange', function() {
+      if (document.readyState === 'complete') {
+        LightTableFilter.init();
+      }
+    });
+
+  })(document);
