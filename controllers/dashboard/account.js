@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
                             <li>
-                                <a class="dropdown-item" href="#">My profile</a>
+                                <a class="dropdown-item" href="#">$<b>${JSON.username}</b></a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="#">Settings</a>

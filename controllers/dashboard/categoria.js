@@ -66,8 +66,8 @@ async function fillTable(form = null) {
                     <td>${row.descripcion_categoria}</td>
                     <td>
                     <button onclick="openUpdate(${row.id_categoria})" type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target=".exampleModal">
-                Actualizar
-            </button>
+                    Actualizar
+                    </button>
                     <button onclick="openDelete(${row.id_categoria})" type="button" class="btn btn-danger">Eliminar</button>
                     <button onclick="openReport(${row.id_categoria})" type="button" class="btn btn-warning">Reporte</button>
                     </td>
