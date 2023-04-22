@@ -203,3 +203,10 @@ a{
     justify-content: center;
 }
 
+header{
+    margin-bottom: 200px;
+}
+
+footer{
+    margin-top: 300px;
+}
