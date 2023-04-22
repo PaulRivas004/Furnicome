@@ -85,7 +85,7 @@ class UsuarioQueries
     {
         $sql = 'SELECT id_usuario, nombre_usuario, apellido_usuario, correo_usuario, alias_usuario, clave_usuario
                 FROM usuarios
-                ORDER BY apellido_usuario';
+                ORDER BY id_usuario ASC';
         return Database::getRows($sql);
     }
 
