@@ -46,14 +46,6 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay coincidencias';
                 }
                 break;
-                case 'readCategorias':
-                    if ($result['dataset'] = $subcategoria->readCategorias()) {
-                        $result['status'] = 1;
-                        $result['message'] = 'Existen '.count($result['dataset']).' registros';
-                    } elseif (Database::getException()) {
-                        $result['exception'] = Database::getException();
-                    }
-                    break;
             case 'create':
                 $_POST = Validator::validateForm($_POST);
                 if (!$subcategoria->setNombre($_POST['nombre'])) {
@@ -82,12 +74,13 @@ if (isset($_GET['action'])) {
             case 'readOne':
                 if (!$subcategoria->setId($_POST['id_subcategoria'])) {
                     $result['exception'] = 'Subcategoría incorrecta';
+                    print_r($_POST);
                 } elseif ($result['dataset'] = $subcategoria->readOne()) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
                 } else {
-                    $result['exception'] = 'Subategoría inexistente';
+                    $result['exception'] = 'Subcategoría inexistente';
                 }
                 break;
             case 'update':
@@ -102,10 +95,10 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Descripción incorrecta';
                 } elseif (!$subcategoria->setCategoria($_POST['categoria'])) {
                     $result['exception'] = 'Seleccione una categoría';
-                } elseif (!is_uploaded_file($_FILES['archivo']['tmp_name'])) {
-                    if ($subcategoria->updateRow($data['imagen_subcategoria'])) {
+                }  elseif (!is_uploaded_file($_FILES['archivo']['tmp_name'])) {
+                    if ($subcategoria->updateRow($data['imagen'])) {
                         $result['status'] = 1;
-                        $result['message'] = 'Subategoría modificada correctamente';
+                        $result['message'] = 'Producto modificado correctamente';
                     } else {
                         $result['exception'] = Database::getException();
                     }
@@ -114,25 +107,25 @@ if (isset($_GET['action'])) {
                 } elseif ($subcategoria->updateRow($data['imagen_categoria'])) {
                     $result['status'] = 1;
                     if (Validator::saveFile($_FILES['archivo'], $categoria->getRuta(), $categoria->getImagen())) {
-                        $result['message'] = 'Subategoría modificada correctamente';
+                        $result['message'] = 'Subcategoría modificada correctamente';
                     } else {
-                        $result['message'] = 'Suvategoría modificada pero no se guardó la imagen';
+                        $result['message'] = 'Subcategoría modificada pero no se guardó la imagen';
                     }
                 } else {
                     $result['exception'] = Database::getException();
                 }
                 break;
             case 'delete':
-                if (!$categoria->setId($_POST['id_categoria'])) {
+                if (!$subcategoria->setId($_POST['id_subcategoria'])) {
                     $result['exception'] = 'Categoría incorrecta';
-                } elseif (!$data = $categoria->readOne()) {
+                } elseif (!$data = $subcategoria->readOne()) {
                     $result['exception'] = 'Categoría inexistente';
-                } elseif ($categoria->deleteRow()) {
+                } elseif ($subcategoria->deleteRow()) {
                     $result['status'] = 1;
-                    if (Validator::deleteFile($categoria->getRuta(), $data['imagen_categoria'])) {
-                        $result['message'] = 'Categoría eliminada correctamente';
+                    if (Validator::deleteFile($subcategoria->getRuta(), $data['imagen'])) {
+                        $result['message'] = 'Subategoría eliminada correctamente';
                     } else {
-                        $result['message'] = 'Categoría eliminada pero no se borró la imagen';
+                        $result['message'] = 'Subategoría eliminada pero no se borró la imagen';
                     }
                 } else {
                     $result['exception'] = Database::getException();

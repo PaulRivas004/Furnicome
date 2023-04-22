@@ -67,10 +67,10 @@ async function fillTable(form = null) {
                     <td>${row.imagen}</td>
                     <td>${row.nombre_categoria}</td>
                     <td>
-                    <button onclick="openUpdate()" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target=".exampleModal">
-                Actualizar
-            </button>
-                    <button onclick="openDelete(${row.id_categoria})" type="button" class="btn btn-danger">Eliminar</button>
+                    <button onclick="openUpdate(${row.id_subcategoria})" type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target=".exampleModal">
+                    Actualizar
+                    </button>
+                    <button onclick="openDelete(${row.id_subcategoria})" type="button" class="btn btn-danger">Eliminar</button>
                     </td>
                 </tr>
             `;      
@@ -95,4 +95,57 @@ function openCreate() {
     fillSelect(SUBCATEGORIA_API, 'readCategorias','categoria');
 }
 
+/*
+*   Función asíncrona para preparar el formulario al momento de actualizar un registro.
+*   Parámetros: id (identificador del registro seleccionado).
+*   Retorno: ninguno.
+*/
+async function openUpdate(id) {
+    // Se define una constante tipo objeto con los datos del registro seleccionado.
+    const FORM = new FormData();
+    FORM.append('id_subcategoria', id);
+    // Petición para obtener los datos del registro solicitado.
+    const JSON = await dataFetch(SUBCATEGORIA_API, 'readOne', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (JSON.status) {
+        // Se restauran los elementos del formulario.
+        SAVE_FORM.reset();
+        // Se establece el campo de archivo como opcional.
+        document.getElementById('archivo').required = false;
+        // Se inicializan los campos del formulario.
+        document.getElementById('id').value = JSON.dataset.id_subcategoria;
+        document.getElementById('nombre').value = JSON.dataset.nombre_sub;
+        document.getElementById('descripcion').value = JSON.dataset.descripcion_sub;
+        fillSelect(SUBCATEGORIA_API, 'readCategorias','categoria', JSON.dataset.id_categoria);
+        // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
+    } else {
+        sweetAlert(2, JSON.exception, false);
+    }
+}
 
+/*
+*   Función asíncrona para eliminar un registro.
+*   Parámetros: id (identificador del registro seleccionado).
+*   Retorno: ninguno.
+*/
+async function openDelete(id) {
+    // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
+    const RESPONSE = await confirmAction('¿Desea eliminar la subcategoría de forma permanente?');
+    // Se verifica la respuesta del mensaje.
+    if (RESPONSE) {
+        // Se define una constante tipo objeto con los datos del registro seleccionado.
+        const FORM = new FormData();
+        FORM.append('id_subcategoria', id);
+        // Petición para eliminar el registro seleccionado.
+        const JSON = await dataFetch(SUBCATEGORIA_API, 'delete', FORM);
+        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+        if (JSON.status) {
+            // Se carga nuevamente la tabla para visualizar los cambios.
+            fillTable();
+            // Se muestra un mensaje de éxito.
+            sweetAlert(1, JSON.message, true);
+        } else {
+            sweetAlert(2, JSON.exception, false);
+        }
+    }
+}

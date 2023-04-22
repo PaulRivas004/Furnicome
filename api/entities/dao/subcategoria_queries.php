@@ -39,7 +39,7 @@ class SubcategoriaQueries
 
     public function readOne()
     {
-        $sql = 'SELECT id_subcategoria, nombre_sub, descripcion_sub, imagen, nombre_categoria
+        $sql = 'SELECT id_subcategoria, nombre_sub, descripcion_sub, imagen, id_categoria
                 FROM subcategorias
                 INNER JOIN categorias USING(id_categoria)
                 WHERE id_subcategoria = ?';
@@ -53,9 +53,9 @@ class SubcategoriaQueries
         ($this->imagen) ? Validator::deleteFile($this->getRuta(), $current_image) : $this->imagen = $current_image;
 
         $sql = 'UPDATE subcategorias
-                SET id_subcategoria=?, nombre_sub=?, descripcion_sub=?, imagen=?, id_categoria=?
-                WHERE id_subcategoria=?;';
-        $params = array($this->imagen, $this->nombre, $this->descripcion, $this->id);
+                SET nombre_sub=?, descripcion_sub=?, imagen=?, id_categoria=?
+                WHERE id_subcategoria=?';
+        $params = array($this->nombre, $this->descripcion, $this->imagen, $this->categoria, $this->id);
         return Database::executeRow($sql, $params);
     }
 
