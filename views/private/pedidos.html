@@ -6,10 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<link rel="stylesheet" href="../../resources/css/estilo.css">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" rel="stylesheet" />
-    <title>Document</title>
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../resources/css/estilo.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" rel="stylesheet" />
+    <title>Pedidos</title>
 </head>
 
 <body>
@@ -18,7 +18,74 @@
     </header>
 
     <main>
-<h1>MAmawebo</h1>
+        <div class="container">
+            <!-- Button trigger modal -->
+            <button  type="button" class="btn btn-primary" data-mdb-toggle="modal"
+                data-mdb-target=".exampleModal">
+                Modificar Pedido
+            </button>
+            <div class="container col-6">
+                <label>Buscar Pedido:</label>
+                <input class="form-control me-2 light-table-filter" data-table="table" type="text">
+            </div>
+            <!-- Modal -->
+            <div class="modal exampleModal" id="save-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Modificar pedido</h5>
+                            <button type="button" class="btn-close" data-mdb-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="save-form">
+                                <input class="visually-hidden" type="number" id="id_pedido" name="id_pedido">
+                                <div class="mb-3">
+                                    <label for="recipient-name" class="col-form-label">Cliente:</label>
+                                    <input type="text" class="validate" id="nombre_cliente" name="nombre_cliente" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="message-text" class="col-form-label">Estado del pedido:</label>
+                                    <select name="estado" id="estado">
+
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="recipient-name" class="col-form-label">Fecha pedido:</label>
+                                    <input type="text" class="validate" id="fecha_pedido" name="fecha_pedido" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="recipient-name" class="col-form-label">Dirección:</label>
+                                    <input type="text" class="validate" id="direccion" name="direccion" required>
+                                </div>
+                                <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-secondary" id="create">Agregar</button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="container">
+            <table class="table table-responsive-sm">
+                <thead>
+                    <tr id="records"></tr>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Cliente</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Dirección</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody-rows">
+
+                </tbody>
+            </table>
+        </div>
     </main>
 
 
@@ -30,10 +97,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>
+        <script type="text/javascript" src="../../controllers/dashboard/pedidos.js"></script>
     <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
     <script type="text/javascript" src="../../controllers/dashboard/account.js"></script>
     <script src="../../controllers/components.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
+
 </body>
 
 </html>
