@@ -1,5 +1,5 @@
 // Constante para completar la ruta de la API.
-const SUBCATEGORIA_API = 'business/dashboard/subcategoria.php';
+const PRODUCTO_API = 'business/dashboard/producto.php';
 // Constante para establecer el formulario de buscar.
 const SEARCH_FORM = document.getElementById('search-form');
 // Constante para establecer el formulario de guardar.
@@ -29,12 +29,12 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(SAVE_FORM);
     // Petición para guardar los datos del formulario.
-    const JSON = await dataFetch(SUBCATEGORIA_API, action, FORM);
+    const JSON = await dataFetch(PRODUCTO_API, action, FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (JSON.status) {
         // Se carga nuevamente la tabla para visualizar los cambios.
         fillTable();
-        
+
         // Se muestra un mensaje de éxito.
         sweetAlert(1, JSON.message, true);
     } else {
@@ -54,7 +54,7 @@ async function fillTable(form = null) {
     // Se verifica la acción a realizar.
     (form) ? action = 'search' : action = 'readAll';
     // Petición para obtener los registros disponibles.
-    const JSON = await dataFetch(SUBCATEGORIA_API, action, form);
+    const JSON = await dataFetch(PRODUCTO_API, action, form);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (JSON.status) {
         // Se recorre el conjunto de registros fila por fila.
@@ -63,17 +63,21 @@ async function fillTable(form = null) {
             TBODY_ROWS.innerHTML += `
                 <tr>
                     <td>${row.nombre_sub}</td>
-                    <td>${row.descripcion_sub}</td>
-                    <td>${row.imagen}</td>
-                    <td>${row.nombre_categoria}</td>
+                    <td>${row.nombre_usuario}</td>
+                    <td>${row.nombre_producto}</td>
+                    <td>${row.descripcion_producto}</td>
+                    <td>${row.precio_producto}</td>
+                    <td>${row.imagen_producto}</td>
+                    <td>${row.estado_producto}</td>
+                    <td>${row.existencia_producto}</td>
                     <td>
-                    <button onclick="openUpdate(${row.id_subcategoria})" type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target=".exampleModal">
+                    <button onclick="openUpdate(${row.id_producto})" type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target=".exampleModal">
                     Actualizar
                     </button>
-                    <button onclick="openDelete(${row.id_subcategoria})" type="button" class="btn btn-danger">Eliminar</button>
+                    <button onclick="openDelete(${row.id_producto})" type="button" class="btn btn-danger">Eliminar</button>
                     </td>
                 </tr>
-            `;      
+            `;
         });
         RECORDS.textContent = JSON.message;
     } else {
@@ -92,34 +96,29 @@ function openCreate() {
     // Se establece el campo de archivo como obligatorio.
     document.getElementById('archivo').required = true;
     // Llamada a la función para llenar el select del formulario. Se encuentra en el archivo components.js
-    fillSelect(SUBCATEGORIA_API, 'readCategorias','categoria');
+    fillSelect(PRODUCTO_API, 'readSub', 'subcategoria');
+    fillSelect(PRODUCTO_API, 'cargarUsuario', 'usuario');
 }
 
-/*
-*   Función asíncrona para preparar el formulario al momento de actualizar un registro.
-*   Parámetros: id (identificador del registro seleccionado).
-*   Retorno: ninguno.
-*/
 async function openUpdate(id) {
-    // Se define una constante tipo objeto con los datos del registro seleccionado.
     const FORM = new FormData();
-    FORM.append('id_subcategoria', id);
-    // Petición para obtener los datos del registro solicitado.
-    const JSON = await dataFetch(SUBCATEGORIA_API, 'readOne', FORM);
-    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    FORM.append('id', id);
+    const JSON = await dataFetch(PRODUCTO_API, 'readOne', FORM);
+    
     if (JSON.status) {
-        // Se restauran los elementos del formulario.
-        SAVE_FORM.reset();
-        // Se establece el campo de archivo como opcional.
+        document.getElementById('id').value = JSON.dataset.id_producto;
+        fillSelect(PRODUCTO_API, 'readSub', 'subcategoria', JSON.dataset.id_subcategoria);
+        fillSelect(PRODUCTO_API, 'cargarUsuario', 'usuario', JSON.dataset.id_usuario);
+        document.getElementById('nombre').value = JSON.dataset.nombre_producto;
+        document.getElementById('descripcion').value = JSON.dataset.descripcion_producto;
+        document.getElementById('precio').value = JSON.dataset.precio_producto;
         document.getElementById('archivo').required = false;
-        // Se inicializan los campos del formulario.
-        document.getElementById('id').value = JSON.dataset.id_subcategoria;
-        document.getElementById('nombre').value = JSON.dataset.nombre_sub;
-        document.getElementById('descripcion').value = JSON.dataset.descripcion_sub;
-        fillSelect(SUBCATEGORIA_API, 'readCategorias','categoria', JSON.dataset.id_categoria);
-        // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
-    } else {
-        sweetAlert(2, JSON.exception, false);
+        if (JSON.dataset.estado_producto) {
+            document.getElementById('estados').checked = true;
+        } else {
+            document.getElementById('estados').checked = false;
+        }
+        document.getElementById('existencia').value = JSON.dataset.existencia_producto;
     }
 }
 
@@ -130,14 +129,14 @@ async function openUpdate(id) {
 */
 async function openDelete(id) {
     // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
-    const RESPONSE = await confirmAction('¿Desea eliminar la subcategoría de forma permanente?');
+    const RESPONSE = await confirmAction('¿Desea eliminar el producto de forma permanente?');
     // Se verifica la respuesta del mensaje.
     if (RESPONSE) {
         // Se define una constante tipo objeto con los datos del registro seleccionado.
         const FORM = new FormData();
-        FORM.append('id_subcategoria', id);
+        FORM.append('id_producto', id);
         // Petición para eliminar el registro seleccionado.
-        const JSON = await dataFetch(SUBCATEGORIA_API, 'delete', FORM);
+        const JSON = await dataFetch(PRODUCTO_API, 'delete', FORM);
         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
         if (JSON.status) {
             // Se carga nuevamente la tabla para visualizar los cambios.
@@ -149,44 +148,3 @@ async function openDelete(id) {
         }
     }
 }
-
-//Buscador
-(function(document) {
-    'buscador';
-
-    var LightTableFilter = (function(Arr) {
-
-      var _input;
-
-      function _onInputEvent(e) {
-        _input = e.target;
-        var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
-        Arr.forEach.call(tables, function(table) {
-          Arr.forEach.call(table.tBodies, function(tbody) {
-            Arr.forEach.call(tbody.rows, _filter);
-          });
-        });
-      }
-
-      function _filter(row) {
-        var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
-        row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
-      }
-
-      return {
-        init: function() {
-          var inputs = document.getElementsByClassName('light-table-filter');
-          Arr.forEach.call(inputs, function(input) {
-            input.oninput = _onInputEvent;
-          });
-        }
-      };
-    })(Array.prototype);
-
-    document.addEventListener('readystatechange', function() {
-      if (document.readyState === 'complete') {
-        LightTableFilter.init();
-      }
-    });
-
-  })(document);

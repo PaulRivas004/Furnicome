@@ -40,10 +40,10 @@ class Producto extends ProductoQueries
             return false;
         }
     }
-    public function setIdSubCategoria($value)
+    public function setSubcategoria($value)
     {
         if (Validator::validateNaturalNumber($value)) {
-            $this->id_usuario = $value;
+            $this->id_subcategoria = $value;
             return true;
         } else {
             return false;
