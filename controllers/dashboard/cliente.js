@@ -1,5 +1,5 @@
 // Constante para completar la ruta de la API.
-const PRODUCTO_API = 'business/dashboard/producto.php';
+const CLIENTE_API = 'business/dashboard/cliente.php';
 // Constante para establecer el formulario de buscar.
 const SEARCH_FORM = document.getElementById('search-form');
 // Constante para establecer el formulario de guardar.
@@ -29,7 +29,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(SAVE_FORM);
     // Petición para guardar los datos del formulario.
-    const JSON = await dataFetch(PRODUCTO_API, action, FORM);
+    const JSON = await dataFetch(CLIENTE_API, action, FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (JSON.status) {
         // Se carga nuevamente la tabla para visualizar los cambios.
@@ -54,7 +54,7 @@ async function fillTable(form = null) {
     // Se verifica la acción a realizar.
     (form) ? action = 'search' : action = 'readAll';
     // Petición para obtener los registros disponibles.
-    const JSON = await dataFetch(PRODUCTO_API, action, form);
+    const JSON = await dataFetch(CLIENTE_API, action, form);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (JSON.status) {
         // Se recorre el conjunto de registros fila por fila.
@@ -62,19 +62,17 @@ async function fillTable(form = null) {
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             TBODY_ROWS.innerHTML += `
                 <tr>
-                    <td>${row.nombre_sub}</td>
-                    <td>${row.nombre_usuario}</td>
-                    <td>${row.nombre_producto}</td>
-                    <td>${row.descripcion_producto}</td>
-                    <td>${row.precio_producto}</td>
-                    <td>${row.imagen_producto}</td>
-                    <td>${row.estado_producto}</td>
-                    <td>${row.existencia_producto}</td>
+                    <td>${row.nombre_cliente}</td>
+                    <td>${row.apellido_cliente}</td>
+                    <td>${row.correo_cliente}</td>
+                    <td>${row.direccion_cliente}</td>
+                    <td>${row.estado_cliente}</td>
+                    <td>${row.telefono_cliente}</td>
                     <td>
-                    <button onclick="openUpdate(${row.id_producto})" type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target=".exampleModal">
+                    <button onclick="openUpdate(${row.id_cliente})" type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target=".exampleModal">
                     Actualizar
                     </button>
-                    <button onclick="openDelete(${row.id_producto})" type="button" class="btn btn-danger">Eliminar</button>
+                    <button onclick="openDelete(${row.id_cliente})" type="button" class="btn btn-danger">Eliminar</button>
                     </td>
                 </tr>
             `;
@@ -85,67 +83,32 @@ async function fillTable(form = null) {
     }
 }
 
-/*
-*   Función para preparar el formulario al momento de insertar un registro.
-*   Parámetros: ninguno.
-*   Retorno: ninguno.
-*/
-function openCreate() {
-    // Se restauran los elementos del formulario.
-    SAVE_FORM.reset();
-    // Se establece el campo de archivo como obligatorio.
-    document.getElementById('archivo').required = true;
-    // Llamada a la función para llenar el select del formulario. Se encuentra en el archivo components.js
-    fillSelect(PRODUCTO_API, 'readSub', 'subcategoria');
-    fillSelect(PRODUCTO_API, 'cargarUsuario', 'usuario');
-}
-
 async function openUpdate(id) {
     const FORM = new FormData();
     FORM.append('id', id);
-    const JSON = await dataFetch(PRODUCTO_API, 'readOne', FORM);
+    const JSON = await dataFetch(CLIENTE_API, 'readOne', FORM);
     
-    if (JSON.status) {
-        document.getElementById('id').value = JSON.dataset.id_producto;
-        fillSelect(PRODUCTO_API, 'readSub', 'subcategoria', JSON.dataset.id_subcategoria);
-        fillSelect(PRODUCTO_API, 'cargarUsuario', 'usuario', JSON.dataset.id_usuario);
-        document.getElementById('nombre').value = JSON.dataset.nombre_producto;
-        document.getElementById('descripcion').value = JSON.dataset.descripcion_producto;
-        document.getElementById('precio').value = JSON.dataset.precio_producto;
-        document.getElementById('archivo').required = false;
-        if (JSON.dataset.estado_producto) {
+    if (JSON.status) {      
+        document.getElementById('nombre').disabled = true;
+        document.getElementById('apellido').disabled = true;
+        document.getElementById('direccion').disabled = true;
+        document.getElementById('correo').disabled = true;
+        document.getElementById('dui').disabled = true;
+        document.getElementById('telefono').disabled = true;
+        //se establecen los campos a llenar
+        document.getElementById('id').value = JSON.dataset.id_cliente;
+        document.getElementById('nombre').value = JSON.dataset.nombre_cliente;
+        document.getElementById('apellido').value = JSON.dataset.apellido_cliente;
+        document.getElementById('dui').value = JSON.dataset.dui_cliente;
+        document.getElementById('correo').value = JSON.dataset.correo_cliente;
+        document.getElementById('clave').value = JSON.dataset.clave_cliente;
+        document.getElementById('direccion').value = JSON.dataset.direccion_cliente;
+        if (JSON.dataset.estado_cliente) {
             document.getElementById('estados').checked = true;
         } else {
             document.getElementById('estados').checked = false;
         }
-        document.getElementById('existencia').value = JSON.dataset.existencia_producto;
-    }
-}
-
-/*
-*   Función asíncrona para eliminar un registro.
-*   Parámetros: id (identificador del registro seleccionado).
-*   Retorno: ninguno.
-*/
-async function openDelete(id) {
-    // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
-    const RESPONSE = await confirmAction('¿Desea eliminar el producto de forma permanente?');
-    // Se verifica la respuesta del mensaje.
-    if (RESPONSE) {
-        // Se define una constante tipo objeto con los datos del registro seleccionado.
-        const FORM = new FormData();
-        FORM.append('id_producto', id);
-        // Petición para eliminar el registro seleccionado.
-        const JSON = await dataFetch(PRODUCTO_API, 'delete', FORM);
-        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-        if (JSON.status) {
-            // Se carga nuevamente la tabla para visualizar los cambios.
-            fillTable();
-            // Se muestra un mensaje de éxito.
-            sweetAlert(1, JSON.message, true);
-        } else {
-            sweetAlert(2, JSON.exception, false);
-        }
+        document.getElementById('telefono').value = JSON.dataset.telefono_cliente;
     }
 }
 
@@ -189,3 +152,4 @@ async function openDelete(id) {
     });
 
   })(document);
+

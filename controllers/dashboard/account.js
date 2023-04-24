@@ -53,7 +53,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                         </li>
                         <li class="nav-item">
                         <a class="nav-link" href="../private/pedidos.html">Pedidos</a>
-                    </li>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../private/clientes.html">clientes</a>
+                        </li>
                     </ul>
                     <!-- Left links -->
                 </div>

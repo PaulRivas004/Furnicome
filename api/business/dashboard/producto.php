@@ -135,12 +135,12 @@ if (isset($_GET['action'])) {
                     }
                 } elseif (!$producto->setImagen($_FILES['archivo'])) {
                     $result['exception'] = Validator::getFileError();
-                } elseif ($subcategoria->updateRow($data['archivo'])) {
+                } elseif ($producto->updateRow($data['imagen_producto'])) {
                     $result['status'] = 1;
                     if (Validator::saveFile($_FILES['archivo'], $producto->getRuta(), $producto->getImagen())) {
-                        $result['message'] = 'Subcategoría modificada correctamente';
+                        $result['message'] = 'producto modificado correctamente';
                     } else {
-                        $result['message'] = 'Subcategoría modificada pero no se guardó la imagen';
+                        $result['message'] = 'producto modificado pero no se guardó la imagen';
                     }
                 } else {
                     $result['exception'] = Database::getException();

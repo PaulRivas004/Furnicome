@@ -9,7 +9,6 @@ class ProductoQueries
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
     */
 
-
     public function createRow()
     {
         $sql = 'INSERT INTO productos( id_subcategoria, id_usuario, nombre_producto, descripcion_producto, precio_producto, imagen_producto, estado_producto, existencia_producto)
