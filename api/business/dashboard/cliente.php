@@ -57,6 +57,8 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Nombre incorrecto';
                 }elseif (!$cliente->setApellidos($_POST['apellido'])) {
                     $result['exception'] = 'Apellido incorrecto';
+                }elseif (!$cliente->setDUI($_POST['dui'])) {
+                    $result['exception'] = 'Dui incorrecto';
                 }elseif (!$cliente->setCorreo($_POST['correo'])) {
                     $result['exception'] = 'Correo incorrecto';
                 }elseif (!$cliente->setDireccion($_POST['direccion'])) {
@@ -64,22 +66,24 @@ if (isset($_GET['action'])) {
                 }elseif (!$cliente->setClave($_POST['clave'])) {
                     $result['exception'] = 'clave incorrecto';
                 }elseif (!$cliente->setEstado(isset($_POST['estados']) ? 1 : 0)) {
-                    $result['exception'] = 'Estado incorrecto';
+                    $result['exception'] = 'Estado incorrecto';   
+                }elseif (!$cliente->setTelefono($_POST['telefono'])) {
+                    $result['exception'] = 'Telefono incorrecto';
                 }  elseif ($cliente->updateRow()) {
                         $result['status'] = 1;
                         $result['message'] = 'Estado del cliente modificada correctamente';
                     } else {
                         $result['exception'] = Database::getException();
-                    }
+                    }    
                 break;
             case 'delete':
-                if (!$cliente->setId($_POST['id_categoria'])) {
-                    $result['exception'] = 'Categoría incorrecta';
-                } elseif (!$data = $categoria->readOne()) {
-                    $result['exception'] = 'Categoría inexistente';
-                } elseif ($categoria->deleteRow()) {
+                if (!$cliente->setId($_POST['id_cliente'])) {
+                    $result['exception'] = 'cliente incorrecta';
+                } elseif (!$data = $cliente->readOne()) {
+                    $result['exception'] = 'cliente inexistente';
+                } elseif ($cliente->deleteRow()) {
                     $result['status'] = 1;                   
-                    $result['message'] = 'Categoría eliminada correctamente';
+                    $result['message'] = 'cliente eliminada correctamente';
                 } else {
                     $result['exception'] = Database::getException();
                 }
