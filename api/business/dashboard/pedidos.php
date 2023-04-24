@@ -40,8 +40,14 @@ if (isset($_GET['action'])) {
                             $result['exception'] = 'Pedido incorrecto';
                         } elseif (!$pedidos->readOne()) {
                             $result['exception'] = 'Pedido inexistente';
-                        } elseif (!$pedidos->setEstado($_POST['estado'])) {
+                        } elseif (!$pedidos->setNombreCliente($_POST['nombre_cliente'])) {
+                            $result['exception'] = 'Nombre incorrecto';
+                        }elseif (!$pedidos->setEstado(isset($_POST['estado']) ? 1 : 0)) {
                             $result['exception'] = 'Estado incorrecto';
+                        }elseif (!$pedidos->setFecha($_POST['fecha_pedido'])) {
+                            $result['exception'] = 'Fecha incorrecto';
+                        }elseif (!$pedidos->setDireccion($_POST['direccion'])) {
+                            $result['exception'] = 'Direccion incorrecto';
                         }elseif ($pedidos->updateRow()) {
                             $result['status'] = 1;
                             $result['message'] = 'Pedido modificado correctamente';
@@ -50,14 +56,13 @@ if (isset($_GET['action'])) {
                         }
                         break;
                         case 'readDetail':
-                            if (!$pedidos->setIdDetalle($_POST['id_detalle'])) {
-                                $result['exception'] = 'Pedido incorrecto';
-                            } elseif ($result['dataset'] = $pedidos->readDetail()) {
+                            if ($result['dataset'] = $pedidos->readDetail()) {
                                 $result['status'] = 1;
+                                $result['message'] = 'Existen '.count($result['dataset']).' registros';
                             } elseif (Database::getException()) {
                                 $result['exception'] = Database::getException();
                             } else {
-                                $result['exception'] = 'Pedido inexistente';
+                                $result['exception'] = 'No hay datos registrados';
                             }
                             break;
                             case 'delete':

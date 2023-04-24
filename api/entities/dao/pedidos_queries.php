@@ -31,8 +31,8 @@ class PedidosQueries
         $sql = 'SELECT id_detalle, id_pedido, nombre_producto, cantidad_producto
                 FROM detalle_pedidos INNER JOIN productos USING(id_producto)
                 WHERE id_detalle = ?';
-        $params = array($this->id_pedido);
-        return Database::getRow($sql, $params);
+        $params = array($this->id_detalle);
+        return Database::getRows($sql, $params);
     }
 
     public function updateRow()

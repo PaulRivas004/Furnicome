@@ -97,10 +97,6 @@ async function openUpdate(id_pedido) {
   const JSON = await dataFetch(PEDIDOS_API, 'readOne', FORM);
   // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
   if (JSON.status) {
-    // Se deshabilitan los campos necesarios.
-    document.getElementById('nombre_cliente').disabled = true;
-    document.getElementById('fecha_pedido').disabled = true;
-    document.getElementById('direccion').disabled = true;
     // Se inicializan los campos del formulario.
     document.getElementById('id_pedido').value = JSON.dataset.id_pedido;
     document.getElementById('nombre_cliente').value = JSON.dataset.nombre_cliente;
@@ -116,14 +112,13 @@ async function openUpdate(id_pedido) {
   }
 }
 
-
-async function openDetail(form = null) {
-  // Se inicializa el contenido de la tabla.
+async function openDetail(id_detalle) {
+  // Se define una constante tipo objeto con los datos del registro seleccionado.
+  const FORM = new FormData();
+  FORM.append('id_detalle', id_detalle);
   TBODY_ROWS2.innerHTML = '';
-  // Se verifica la acción a realizar.
-  action = 'readDetail';
-  // Petición para obtener los registros disponibles.
-  const JSON = await dataFetch(PEDIDOS_API, action, form);
+  // Petición para obtener los datos del registro solicitado.
+  const JSON = await dataFetch(PEDIDOS_API, 'readDetail', FORM);
   // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
   if (JSON.status) {
     // Se recorre el conjunto de registros fila por fila.
@@ -138,11 +133,12 @@ async function openDetail(form = null) {
           <td>${row.precio_producto}</td>
       </tr>
             `;
-    });
+          });
   } else {
-    sweetAlert(4, JSON.exception, true);
+    sweetAlert(2, JSON.exception, false);
   }
 }
+
 
 /*
 *   Función asíncrona para eliminar un registro.

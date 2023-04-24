@@ -73,38 +73,7 @@ class Pedidos extends PedidosQueries
         }
     }
 
-    /*
-    *   Métodos para obtener valores de los atributos.
-    */
-
-    public function getId()
-    {
-        return $this->id_pedido;
-    }
-
-
-    public function getNombreCliente()
-    {
-        return $this->nombre_cliente;
-    }
-
-    public function getEstado()
-    {
-        return $this->estado_pedido;
-    }
-
-    public function getFechaPedido()
-    {
-        return $this->fecha_pedido;
-    }
-
-    public function getDireccion()
-    {
-        return $this->direccion_pedido;
-    }
-
-
-//detalle pedidos
+    //detalle pedidos
 public function setIdDetalle($value)
 {
     if (Validator::validateNaturalNumber($value)) {
@@ -134,6 +103,36 @@ public function setCantidad($value)
         return false;
     }
 }
+
+    /*
+    *   Métodos para obtener valores de los atributos.
+    */
+
+    public function getId()
+    {
+        return $this->id_pedido;
+    }
+
+
+    public function getNombreCliente()
+    {
+        return $this->nombre_cliente;
+    }
+
+    public function getEstado()
+    {
+        return $this->estado_pedido;
+    }
+
+    public function getFechaPedido()
+    {
+        return $this->fecha_pedido;
+    }
+
+    public function getDireccion()
+    {
+        return $this->direccion_pedido;
+    }
     
 public function getIdDetalle()
 {
