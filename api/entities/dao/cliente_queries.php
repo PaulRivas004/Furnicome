@@ -101,7 +101,7 @@ class ClienteQueries
     public function updateRow()
     {
         $sql = 'UPDATE clientes
-                SET nombre_cliente=?, apellido_cliente=?, dui_cliente=?, correo_cliente=?, direccion_cliente=?, clave_cliente=?, estado_cliente=?, telefono_cliente=?
+                SET nombre_cliente=?, apellido_cliente=?, dui_cliente=?, correo_cliente=?, direccion_cliente=?, estado_cliente=?, clave_cliente=?, telefono_cliente=?
                 WHERE id_cliente = ?';
         $params = array($this->nombres, $this->apellidos, $this->dui, $this->correo, $this->direccion, $this->estado, $this->clave, $this->telefono, $this->id);
         return Database::executeRow($sql, $params);

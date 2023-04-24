@@ -89,12 +89,6 @@ async function openUpdate(id) {
     const JSON = await dataFetch(CLIENTE_API, 'readOne', FORM);
     
     if (JSON.status) {      
-        document.getElementById('nombre').disabled = true;
-        document.getElementById('apellido').disabled = true;
-        document.getElementById('direccion').disabled = true;
-        document.getElementById('correo').disabled = true;
-        document.getElementById('dui').disabled = true;
-        document.getElementById('telefono').disabled = true;
         //se establecen los campos a llenar
         document.getElementById('id').value = JSON.dataset.id_cliente;
         document.getElementById('nombre').value = JSON.dataset.nombre_cliente;
@@ -109,6 +103,33 @@ async function openUpdate(id) {
             document.getElementById('estados').checked = false;
         }
         document.getElementById('telefono').value = JSON.dataset.telefono_cliente;
+    }
+}
+
+/*
+*   Función asíncrona para eliminar un registro.
+*   Parámetros: id (identificador del registro seleccionado).
+*   Retorno: ninguno.
+*/
+async function openDelete(id) {
+    // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
+    const RESPONSE = await confirmAction('¿Desea eliminar el producto de forma permanente?');
+    // Se verifica la respuesta del mensaje.
+    if (RESPONSE) {
+        // Se define una constante tipo objeto con los datos del registro seleccionado.
+        const FORM = new FormData();
+        FORM.append('id_cliente', id);
+        // Petición para eliminar el registro seleccionado.
+        const JSON = await dataFetch(CLIENTE_API, 'delete', FORM);
+        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+        if (JSON.status) {
+            // Se carga nuevamente la tabla para visualizar los cambios.
+            fillTable();
+            // Se muestra un mensaje de éxito.
+            sweetAlert(1, JSON.message, true);
+        } else {
+            sweetAlert(2, JSON.exception, false);
+        }
     }
 }
 
