@@ -46,10 +46,13 @@
                                     <input type="text" class="validate" id="nombre_cliente" name="nombre_cliente" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="message-text" class="col-form-label">Estado del pedido:</label>
-                                    <select name="estado" id="estado">
-
-                                    </select>
+                                    <p>Estado del pedido</p>
+                                    <!-- Default switch -->
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" role="switch"
+                                            id="estado" name="estado"/>
+                                        <label class="form-check-label" for="flexSwitchCheckDefault"> No Disponible/ Disponible</label>
+                                    </div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="recipient-name" class="col-form-label">Fecha pedido:</label>
@@ -59,8 +62,8 @@
                                     <label for="recipient-name" class="col-form-label">Dirección:</label>
                                     <input type="text" class="validate" id="direccion" name="direccion" required>
                                 </div>
-                                <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-secondary" id="create">Agregar</button>
+                                <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
                             </form>
 
                         </div>
@@ -85,7 +88,43 @@
 
                 </tbody>
             </table>
+
+            <!-- Button trigger modal -->
+<button type="button" class="visually-hidden btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
+    Launch demo modal
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Detalle del pedido</h5>
+          <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
         </div>
+        <div class="modal-body">
+            <table class="table table-responsive-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Pedido</th>
+                        <th scope="col">Producto</th>
+                        <th scope="col">Cantidad</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody-rows2">
+
+                </tbody>
+            </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+        </div>
+
     </main>
 
 

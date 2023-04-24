@@ -8,14 +8,19 @@ class Pedidos extends PedidosQueries
 {
     // Declaración de atributos (propiedades).
     protected $id_pedido = null;
-    protected $id_cliente = null;
+    protected $nombre_cliente = null;
     protected $estado_pedido = null;
     protected $fecha_pedido = null;
     protected $direccion_pedido = null;
+    protected $id_detalle = null;
+    protected $nombre_producto = null;
+    protected $cantidad_producto = null;
 
+    
     /*
     *   Métodos para validar y asignar valores de los atributos.
     */
+
     public function setId($value)
     {
         if (Validator::validateNaturalNumber($value)) {
@@ -25,15 +30,18 @@ class Pedidos extends PedidosQueries
             return false;
         }
     }
-    public function setIdCliente($value)
+
+
+    public function setNombreCliente($value)
     {
-        if (Validator::validateNaturalNumber($value)) {
-            $this->id_cliente = $value;
+        if (Validator::validateAlphanumeric($value, 1, 60)) {
+            $this->nombre_cliente = $value;
             return true;
         } else {
             return false;
         }
     }
+
 
     public function setEstado($value)
     {
@@ -74,9 +82,10 @@ class Pedidos extends PedidosQueries
         return $this->id_pedido;
     }
 
-    public function getIdCliente()
+
+    public function getNombreCliente()
     {
-        return $this->id_cliente;
+        return $this->nombre_cliente;
     }
 
     public function getEstado()
@@ -93,4 +102,52 @@ class Pedidos extends PedidosQueries
     {
         return $this->direccion_pedido;
     }
+
+
+//detalle pedidos
+public function setIdDetalle($value)
+{
+    if (Validator::validateNaturalNumber($value)) {
+        $this->id_detalle = $value;
+        return true;
+    } else {
+        return false;
+    }
+}
+
+public function setNombreProducto($value)
+{
+    if (Validator::validateAlphanumeric($value, 1, 60)) {
+        $this->nombre_cliente = $value;
+        return true;
+    } else {
+        return false;
+    }
+}
+
+public function setCantidad($value)
+{
+    if (Validator::validateNaturalNumber($value)) {
+        $this->cantidad_producto = $value;
+        return true;
+    } else {
+        return false;
+    }
+}
+    
+public function getIdDetalle()
+{
+    return $this->id_detalle;
+}
+
+public function getNombreProducto()
+{
+    return $this->nombre_producto;
+}
+
+public function getCantidad()
+{
+    return $this->cantidad_producto;
+}
+
 }

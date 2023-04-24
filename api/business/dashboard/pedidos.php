@@ -23,10 +23,46 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay datos registrados';
                 }
                 break;
+                case 'readOne':
+                    if (!$pedidos->setId($_POST['id_pedido'])) {
+                        $result['exception'] = 'Pedido incorrecto';
+                    } elseif ($result['dataset'] = $pedidos->readOne()) {
+                        $result['status'] = 1;
+                    } elseif (Database::getException()) {
+                        $result['exception'] = Database::getException();
+                    } else {
+                        $result['exception'] = 'Pedido inexistente';
+                    }
+                    break;
+                    case 'update':
+                        $_POST = Validator::validateForm($_POST);
+                        if (!$pedidos->setId($_POST['id_pedido'])) {
+                            $result['exception'] = 'Pedido incorrecto';
+                        } elseif (!$pedidos->readOne()) {
+                            $result['exception'] = 'Pedido inexistente';
+                        } elseif (!$pedidos->setEstado($_POST['estado'])) {
+                            $result['exception'] = 'Estado incorrecto';
+                        }elseif ($pedidos->updateRow()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Pedido modificado correctamente';
+                        } else {
+                            $result['exception'] = Database::getException();
+                        }
+                        break;
+                        case 'readDetail':
+                            if (!$pedidos->setIdDetalle($_POST['id_detalle'])) {
+                                $result['exception'] = 'Pedido incorrecto';
+                            } elseif ($result['dataset'] = $pedidos->readDetail()) {
+                                $result['status'] = 1;
+                            } elseif (Database::getException()) {
+                                $result['exception'] = Database::getException();
+                            } else {
+                                $result['exception'] = 'Pedido inexistente';
+                            }
+                            break;
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }
-        // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
-        header('content-type: application/json; charset=utf-8');
+        
         // Se imprime el resultado en formato JSON y se retorna al controlador.
         print(json_encode($result));
     } else {
