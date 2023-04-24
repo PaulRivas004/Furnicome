@@ -60,6 +60,18 @@ if (isset($_GET['action'])) {
                                 $result['exception'] = 'Pedido inexistente';
                             }
                             break;
+                            case 'delete':
+                                if (!$pedidos->setId($_POST['id_pedido'])) {
+                                    $result['exception'] = 'Categoría incorrecta';
+                                } elseif (!$data = $pedidos->readOne()) {
+                                    $result['exception'] = 'Categoría inexistente';
+                                } elseif ($pedidos->deleteRow()) {
+                                    $result['status'] = 1;                   
+                                    $result['message'] = 'Pedido eliminado correctamente';
+                                } else {
+                                    $result['exception'] = Database::getException();
+                                }
+                                break;
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }
         

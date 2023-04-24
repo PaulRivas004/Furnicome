@@ -149,16 +149,16 @@ async function openDetail(form = null) {
 *   Parámetros: id (identificador del registro seleccionado).
 *   Retorno: ninguno.
 */
-async function openDelete(id) {
+async function openDelete(id_pedido) {
   // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
-  const RESPONSE = await confirmAction('¿Desea eliminar la categoría de forma permanente?');
+  const RESPONSE = await confirmAction('¿Desea eliminar el pedido de forma permanente?');
   // Se verifica la respuesta del mensaje.
   if (RESPONSE) {
     // Se define una constante tipo objeto con los datos del registro seleccionado.
     const FORM = new FormData();
-    FORM.append('id_categoria', id);
+    FORM.append('id_pedido', id_pedido);
     // Petición para eliminar el registro seleccionado.
-    const JSON = await dataFetch(CATEGORIA_API, 'delete', FORM);
+    const JSON = await dataFetch(PEDIDOS_API, 'delete', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (JSON.status) {
       // Se carga nuevamente la tabla para visualizar los cambios.

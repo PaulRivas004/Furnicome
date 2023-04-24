@@ -44,5 +44,14 @@ class PedidosQueries
         return Database::executeRow($sql, $params);
     }
 
+    
+    public function deleteRow()
+    {
+        $sql = 'DELETE FROM pedidos
+                WHERE id_pedido = ?';
+        $params = array($this->id_pedido);
+        return Database::executeRow($sql, $params);
+    }
+
    
 }
