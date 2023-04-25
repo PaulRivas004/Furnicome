@@ -112,6 +112,7 @@ async function openUpdate(id_pedido) {
   }
 }
 
+
 async function openDetail(id_detalle) {
   // Se define una constante tipo objeto con los datos del registro seleccionado.
   const FORM = new FormData();
@@ -130,7 +131,6 @@ async function openDetail(id_detalle) {
       <td>${row.id_pedido}</td>
           <td>${row.nombre_producto}</td>
           <td>${row.cantidad_producto}</td>
-          <td>${row.precio_producto}</td>
       </tr>
             `;
           });

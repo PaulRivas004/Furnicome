@@ -56,13 +56,14 @@ if (isset($_GET['action'])) {
                         }
                         break;
                         case 'readDetail':
-                            if ($result['dataset'] = $pedidos->readDetail()) {
+                            if (!$pedidos->setIdDetalle($_POST['id_detalle'])) {
+                                $result['exception'] = 'Pedido incorrecto';
+                            } elseif ($result['dataset'] = $pedidos->readDetail()) {
                                 $result['status'] = 1;
-                                $result['message'] = 'Existen '.count($result['dataset']).' registros';
                             } elseif (Database::getException()) {
                                 $result['exception'] = Database::getException();
                             } else {
-                                $result['exception'] = 'No hay datos registrados';
+                                $result['exception'] = 'Pedido inexistente';
                             }
                             break;
                             case 'delete':
