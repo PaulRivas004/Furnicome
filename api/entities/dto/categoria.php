@@ -49,6 +49,8 @@ class Categoria extends CategoriaQueries
         }
     }
 
+    
+
     /*
     *   Métodos para obtener valores de los atributos.
     */

@@ -46,6 +46,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay coincidencias';
                 }
                 break;
+                //Acción para crear un nueva subcategoría 
             case 'create':
                 $_POST = Validator::validateForm($_POST);
                 if (!$subcategoria->setNombre($_POST['nombre'])) {
@@ -83,6 +84,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Subcategoría inexistente';
                 }
                 break;
+                //Acción para actualizar un dato de la tabla subcategorias
             case 'update':
                 $_POST = Validator::validateForm($_POST);
                 if (!$subcategoria->setId($_POST['id'])) {
@@ -115,6 +117,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = Database::getException();
                 }
                 break;
+                //Acción para eliminar un dato de la tabla de subcategorias
             case 'delete':
                 if (!$subcategoria->setId($_POST['id_subcategoria'])) {
                     $result['exception'] = 'Categoría incorrecta';

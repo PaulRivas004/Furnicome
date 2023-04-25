@@ -1,12 +1,12 @@
 <?php
-require_once('../../entities/dto/cliente.php');
+require_once('../../entities/dto/valoracion.php');
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
     // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
     session_start();
     // Se instancia la clase correspondiente.
-    $cliente = new Cliente;
+    $valoracion = new Valoracion;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'message' => null, 'exception' => null, 'dataset' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
@@ -14,7 +14,7 @@ if (isset($_GET['action'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
             case 'readAll':
-                if ($result['dataset'] = $cliente->readAll()) {
+                if ($result['dataset'] = $valoracion->readAll()) {
                     $result['status'] = 1;
                     $result['message'] = 'Existen '.count($result['dataset']).' registros';
                 } elseif (Database::getException()) {
@@ -23,64 +23,54 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay datos registrados';
                 }
                 break;
-                //Acción para buscar un dato en la tabla de clientes
-            case 'search':
-                $_POST = Validator::validateForm($_POST);
-                if ($_POST['search'] == '') {
-                    $result['exception'] = 'Ingrese un valor para buscar';
-                } elseif ($result['dataset'] = $categoria->searchRows($_POST['search'])) {
+            case 'readCategorias':
+                if ($result['dataset'] = $valoracion->readDetalle()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Existen '.count($result['dataset']).' coincidencias';
+                    $result['message'] = 'Existen '.count($result['dataset']).' registros';
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
                 } else {
-                    $result['exception'] = 'No hay coincidencias';
+                    $result['exception'] = 'No hay datos registrados';
                 }
                 break;
             case 'readOne':
-                if (!$cliente->setId($_POST['id'])) {
-                    $result['exception'] = 'cliente incorrecto';
-                } elseif ($result['dataset'] = $cliente->readOne()) {
+                if (!$valoracion->setId($_POST['id_valoracion'])) {
+                    $result['exception'] = 'valoracion incorrecta';
+                } elseif ($result['dataset'] = $valoracion->readOne()) {
                     $result['status'] = 1;
                 } elseif (Database::getException()) {
                     $result['exception'] = Database::getException();
                 } else {
-                    $result['exception'] = 'cliente inexistente';
+                    $result['exception'] = 'valoracion inexistente';
                 }
                 break;
                 // Acción para actualizar un dato en la tabla de clientes
             case 'update':
                 $_POST = Validator::validateForm($_POST);
-                if (!$cliente->setId($_POST['id'])) {
-                    $result['exception'] = 'Cliente incorrecta';
-                } elseif (!$data = $cliente->readOne()) {
-                    $result['exception'] = 'Cliente inexistente';
-                } elseif (!$cliente->setNombres($_POST['nombre'])) {
-                    $result['exception'] = 'Nombre incorrecto';
-                }elseif (!$cliente->setApellidos($_POST['apellido'])) {
-                    $result['exception'] = 'Apellido incorrecto';
-                }elseif (!$cliente->setDUI($_POST['dui'])) {
-                    $result['exception'] = 'Dui incorrecto';
-                }elseif (!$cliente->setCorreo($_POST['correo'])) {
-                    $result['exception'] = 'Correo incorrecto';
-                }elseif (!$cliente->setDireccion($_POST['direccion'])) {
-                    $result['exception'] = 'Direccion incorrecto';
-                }elseif (!$cliente->setClave($_POST['clave'])) {
-                    $result['exception'] = 'clave incorrecto';
-                }elseif (!$cliente->setEstado(isset($_POST['estados']) ? 1 : 0)) {
+                if (!$valoracion->setId($_POST['id_valoracion'])) {
+                    $result['exception'] = 'valoración incorrecta';
+                } elseif (!$data = $valoracion->readOne()) {
+                    $result['exception'] = 'valoración inexistente';
+                } elseif (!$valoracion->setDetalle($_POST['detalle'])) {
+                    $result['exception'] = 'Seleccione un detalle';
+                }elseif (!$valoracion->setCalificacion($_POST['calificacion'])) {
+                    $result['exception'] = 'Calificaión incorrecta';
+                }elseif (!$valoracion->setComentario($_POST['comentario'])) {
+                    $result['exception'] = 'Comentario incorrecto';
+                }elseif (!$valoracion->setFecha($_POST['fecha'])) {
+                    $result['exception'] = 'Fecha incorrecto';
+                }elseif (!$valoracion->setEstado(isset($_POST['estados']) ? 1 : 0)) {
                     $result['exception'] = 'Estado incorrecto';   
-                }elseif (!$cliente->setTelefono($_POST['telefono'])) {
-                    $result['exception'] = 'Telefono incorrecto';
                 }  elseif ($cliente->updateRow()) {
                         $result['status'] = 1;
-                        $result['message'] = 'Estado del cliente modificada correctamente';
+                        $result['message'] = 'Estado de la valoración modificado correctamente';
                     } else {
                         $result['exception'] = Database::getException();
                     }    
                 break;
                 //Acción para eliminar un dato en la tabla de clientes
             case 'delete':
-                if (!$cliente->setId($_POST['id_cliente'])) {
+                if (!$cliente->setId($_POST['id_valoracion'])) {
                     $result['exception'] = 'cliente incorrecta';
                 } elseif (!$data = $cliente->readOne()) {
                     $result['exception'] = 'cliente inexistente';

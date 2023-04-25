@@ -51,19 +51,15 @@
                                     <input type="text" class="form-control" id="nombre" name="nombre">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="message-text" class="col-form-label">Descripcion:</label>
-                                    <textarea class="form-control" id="descripcion" name="descripcion"></textarea>
-                                </div>
-                                <div class="mb-3">
                                     <label for="formFileMultiple" class="form-label">Seleccione una imagen</label>
                                     <input class="form-control" id="archivo" type="file" name="archivo" accept=".jpg, .png" multiple />
                                 </div>
                                 <div class="mb-3">
-                                    <label for="message-text" class="col-form-label">categoria</label>
+                                    <label for="message-text" class="col-form-label">Categoría</label>
                                     <select class="form-select" id="categoria" name="categoria">
                                     </select>
                                 </div>
-                                <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Cerrar</button>
                                 <button type="submit" class="btn btn-secondary" id="create">Agregar</button>
                             </form>
                         </div>
@@ -83,7 +79,7 @@
                         <th scope="col">Nombre</th>
                         <th scope="col">Descripción</th>
                         <th scope="col">Imagen</th>
-                        <th scope="col">Categoria</th>
+                        <th scope="col">Categoría</th>
                     </tr>
                 </thead>
                 <tbody id="tbody-rows">

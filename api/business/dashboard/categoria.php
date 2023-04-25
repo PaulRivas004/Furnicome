@@ -36,6 +36,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay coincidencias';
                 }
                 break;
+                // Acción para crear un dato en la tabla de categorías
             case 'create':
                 $_POST = Validator::validateForm($_POST);
                 if (!$categoria->setNombre($_POST['nombre'])) {
@@ -60,6 +61,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Categoría inexistente';
                 }
                 break;
+                // Acción para actualizar un dato en la tabla categorías
             case 'update':
                 $_POST = Validator::validateForm($_POST);
                 if (!$categoria->setId($_POST['id'])) {
@@ -77,6 +79,7 @@ if (isset($_GET['action'])) {
                         $result['exception'] = Database::getException();
                     }
                 break;
+                // Acción para eliminar un dato de la tabla categorías
             case 'delete':
                 if (!$categoria->setId($_POST['id_categoria'])) {
                     $result['exception'] = 'Categoría incorrecta';

@@ -22,6 +22,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Alias de usuario indefinido';
                 }
                 break;
+                //Acción para cerrar la sesión 
             case 'logOut':
                 if (session_destroy()) {
                     $result['status'] = 1;
@@ -39,6 +40,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Usuario inexistente';
                 }
                 break;
+                //Acción para modificar un dato de la tabla de usuarios
             case 'editProfile':
                 $_POST = Validator::validateForm($_POST);
                 if (!$usuario->setNombres($_POST['nombres'])) {
@@ -57,6 +59,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = Database::getException();
                 }
                 break;
+                //Acción para modificar la contraseña de un usuario
             case 'changePassword':
                 $_POST = Validator::validateForm($_POST);
                 if (!$usuario->setId($_SESSION['id_usuario'])) {
@@ -84,6 +87,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay datos registrados';
                 }
                 break;
+                //Acción para buscar un dato de la tabla de usuarios
             case 'search':
                 $_POST = Validator::validateForm($_POST);
                 if ($_POST['search'] == '') {
@@ -97,6 +101,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay coincidencias';
                 }
                 break;
+                //Acción para crear un nuevo usuarios
             case 'create':
                 $_POST = Validator::validateForm($_POST);
                 if (!$usuario->setNombres($_POST['nombre'])) {
@@ -127,6 +132,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Usuario inexistente';
                 }
                 break;
+                //Acción para actualizar un dato de la tabla usuarios
             case 'update':
                 $_POST = Validator::validateForm($_POST);
                 if (!$usuario->setId($_POST['id_usuario'])) {
@@ -146,6 +152,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = Database::getException();
                 }
                 break;
+                //Acción para eliminar un dato de la tabla usuarios
             case 'delete':
                 if ($_POST['id_usuario'] == $_SESSION['id_usuario']) {
                     $result['exception'] = 'No se puede eliminar a sí mismo';
@@ -174,6 +181,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Debe crear un usuario para comenzar';
                 }
                 break;
+                //Acción para registrar un nuevo usuario
             case 'signup':
                 $_POST = Validator::validateForm($_POST);
                 if (!$usuario->setNombres($_POST['nombres'])) {
@@ -194,7 +202,8 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['exception'] = Database::getException();
                 }
-                break;           
+                break;   
+                //Acción para iniciar sesión        
             case 'login':
                 $_POST = Validator::validateForm($_POST);
                 if (!$usuario->checkUser($_POST['alias'])) {

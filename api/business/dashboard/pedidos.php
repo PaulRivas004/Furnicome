@@ -34,6 +34,7 @@ if (isset($_GET['action'])) {
                         $result['exception'] = 'Pedido inexistente';
                     }
                     break;
+                    //Acción para actualizar un dato de la tabla pedidos
                     case 'update':
                         $_POST = Validator::validateForm($_POST);
                         if (!$pedidos->setId($_POST['id_pedido'])) {
@@ -55,6 +56,7 @@ if (isset($_GET['action'])) {
                             $result['exception'] = Database::getException();
                         }
                         break;
+                        //Acción para verificar que existen datos en la tabla de pedidos
                         case 'readDetail':
                             if ($result['dataset'] = $pedidos->readDetail()) {
                                 $result['status'] = 1;
@@ -65,6 +67,7 @@ if (isset($_GET['action'])) {
                                 $result['exception'] = 'No hay datos registrados';
                             }
                             break;
+                            //Acción para eliminar un dato en la tabla de pedidos
                             case 'delete':
                                 if (!$pedidos->setId($_POST['id_pedido'])) {
                                     $result['exception'] = 'Categoría incorrecta';

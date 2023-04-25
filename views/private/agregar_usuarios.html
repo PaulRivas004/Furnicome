@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../../resources/css/estilo.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" rel="stylesheet" />
 
-    <title>Furnicome</title>
+    <title>Agregar usuarios</title>
 </head>
 
 
@@ -29,7 +29,7 @@
         <div class="container">
 
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
+        <button onclick="openCreate()" type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
             Agregar Usuarios
         </button>
 
@@ -64,7 +64,7 @@
                                     <input type="password" class="form-control" id="clave" name="clave" required>
                                 </div>
                                 <button type="submit" class="btn btn-secondary" id="create">Guardar</button>
-                                <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Cerrar</button>
                         </form>
                     </div>
                 </div>
@@ -85,7 +85,7 @@
                 <thead>
                     <tr id="records"></tr>
                     <tr>
-                        <th scope="col">Id</th>
+                        <th scope="col"></th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Apellido</th>
                         <th scope="col">Correo</th>

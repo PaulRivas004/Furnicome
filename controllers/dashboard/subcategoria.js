@@ -116,6 +116,7 @@ async function openUpdate(id) {
         document.getElementById('id').value = JSON.dataset.id_subcategoria;
         document.getElementById('nombre').value = JSON.dataset.nombre_sub;
         document.getElementById('descripcion').value = JSON.dataset.descripcion_sub;
+        
         fillSelect(SUBCATEGORIA_API, 'readCategorias','categoria', JSON.dataset.id_categoria);
         // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
     } else {

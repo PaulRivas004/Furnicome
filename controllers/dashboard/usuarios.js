@@ -45,6 +45,16 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     }
 });
 
+/*
+*   Función para preparar el formulario al momento de insertar un registro.
+*   Parámetros: ninguno.
+*   Retorno: ninguno.
+*/
+function openCreate() {
+  // Se restauran los elementos del formulario.
+  SAVE_FORM.reset();
+}
+
 async function fillTable(form = null) {
     // Se inicializa el contenido de la tabla.
     TBODY_ROWS.innerHTML = '';

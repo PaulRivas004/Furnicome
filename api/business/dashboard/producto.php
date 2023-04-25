@@ -23,6 +23,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay datos registrados';
                 }
                 break;
+                //Acción para verificar que hay datos existentes en la tabla de productos
             case 'readSub':
                 if ($result['dataset'] = $producto->readSub()) {
                     $result['status'] = 1;
@@ -43,6 +44,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay datos registrados';
                 }
                 break;
+                //Acción para buscar un dato en la tabla de productos
             case 'search':
                 $_POST = Validator::validateForm($_POST);
                 if ($_POST['search'] == '') {
@@ -56,6 +58,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay coincidencias';
                 }
                 break;
+                //Acción para crear un nuevo dato en la tabla de productos 
             case 'create':
                 $_POST = Validator::validateForm($_POST);
                 if (!isset($_POST['subcategoria'])) {
@@ -102,6 +105,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Producto inexistente';
                 }
                 break;
+                //Acción para actualizar un dato en la tabla de productos
             case 'update':
                 $_POST = Validator::validateForm($_POST);
                 if(!$producto->setId($_POST['id'])) {
@@ -146,6 +150,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = Database::getException();
                 }
                 break;
+                //Acción para eliminar un dato de la tabla de productos 
             case 'delete':
                 if (!$producto->setId($_POST['id_producto'])) {
                     $result['exception'] = 'Producto incorrecto';

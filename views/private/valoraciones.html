@@ -9,7 +9,7 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="../../resources/css/estilo.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" rel="stylesheet" />
-    <title>Gestionar clientes</title>
+    <title>Gestionar valoraciones</title>
 </head>
 
 <body>
@@ -18,10 +18,10 @@
     </header>
     <main>
         <div class="container">
-            <H4>Gestionar clientes</H4>
+            <H4>Gestionar valoraciones</H4>
             <!-- Button trigger modal -->
             <div class="container col-6">
-                <label>Buscar cliente:</label>
+                <label>Buscar valoración:</label>
                 <input class="form-control me-2 light-table-filter" data-table="table" type="text">
             </div>
             <!-- Modal -->
@@ -35,27 +35,23 @@
                         </div>
                         <div class="modal-body">
                             <form id="save-form">
-                                <input class="visually-hidden" type="number" id="id" name="id">
-                                <input class="visually-hidden" type="text" id="clave" name="clave">
+                                <input class="visually-hidden" type="number" id="id_valoracion" name="id_valoracion">
                                 <div class="mb-3">
-                                    
-                                    <input type="text" class="visually-hidden" id="nombre" name="nombre">
+                                    <select class="form-select" aria-label="Seleccione detalle" id="detalle"
+                                        name="detalle">
+                                    </select>
                                 </div>
+                                <div class="mb-3">               
+                                    <input type="text" class="" id="calificacion" name="calificacion">
+                                </div>
+
                                 <div class="mb-3">
                                    
-                                    <input type="text" class="visually-hidden" id="apellido" name="apellido">
+                                    <input type="text" class="" id="comentario" name="comentario">
                                 </div>
                                 <div class="mb-3">
                                     
-                                    <input type="text"class="visually-hidden" id="dui" name="dui">
-                                </div>
-                                <div class="mb-3">
-                                    
-                                    <input type="text" class="visually-hidden" id="correo" name="correo" required>
-                                </div>
-                                <div class="mb-3">
-                                    
-                                    <textarea class="visually-hidden" id="direccion" name="direccion"></textarea>
+                                    <input type="text"class="" id="fecha" name="fecha">
                                 </div>
                                 <div class="mb-3">
                                     <p>Estado del cliente:</p>
@@ -64,12 +60,8 @@
                                         <input class="form-check-input" type="checkbox" role="switch" id="estados"
                                             name="estados" />
                                         <label class="form-check-label" for="flexSwitchCheckDefault">Suspendido /
-                                            Activo</label>
+                                            Visible</label>
                                     </div>
-                                </div>
-                                <div class="mb-3">
-                                   
-                                    <input type="text" class="visually-hidden" id="telefono" name="telefono" required>
                                 </div>
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                                 <button type="submit" class="btn btn-primary" id="create">Guardar</button>
@@ -88,12 +80,11 @@
                 <thead>
                     <tr id="records"></tr>
                     <tr>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Apellido</th>
-                        <th scope="col">Correo</th>
-                        <th scope="col">Dirección</th>
+                        <th scope="col">producto</th>
+                        <th scope="col">calificación</th>
+                        <th scope="col">comentario</th>
+                        <th scope="col">fecha de publicación</th>
                         <th scope="col">Estado</th>
-                        <th scope="col">Teléfono</th>
                     </tr>
                 </thead>
                 <tbody id="tbody-rows"></tbody>
@@ -112,9 +103,8 @@
     <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
     <script type="text/javascript" src="../../controllers/dashboard/account.js"></script>
     <script src="../../controllers/components.js"></script>
-    <script type="text/javascript" src="../../controllers/dashboard/cliente.js"></script>
-
-
+    <script type="text/javascript" src="../../controllers/dashboard/valoracion.js"></script>
+    
 </body>
 
 </html>
