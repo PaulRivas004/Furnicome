@@ -23,7 +23,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay datos registrados';
                 }
                 break;
-                //Acción para verificar que hay datos existentes en la tabla de productos
+                 //Función para cargar datos en el select asignado a Subcategorias
             case 'readSub':
                 if ($result['dataset'] = $producto->readSub()) {
                     $result['status'] = 1;
@@ -34,6 +34,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay datos registrados';
                 }
                 break;
+                //Función para cargar datos en el select asignado a usuarios
             case 'cargarUsuario':
                 if ($result['dataset'] = $producto->cargarUsuario()) {
                     $result['status'] = 1;
@@ -42,20 +43,6 @@ if (isset($_GET['action'])) {
                    $result['exception'] = Database::getException();
                 } else {
                     $result['exception'] = 'No hay datos registrados';
-                }
-                break;
-                //Acción para buscar un dato en la tabla de productos
-            case 'search':
-                $_POST = Validator::validateForm($_POST);
-                if ($_POST['search'] == '') {
-                    $result['exception'] = 'Ingrese un valor para buscar';
-                } elseif ($result['dataset'] = $producto->searchRows($_POST['search'])) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Existen '.count($result['dataset']).' coincidencias';
-                } elseif (Database::getException()) {
-                    $result['exception'] = Database::getException();
-                } else {
-                    $result['exception'] = 'No hay coincidencias';
                 }
                 break;
                 //Acción para crear un nuevo dato en la tabla de productos 
@@ -94,6 +81,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = Database::getException();;
                 }
                 break;
+                //Selecccionar un registro por medio de consultas en las queries accionado por un onUpdate
             case 'readOne':
                 if (!$producto->setId($_POST['id'])) {
                     $result['exception'] = 'Producto incorrecto';
@@ -167,6 +155,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = Database::getException();
                 }
                 break;
+                //Sacar un grafico dependiendo de cuantas categorias existen
             case 'cantidadProductosCategoria':
                 if ($result['dataset'] = $producto->cantidadProductosCategoria()) {
                     $result['status'] = 1;

@@ -13,7 +13,8 @@ if (isset($_GET['action'])) {
     if (isset($_SESSION['id_usuario'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
-            case 'readAll':
+                //se hace la consulta a la base por medio de parametros de la querie para llenado de la tabla
+                case 'readAll':
                 if ($result['dataset'] = $cliente->readAll()) {
                     $result['status'] = 1;
                     $result['message'] = 'Existen '.count($result['dataset']).' registros';
@@ -37,6 +38,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay coincidencias';
                 }
                 break;
+                 //Selecccionar un registro por medio de consultas en las queries accionado por un onUpdate
             case 'readOne':
                 if (!$cliente->setId($_POST['id'])) {
                     $result['exception'] = 'cliente incorrecto';

@@ -7,7 +7,7 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background: url(../recursos/login2.png);
+    background: url(../../recursos/login.png);
     background-size: cover;
     background-position: center;
     font-family: sans-serif;

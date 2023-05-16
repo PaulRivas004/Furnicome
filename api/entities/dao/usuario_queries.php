@@ -72,6 +72,7 @@ class UsuarioQueries
         return Database::getRows($sql, $params);
     }
 
+    //Método para insertar datos a la tabla de productos por medio de una query
     public function createRow()
     {
         $sql = 'INSERT INTO usuarios(
@@ -81,6 +82,7 @@ class UsuarioQueries
         return Database::executeRow($sql, $params);
     }
 
+    //Método para leer los registros de la tabla ordenandolos por los id de los usuarios por medio de una query general a la tabla
     public function readAll()
     {
         $sql = 'SELECT id_usuario, nombre_usuario, apellido_usuario, correo_usuario, alias_usuario, clave_usuario
@@ -89,6 +91,7 @@ class UsuarioQueries
         return Database::getRows($sql);
     }
 
+    //Método para consultar una columna específica de la tabla por medio de su id
     public function readOne()
     {
         $sql = 'SELECT id_usuario, nombre_usuario, apellido_usuario, correo_usuario, alias_usuario, clave_usuario
@@ -98,6 +101,7 @@ class UsuarioQueries
         return Database::getRow($sql, $params);
     }
 
+    //Método para realizar la actualización de la tabla por medio de una query parametrizada
     public function updateRow()
     {
         $sql = 'UPDATE usuarios 
@@ -107,6 +111,7 @@ class UsuarioQueries
         return Database::executeRow($sql, $params);
     }
 
+    //Metodo para eliminar una columna de datos de la tabla por medio del id
     public function deleteRow()
     {
         $sql = 'DELETE FROM usuarios

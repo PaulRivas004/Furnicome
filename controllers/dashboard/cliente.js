@@ -58,15 +58,16 @@ async function fillTable(form = null) {
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (JSON.status) {
         // Se recorre el conjunto de registros fila por fila.
-        JSON.dataset.forEach(row => {
+        JSON.dataset.forEach(row => { 
+          (row.estado_cliente) ? estado = 'activo': estado = 'inactivo';
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             TBODY_ROWS.innerHTML += `
                 <tr>
                     <td>${row.nombre_cliente}</td>
                     <td>${row.apellido_cliente}</td>
                     <td>${row.correo_cliente}</td>
-                    <td>${row.direccion_cliente}</td>
-                    <td>${row.estado_cliente}</td>
+                    <td>${row.direccion_cliente}</td>d
+                    <td>${estado}</td>
                     <td>${row.telefono_cliente}</td>
                     <td>
                     <button onclick="openUpdate(${row.id_cliente})" type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target=".exampleModal">

@@ -23,6 +23,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No hay datos registrados';
                 }
                 break;
+                //Función para cargar datos en el select asignado a Catehgorias
             case 'readCategorias':
                 if ($result['dataset'] = $subcategoria->readCategorias()) {
                     $result['status'] = 1;
@@ -31,19 +32,6 @@ if (isset($_GET['action'])) {
                     $result['exception'] = Database::getException();
                 } else {
                     $result['exception'] = 'No hay datos registrados';
-                }
-                break;
-            case 'search':
-                $_POST = Validator::validateForm($_POST);
-                if ($_POST['search'] == '') {
-                    $result['exception'] = 'Ingrese un valor para buscar';
-                } elseif ($result['dataset'] = $subcategoria->searchRows($_POST['search'])) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Existen '.count($result['dataset']).' coincidencias';
-                } elseif (Database::getException()) {
-                    $result['exception'] = Database::getException();
-                } else {
-                    $result['exception'] = 'No hay coincidencias';
                 }
                 break;
                 //Acción para crear un nueva subcategoría 
@@ -72,6 +60,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = Database::getException();
                 }
                 break;
+                //leer un dato seleccionado para luego actualizarlo o solo leer la información 
             case 'readOne':
                 if (!$subcategoria->setId($_POST['id_subcategoria'])) {
                     $result['exception'] = 'Subcategoría incorrecta';

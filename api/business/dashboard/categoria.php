@@ -14,6 +14,7 @@ if (isset($_GET['action'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
             case 'readAll':
+                //se hace la consulta a la base por medio de parametros de la querie para llenado de la tabla
                 if ($result['dataset'] = $categoria->readAll()) {
                     $result['status'] = 1;
                     $result['message'] = 'Existen '.count($result['dataset']).' registros';
@@ -21,19 +22,6 @@ if (isset($_GET['action'])) {
                     $result['exception'] = Database::getException();
                 } else {
                     $result['exception'] = 'No hay datos registrados';
-                }
-                break;
-            case 'search':
-                $_POST = Validator::validateForm($_POST);
-                if ($_POST['search'] == '') {
-                    $result['exception'] = 'Ingrese un valor para buscar';
-                } elseif ($result['dataset'] = $categoria->searchRows($_POST['search'])) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Existen '.count($result['dataset']).' coincidencias';
-                } elseif (Database::getException()) {
-                    $result['exception'] = Database::getException();
-                } else {
-                    $result['exception'] = 'No hay coincidencias';
                 }
                 break;
                 // Acción para crear un dato en la tabla de categorías
@@ -50,6 +38,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = Database::getException();
                 }
                 break;
+                //Selecccionar un registro por medio de consultas en las queries accionado por un onUpdate
             case 'readOne':
                 if (!$categoria->setId($_POST['id_categoria'])) {
                     $result['exception'] = 'Categoría incorrecta';

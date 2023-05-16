@@ -8,6 +8,8 @@ class ClienteQueries
     /*
     *   Métodos para gestionar la cuenta del cliente.
     */
+
+    //se valida el usuario
     public function checkUser($correo)
     {
         $sql = 'SELECT id_cliente, estado_cliente FROM clientes WHERE correo_cliente = ?';
@@ -22,6 +24,7 @@ class ClienteQueries
         }
     }
 
+    //se valida la contraseña
     public function checkPassword($password)
     {
         $sql = 'SELECT clave_cliente FROM clientes WHERE id_cliente = ?';
@@ -34,6 +37,7 @@ class ClienteQueries
         }
     }
 
+    //Método para cambiar la contraseña
     public function changePassword()
     {
         $sql = 'UPDATE clientes SET clave_cliente = ? WHERE id_cliente = ?';
@@ -41,6 +45,8 @@ class ClienteQueries
         return Database::executeRow($sql, $params);
     }
 
+
+    //Método para editar datos del perfil
     public function editProfile()
     {
         $sql = 'UPDATE clientes
@@ -50,6 +56,7 @@ class ClienteQueries
         return Database::executeRow($sql, $params);
     }
 
+    //Método para cambiar el estado del cliente 
     public function changeStatus()
     {
         $sql = 'UPDATE clientes
@@ -72,15 +79,17 @@ class ClienteQueries
         return Database::getRows($sql, $params);
     }
 
+    //Método para insertar datos a la tabla de clientes por medio de una query 
     public function createRow()
     {
         $sql = 'INSERT INTO clientes(
-            nombre_cliente, apellido_cliente, dui_cliente, correo_cliente, direccion_cliente, clave_cliente, estado_cliente, telefono_cliente)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
-        $params = array($this->nombres, $this->apellidos, $this->dui, $this->correo, $this->direccion, $this->clave, $this->estado, $this->telefono);
+            nombre_cliente, apellido_cliente, dui_cliente, correo_cliente, direccion_cliente, telefono_cliente, clave_cliente)
+            VALUES (?, ?, ?, ?, ?, ?, ?)';
+        $params = array($this->nombres, $this->apellidos, $this->dui, $this->correo, $this->direccion, $this->telefono, $this->clave);
         return Database::executeRow($sql, $params);
     }
 
+    //Método para leer los registros de la tabla ordenandolos por sus apellidos por medio de una query general a la tabla
     public function readAll()
     {
         $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, correo_cliente, dui_cliente, direccion_cliente, estado_cliente, telefono_cliente
@@ -89,6 +98,7 @@ class ClienteQueries
         return Database::getRows($sql);
     }
 
+    //Método para consultar una columna específica de la tabla por medio de su id
     public function readOne()
     {
         $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, correo_cliente, dui_cliente, direccion_cliente, estado_cliente, telefono_cliente
@@ -98,6 +108,7 @@ class ClienteQueries
         return Database::getRow($sql, $params);
     }
 
+        //Método para realizar actualización de datos en la tabla por medio de una query parametrizada
     public function updateRow()
     {
         $sql = 'UPDATE clientes
@@ -106,6 +117,8 @@ class ClienteQueries
         $params = array($this->nombres, $this->apellidos, $this->dui, $this->correo, $this->direccion, $this->estado, $this->clave, $this->telefono, $this->id);
         return Database::executeRow($sql, $params);
     }
+
+  //Metodo para eliminar un dato de la tabla por medio de un id específico
 
     public function deleteRow()
     {

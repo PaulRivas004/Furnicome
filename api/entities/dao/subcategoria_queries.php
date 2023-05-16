@@ -19,6 +19,7 @@ class SubcategoriaQueries
         return Database::getRows($sql, $params);
     }
 
+    //Método para insertar datos a la tabla de productos por medio de una query 
     public function createRow()
     {
         $sql = 'INSERT INTO subcategorias(
@@ -28,6 +29,7 @@ class SubcategoriaQueries
         return Database::executeRow($sql, $params);
     }
 
+    //Método para leer los registros de la tabla ordenandolos por sus nombres de subcategorías por medio de una query general a la tabla
     public function readAll()
     {
         $sql = 'SELECT id_subcategoria, nombre_sub, descripcion_sub, imagen, nombre_categoria
@@ -37,6 +39,7 @@ class SubcategoriaQueries
         return Database::getRows($sql);
     }
 
+    //Método para consultar una columna específica de la tabla por medio de su id
     public function readOne()
     {
         $sql = 'SELECT id_subcategoria, nombre_sub, descripcion_sub, imagen, id_categoria
@@ -47,6 +50,7 @@ class SubcategoriaQueries
         return Database::getRow($sql, $params);
     }
 
+    //Método para realizar la actualización de la tabla por medio de una query parametrizada
     public function updateRow($current_image)
     {
         // Se verifica si existe una nueva imagen para borrar la actual, de lo contrario se mantiene la actual.
@@ -59,6 +63,7 @@ class SubcategoriaQueries
         return Database::executeRow($sql, $params);
     }
 
+    //Metodo para eliminar un dato de la tabla por medio del id
     public function deleteRow()
     {
         $sql = 'DELETE FROM subcategorias
@@ -67,6 +72,7 @@ class SubcategoriaQueries
         return Database::executeRow($sql, $params);
     }
 
+    //Metodo para consultar datos de la tabla categorias y llenar los datos del select
     public function readCategorias()
     {
         $sql = 'SELECT id_categoria, nombre_categoria, descripcion_categoria

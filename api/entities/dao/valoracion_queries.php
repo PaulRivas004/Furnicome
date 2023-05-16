@@ -8,15 +8,8 @@ class ValoracionesQueries
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
     */
-    public function createRow()
-    {
-        $sql = 'INSERT INTO valoraciones(
-            id_valoracion, id_detalle, calificacion_producto, comentario_producto, fecha_comentario, estado_comentario)
-            VALUES (?, ?, ?, ?, ?, ?)';
-        $params = array($this->detalle, $this->calificacion, $this->comentario, $this->fecha, $this->estado);
-        return Database::executeRow($sql, $params);
-    }
 
+    //Método para leer los registros de la tabla ordenandolos por los nombres de los productos por medio de una query general a la tabla
     public function readAll()
     {
         $sql = 'SELECT id_valoracion, nombre_producto, calificacion_producto, comentario_producto, fecha_comentario, estado_comentario
@@ -27,6 +20,7 @@ class ValoracionesQueries
         return Database::getRows($sql);
     }
 
+    //Método para consultar una columna específica de la tabla por medio de su id
     public function readOne()
     {
         $sql = 'SELECT id_valoracion, id_detalle, calificacion_producto, comentario_producto, fecha_comentario, estado_comentario
@@ -36,6 +30,7 @@ class ValoracionesQueries
         return Database::getRow($sql, $params);
     }
 
+    //Método para realizar la actualización de la tabla por medio de una query parametrizada
     public function updateRow()
     {
         $sql = 'UPDATE valoraciones
@@ -45,6 +40,7 @@ class ValoracionesQueries
         return Database::executeRow($sql, $params);
     }
 
+    //Metodo para eliminar una columna de datos de la tabla por medio del id
     public function deleteRow()
     {
         $sql = 'DELETE FROM valoraciones
@@ -53,6 +49,7 @@ class ValoracionesQueries
         return Database::executeRow($sql, $params);
     }
 
+    //Metodo para consultar datos de la tabla detalle_pedidos y llenar los datos del select
     public function readDetalle()
     {
         $sql = 'SELECT id_detalle, id_pedido, nombre_producto, cantidad_producto, precio_producto

@@ -13,6 +13,7 @@ if (isset($_GET['action'])) {
     if (isset($_SESSION['id_usuario'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
+            //se hace la consulta a la base por medio de parametros de la querie para llenado de la tabla
             case 'readAll':
                 if ($result['dataset'] = $pedidos->readAll()) {
                     $result['status'] = 1;
@@ -56,7 +57,7 @@ if (isset($_GET['action'])) {
                             $result['exception'] = Database::getException();
                         }
                         break;
-                        //Acción para verificar que existen datos en la tabla de pedidos
+                        //Acción para verificar que existen datos en la tabla de detalle pedidos
                         case 'readDetail':
                             if (!$pedidos->setIdDetalle($_POST['id_detalle'])) {
                                 $result['exception'] = 'Pedido incorrecto';
