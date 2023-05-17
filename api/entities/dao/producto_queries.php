@@ -60,25 +60,19 @@ class ProductoQueries
         return Database::executeRow($sql, $params);
     }
 
-<<<<<<< Updated upstream
-    //Metodo para consultar datos de la tabla subcategorias y llenar los datos del select
-    public function readSub(){
-=======
+
+
     public function readSub()
     {
->>>>>>> Stashed changes
+
         $sql = 'SELECT id_subcategoria, nombre_sub, descripcion_sub, imagen, id_categoria
                 FROM subcategorias';
         return Database::getRows($sql);
     }
 
-<<<<<<< Updated upstream
-    //Metodo para consultar datos de la tabla usuarios y llenar los datos del select
-    public function cargarUsuario(){
-=======
+
     public function cargarUsuario()
     {
->>>>>>> Stashed changes
         $sql = 'SELECT id_usuario, nombre_usuario, apellido_usuario, correo_usuario, alias_usuario, clave_usuario
                 FROM usuarios';
         return Database::getRows($sql);
