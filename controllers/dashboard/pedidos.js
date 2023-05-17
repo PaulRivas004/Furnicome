@@ -113,10 +113,10 @@ async function openUpdate(id_pedido) {
 }
 
 
-async function openDetail(id_detalle) {
+async function openDetail(id_pedido) {
   // Se define una constante tipo objeto con los datos del registro seleccionado.
   const FORM = new FormData();
-  FORM.append('id_detalle', id_detalle);
+  FORM.append('id_pedido', id_pedido);
   TBODY_ROWS2.innerHTML = '';
   // Petición para obtener los datos del registro solicitado.
   const JSON = await dataFetch(PEDIDOS_API, 'readDetail', FORM);

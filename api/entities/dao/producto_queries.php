@@ -14,7 +14,7 @@ class ProductoQueries
     {
         $sql = 'INSERT INTO productos( id_subcategoria, id_usuario, nombre_producto, descripcion_producto, precio_producto, imagen_producto, estado_producto, existencia_producto)
         VALUES ( ?, ?, ?, ?, ?, ?, ?, ?)';
-        $params = array($this->id_subcategoria, $this->id_usuario, $this->nombre_producto, $this->descripcion_producto, $this->precio_producto, $this->imagen_producto, $this ->estado_producto, $this->existencia_producto);
+        $params = array($this->id_subcategoria, $this->id_usuario, $this->nombre_producto, $this->descripcion_producto, $this->precio_producto, $this->imagen_producto, $this->estado_producto, $this->existencia_producto);
         return Database::executeRow($sql, $params);
     }
 
@@ -47,7 +47,7 @@ class ProductoQueries
         $sql = 'UPDATE productos
                 SET id_subcategoria = ?, id_usuario = ?, nombre_producto = ?, descripcion_producto = ?, precio_producto = ?, imagen_producto = ?, estado_producto = ?, existencia_producto = ?
                 WHERE id_producto = ?';
-        $params = array($this->id_subcategoria, $this->id_usuario, $this->nombre_producto, $this->descripcion_producto, $this->precio_producto, $this ->imagen_producto, $this->estado_producto, $this->existencia_producto, $this->id_producto);
+        $params = array($this->id_subcategoria, $this->id_usuario, $this->nombre_producto, $this->descripcion_producto, $this->precio_producto, $this->imagen_producto, $this->estado_producto, $this->existencia_producto, $this->id_producto);
         return Database::executeRow($sql, $params);
     }
 
@@ -60,17 +60,36 @@ class ProductoQueries
         return Database::executeRow($sql, $params);
     }
 
+<<<<<<< Updated upstream
     //Metodo para consultar datos de la tabla subcategorias y llenar los datos del select
     public function readSub(){
+=======
+    public function readSub()
+    {
+>>>>>>> Stashed changes
         $sql = 'SELECT id_subcategoria, nombre_sub, descripcion_sub, imagen, id_categoria
                 FROM subcategorias';
         return Database::getRows($sql);
     }
 
+<<<<<<< Updated upstream
     //Metodo para consultar datos de la tabla usuarios y llenar los datos del select
     public function cargarUsuario(){
+=======
+    public function cargarUsuario()
+    {
+>>>>>>> Stashed changes
         $sql = 'SELECT id_usuario, nombre_usuario, apellido_usuario, correo_usuario, alias_usuario, clave_usuario
                 FROM usuarios';
+        return Database::getRows($sql);
+    }
+
+    public function readproductosSubCategoria()
+    {
+        $sql = 'SELECT id_producto, imagen_producto, nombre_producto, precio_producto
+        FROM productos INNER JOIN subcategorias USING(id_subcategoria)
+        WHERE estado_producto = true
+        ORDER BY nombre_producto';
         return Database::getRows($sql);
     }
 }

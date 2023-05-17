@@ -59,7 +59,7 @@ if (isset($_GET['action'])) {
                         break;
                         //Acción para verificar que existen datos en la tabla de detalle pedidos
                         case 'readDetail':
-                            if (!$pedidos->setIdDetalle($_POST['id_detalle'])) {
+                            if (!$pedidos->setId($_POST['id_pedido'])) {
                                 $result['exception'] = 'Pedido incorrecto';
                             } elseif ($result['dataset'] = $pedidos->readDetail()) {
                                 $result['status'] = 1;

@@ -33,8 +33,8 @@ class PedidosQueries
     {
         $sql = 'SELECT id_detalle, id_pedido, nombre_producto, cantidad_producto
                 FROM detalle_pedidos INNER JOIN productos USING(id_producto)
-                WHERE id_detalle = ?';
-        $params = array($this->id_detalle);
+                WHERE id_pedido = ?';
+        $params = array($this->id_pedido);
         return Database::getRows($sql, $params);
     }
 

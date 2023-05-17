@@ -185,14 +185,57 @@ a{
     display: flex;
     align-items: center;
     justify-content: center;
-    ;
+    
 }
 
 .container .card{
-    background-color: #FAF5F0;
+ background-color: aliceblue;
+    margin-block: 15px;
+    margin: 20px;
+    border-radius: 20px;
+    box-shadow: 5px 5px;
+}
+
+
+.materialboxed{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    margin-bottom: 40px;
-    margin-left: 10px;
+    margin-top: 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow: 3px 3px;
+}
+.materialboxed:hover{
+    transform: scale(1.1);
+    transition: 1s;
+}
+
+.card-body p{
+    color: #000000;
+    font-size:100% !important;
+    font-family: 'Teko', sans-serif !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-body button{
+    font-size:105% !important;  
+    font-family: 'Teko', sans-serif !important;
+    background-color: #EDE7F6;
+}
+
+.card-body span{
+    color: #000000;
+    font-size:150% !important;
+    font-family: 'Teko', sans-serif !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .container .logo{
@@ -210,3 +253,4 @@ header{
 footer{
     margin-top: 200px;
 }
+
