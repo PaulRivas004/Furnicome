@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Se comprueba si existe una sesión, de lo contrario se sigue con el flujo normal.
     if (JSON.session) {
         // Se direcciona a la página web de bienvenida.
-        location.href = 'main.html';
+        location.href = 'agregar_productos.html';
     } else if (JSON.status) {
         // Se muestra el formulario para iniciar sesión.
         document.getElementById('login-container-div').classList.remove('visually-hidden');
@@ -49,7 +49,7 @@ LOGIN_FORM.addEventListener('submit', async (event) => {
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
 
     if (JSON.status) {
-        sweetAlert(1, JSON.message, true, 'main.html');
+        sweetAlert(1, JSON.message, true, 'agregar_productos.html');
     } else {
         sweetAlert(2, JSON.exception, false);
     }

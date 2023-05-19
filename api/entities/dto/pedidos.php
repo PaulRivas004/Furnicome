@@ -16,6 +16,16 @@ class Pedidos extends PedidosQueries
     protected $nombre_producto = null;
     protected $cantidad_producto = null;
 
+
+    /*
+    * Atrubutos para sitio publico
+    */
+
+    protected $id_producto = null;
+    protected $precio_producto = null;
+    protected $id_cliente = null;
+
+
     
     /*
     *   Métodos para validar y asignar valores de los atributos.
@@ -25,6 +35,26 @@ class Pedidos extends PedidosQueries
     {
         if (Validator::validateNaturalNumber($value)) {
             $this->id_pedido = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setIdCliente($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->id_cliente = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function serIdproducto($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->id_producto = $value;
             return true;
         } else {
             return false;
@@ -104,6 +134,16 @@ public function setCantidad($value)
     }
 }
 
+public function setPrecio($value)
+{
+    if (Validator::validateNaturalNumber($value)) {
+        $this->precio_producto = $value;
+        return true;
+    } else {
+        return false;
+    }
+}
+
     /*
     *   Métodos para obtener valores de los atributos.
     */
@@ -112,11 +152,23 @@ public function setCantidad($value)
     {
         return $this->id_pedido;
     }
-
+    public function getIdproducto()
+    {
+        return $this->id_producto;
+    }
+    public function getprecio()
+    {
+        return $this->precio_producto;
+    }
 
     public function getNombreCliente()
     {
         return $this->nombre_cliente;
+    }
+
+    public function getIdCliente()
+    {
+        return $this->id_cliente;
     }
 
     public function getEstado()
