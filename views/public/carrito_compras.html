@@ -20,14 +20,11 @@
 
   </header>
 
-
-
-  <br>
   <main class="container">
     <!-- Título del contenido principal -->
-    <h4 class="center-align indigo-text">Carrito de compras</h4>
+    <h4 class="center-align cr1">Carrito de compras</h4>
     <!-- Tabla para mostrar el detalle de los productos agregados al carrito de compras -->
-    <table class="striped">
+    <table class="table highlight">
         <!-- Cabeza de la tabla para mostrar los títulos de las columnas -->
         <thead>
             <tr>
@@ -46,16 +43,25 @@
         <p>TOTAL A PAGAR (US$) <b id="pago"></b></p>
     </div>
     <!-- Fila para mostrar un botón que finaliza el pedido -->
-    <div class="row right-align">
-        <a onclick="finishOrder()" class="btn waves-effect blue tooltipped" data-tooltip="Finalizar pedido">
-            <i class="material-icons">payment</i>
+
+
+    
+
+
+    <div class="botonCompra">
+        <div class="row1">
+        <p>Pagar la compra</p> 
+        <a onclick="finishOrder()" class="btn " data-tooltip="Finalizar pedido">
+           <img src="../../recursos/bolsa-de-la-compra.png" alt="">
         </a>
     </div>
     <!-- Fila para mostrar un enlace con la dirección de la página web principal para seguir comprando -->
-    <div class="row right-align">
-        <a href="index.html" class="btn waves-effect indigo tooltipped" data-tooltip="Seguir comprando">
-            <i class="material-icons">store</i>
+    <div class="row2">
+        <p>Regresar a la tienda</p>
+        <a href="index.html" class="btn" data-tooltip="Seguir comprando">
+            <img src="../../recursos/tienda.png" alt="">
         </a>
+    </div>
     </div>
     <!-- Componente Modal para mostrar una caja de diálogo -->
     <div id="item-modal" class="modal">
