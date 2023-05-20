@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         <span class="card-title">${row.nombre_producto}</span>
                         <p>Precio(US$) ${row.precio_producto}</p>
                         <div class="text-center">
-                        <a href="index.html?id=${row.id_producto}"><button type="button" class="btn  btn-rounded text-center">Ver producto</button></a>
+                        <a href="vista_produc.html?id=${row.id_producto}"><button type="button" class="btn  btn-rounded text-center">Ver producto</button></a>
                         </div>
                         </button>
                       </div>
