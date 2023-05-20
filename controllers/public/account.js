@@ -52,7 +52,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     <!-- Right elements -->
     <div class="d-flex align-items-center">
         <!-- Icon -->
-
+        <a class="text-reset me-3" href="../../views/public/carrito_compras.html">
+        <i class="fas fa-shopping-cart"></i>
+      </a>
         <!-- Avatar -->
         <div class="dropdown">
             <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#"

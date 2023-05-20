@@ -14,15 +14,15 @@ if (isset($_GET['action'])) {
         $result['session'] = 1;
         // Se compara la acción a realizar cuando un cliente ha iniciado sesión.
         switch ($_GET['action']) {
-            case 'createDetail':
+            case 'CreateDetail':
                 $_POST = Validator::validateForm($_POST);
                 if (!$pedido->startOrder()) {
                     $result['exception'] = 'Ocurrió un problema al obtener el pedido';
-                } elseif (!$pedido->serIdproducto($_POST['id_producto'])) {
+                } elseif (!$pedido->setIdproducto($_POST['id_producto'])) {
                     $result['exception'] = 'Producto incorrecto';
                 } elseif (!$pedido->setCantidad($_POST['cantidad'])) {
                     $result['exception'] = 'Cantidad incorrecta';
-                } elseif ($pedido->createDetail()) {
+                }elseif ($pedido->createDetail()) {
                     $result['status'] = 1;
                     $result['message'] = 'Producto agregado correctamente';
                 } else {

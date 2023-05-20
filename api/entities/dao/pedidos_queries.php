@@ -85,9 +85,9 @@ class PedidosQueries
      public function createDetail()
      {
          // Se realiza una subconsulta para obtener el precio del producto.
-         $sql = 'INSERT INTO detalle_pedido(id_producto, precio_producto, cantidad_producto, id_pedido)
-                 VALUES(?, (SELECT precio_producto FROM productos WHERE id_producto = ?), ?, ?)';
-         $params = array($this->id_producto, $this->precio_producto, $this->cantidad_producto, $this->id_pedido);
+         $sql = 'INSERT INTO detalle_pedidos(id_pedido, id_producto, cantidad_producto, precio_producto)
+                 VALUES(?, ?, ?, (SELECT precio_producto FROM productos WHERE id_producto = ?))';
+         $params = array($this->id_pedido, $this->id_producto, $this->cantidad_producto, $this->id_producto);
          return Database::executeRow($sql, $params);
      }
  
@@ -118,7 +118,7 @@ class PedidosQueries
      // Método para actualizar la cantidad de un producto agregado al carrito de compras.
      public function updateDetail()
      {
-         $sql = 'UPDATE detalle_pedido
+         $sql = 'UPDATE detalle_pedidos
                  SET cantidad_producto = ?
                  WHERE id_detalle = ? AND id_pedido = ?';
          $params = array($this->cantidad, $this->id_detalle, $_SESSION['id_pedido']);
@@ -128,7 +128,7 @@ class PedidosQueries
      // Método para eliminar un producto que se encuentra en el carrito de compras.
      public function deleteDetail()
      {
-         $sql = 'DELETE FROM detalle_pedido
+         $sql = 'DELETE FROM detalle_pedidos
                  WHERE id_detalle = ? AND id_pedido = ?';
          $params = array($this->id_detalle, $_SESSION['id_pedido']);
          return Database::executeRow($sql, $params);

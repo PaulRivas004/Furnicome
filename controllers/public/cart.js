@@ -4,6 +4,7 @@ const PEDIDO_API = 'business/public/pedido.php';
 const ITEM_FORM = document.getElementById('item-form');
 // Constante para establecer el cuerpo de la tabla.
 const TBODY_ROWS = document.getElementById('tbody-rows');
+const PARAMS = new URLSearchParams(location.search);
 // Constante tipo objeto para establecer las opciones del componente Modal.
 
 
@@ -17,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 ITEM_FORM.addEventListener('submit', async (event) => {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
+    
     // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(ITEM_FORM);
     // Petición para actualizar la cantidad de producto.
@@ -42,6 +44,7 @@ ITEM_FORM.addEventListener('submit', async (event) => {
 async function readOrderDetail() {
     // Petición para obtener los datos del pedido en proceso.
     const JSON = await dataFetch(PEDIDO_API, 'readOrderDetail');
+   PARAMS.get('id');
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (JSON.status) {
         // Se inicializa el cuerpo de la tabla.

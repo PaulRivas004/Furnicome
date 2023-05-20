@@ -23,7 +23,7 @@ SIGNUP_FORM.addEventListener('submit', async (event) => {
     } else {
         sweetAlert(2, JSON.exception, false);
         // Se genera un nuevo token cuando ocurre un problema.
-        reCAPTCHA();
+        reCAPTCHA();    
     }
 });
 

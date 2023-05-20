@@ -51,7 +51,7 @@ class Pedidos extends PedidosQueries
         }
     }
 
-    public function serIdproducto($value)
+    public function setIdproducto($value)
     {
         if (Validator::validateNaturalNumber($value)) {
             $this->id_producto = $value;

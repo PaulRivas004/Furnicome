@@ -36,7 +36,7 @@ SHOPPING_FORM.addEventListener('submit', async (event) => {
     // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(SHOPPING_FORM);
     // Petición para guardar los datos del formulario.
-    const JSON = await dataFetch(PEDIDO_API, 'createDetail', FORM);
+    const JSON = await dataFetch(PEDIDO_API, 'CreateDetail', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se constata si el cliente ha iniciado sesión.
     if (JSON.status) {
         sweetAlert(1, JSON.message, true, 'carrito_compras.html');
