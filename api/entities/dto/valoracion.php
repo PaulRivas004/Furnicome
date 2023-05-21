@@ -13,6 +13,9 @@ class Valoracion extends ValoracionesQueries
     protected $comentario = null;
     protected $fecha = null;
     protected $estado = null;
+    protected $id_producto = null;
+    protected $nombre_cliente = null;
+    protected $id_pedido = null;
 
     /*
     *   Métodos para validar y asignar valores de los atributos.
@@ -24,6 +27,40 @@ class Valoracion extends ValoracionesQueries
             return true;
         } else {
             return false;
+        }
+    }
+    public function setIdPedido($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->id_pedido = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setIdProducto($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->id_producto = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setNombreCliente($value)
+    {
+        if ($value) {
+            if (Validator::validateString($value, 1, 250)) {
+                $this->comentario = $value;
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            $this->comentario = null;
+            return true;
         }
     }
 
@@ -95,6 +132,11 @@ class Valoracion extends ValoracionesQueries
         return $this->id;
     }
 
+    public function getIdPedido()
+    {
+        return $this->id_pedido;
+    }
+
     public function getDetalle()
     {
         return $this->detalle;
@@ -103,6 +145,15 @@ class Valoracion extends ValoracionesQueries
     public function getCalificacion()
     {
         return $this->calificacion;
+    }
+    public function getIdProducto()
+    {
+        return $this->id_producto;
+    }
+
+    public function getNombreCliente()
+    {
+        return $this->nombre_cliente;
     }
 
     public function getComentario()

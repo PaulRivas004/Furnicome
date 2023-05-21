@@ -276,3 +276,14 @@ justify-content: center;
 }
 
 
+.tilin{
+    background-color: #fdfdfd !important;
+}
+
+.tilin2{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+}

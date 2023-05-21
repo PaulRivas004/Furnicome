@@ -56,4 +56,17 @@ class ValoracionesQueries
         FROM detalle_pedidos';
         return Database::getRows($sql);
     }
+
+    public function readComentarios()
+    {
+        $sql = 'SELECT c.nombre_cliente, p.nombre_producto, v.calificacion_producto, v.comentario_producto, fecha_comentario
+        FROM valoraciones v
+        JOIN detalle_pedidos dp ON v.id_detalle = dp.id_detalle
+        JOIN productos p ON dp.id_producto = p.id_producto
+        JOIN pedidos pe ON dp.id_pedido = pe.id_pedido
+        JOIN clientes c ON pe.id_cliente = c.id_cliente
+        WHERE p.id_producto = ?';
+        $params = array($this->id_producto);
+        return Database::getRow($sql, $params);
+    }
 }

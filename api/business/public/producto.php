@@ -30,6 +30,17 @@ if (isset($_GET['action'])) {
                 $result['exception'] = 'Producto inexistente';
             }
             break;
+            case 'readValoracion':
+                if (!$valoracion->setIdProducto($_POST['id_producto'])) {
+                    $result['exception'] = 'Producto incorrecto';
+                } elseif ($result['dataset'] = $valoracion->readComentarios()) {
+                    $result['status'] = 1;
+                } elseif (Database::getException()) {
+                    $result['exception'] = Database::getException();
+                } else {
+                    $result['exception'] = 'Producto inexistente';
+                }
+                break;
         default:
             $result['exception'] = 'Acción no disponible';
     }
