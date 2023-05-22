@@ -67,6 +67,6 @@ class ValoracionesQueries
         JOIN clientes c ON pe.id_cliente = c.id_cliente
         WHERE p.id_producto = ?';
         $params = array($this->id_producto);
-        return Database::getRow($sql, $params);
+        return Database::getRows($sql, $params);
     }
 }

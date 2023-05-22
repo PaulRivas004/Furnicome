@@ -278,6 +278,12 @@ justify-content: center;
 
 .tilin{
     background-color: #fdfdfd !important;
+
+}
+
+#tilin3{
+    display: flex;
+    flex-direction: row;
 }
 
 .tilin2{

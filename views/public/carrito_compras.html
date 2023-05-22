@@ -11,6 +11,7 @@
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="../../resources/css/estilo.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" rel="stylesheet" />
+  <link type="image/png" rel="icon" href="../../recursos/iconos/icono.png">
   <title>Carrito</title>
 </head>
 
@@ -63,33 +64,34 @@
         </a>
     </div>
     </div>
-    <!-- Componente Modal para mostrar una caja de diálogo -->
-    <div id="item-modal" class="modal">
-        <div class="modal-content">
-            <!-- Título para la caja de diálogo -->
-            <h4 class="center-align">Cambiar cantidad</h4>
-            <!-- Formulario para cambiar la cantidad de producto -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modificar cantidad</h5>
+          <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
             <form class="row" method="post" id="item-form">
                 <!-- Campo oculto para asignar el id del registro al momento de modificar -->
-                <input type="number" id="id_detalle" name="id_detalle" class="hide">
+                <input type="number" id="id_detalle" name="id_detalle" class="visually-">
                 <div class="input-field col s12 m4 offset-m4">
-                    <i class="material-icons prefix">list</i>
                     <input type="number" id="cantidad" name="cantidad" min="1" class="validate" required>
                     <label for="cantidad">Cantidad</label>
                 </div>
-                <div class="col s12 center-align">
-                    <!-- Enlace para cerrar el componente Modal -->
-                    <a class="btn waves-effect grey tooltipped modal-close" data-tooltip="Cancelar">
-                        <i class="material-icons">cancel</i>
-                    </a>
-                    <!-- Botón para enviar el formulario -->
-                    <button type="submit" class="btn waves-effect blue tooltipped" data-tooltip="Guardar">
-                        <i class="material-icons">save</i>
-                    </button>
-                </div>
             </form>
         </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" type="submit">Guardar</button>
+        </div>
+      </div>
     </div>
+  </div>
+
+
 </main>
   </div>
 

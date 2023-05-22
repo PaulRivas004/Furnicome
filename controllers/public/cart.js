@@ -27,8 +27,6 @@ ITEM_FORM.addEventListener('submit', async (event) => {
     if (JSON.status) {
         // Se actualiza la tabla para visualizar los cambios.
         readOrderDetail();
-        // Se cierra la caja de diálogo del formulario.
-        ITEM_MODAL.close();
         // Se muestra un mensaje de éxito.
         sweetAlert(1, JSON.message, true);
     } else {
@@ -65,7 +63,7 @@ async function readOrderDetail() {
                     <td>${row.cantidad_producto}</td>
                     <td>${subtotal.toFixed(2)}</td>
                     <td>
-                        <a onclick="openUpdate(${row.id_detalle}, ${row.cantidad_producto})" class="btn waves-effect blue tooltipped" data-tooltip="Cambiar">
+                        <a onclick="openUpdate(${row.id_detalle}, ${row.cantidad_producto})" class="btn waves-effect blue tooltipped" data-tooltip="Cambiar" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
                         <img src="../../recursos/editar.png" alt="editar compra">
                         </a>
                         <a onclick="openDelete(${row.id_detalle})" class="btn waves-effect red tooltipped" data-tooltip="Remover">
@@ -87,11 +85,10 @@ async function readOrderDetail() {
 *   Parámetros: id (identificador del producto) y quantity (cantidad actual del producto).
 *   Retorno: ninguno.
 */
-function openUpdate(id, quantity) {
+function openUpdate(id_detalle, quantity) {
     // Se abre la caja de diálogo que contiene el formulario.
-    ITEM_MODAL.open();
     // Se inicializan los campos del formulario con los datos del registro seleccionado.
-    document.getElementById('id_detalle').value = id;
+    document.getElementById('id_detalle').value = id_detalle;
     document.getElementById('cantidad').value = quantity;
     // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
 

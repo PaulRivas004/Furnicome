@@ -121,7 +121,7 @@ class PedidosQueries
          $sql = 'UPDATE detalle_pedidos
                  SET cantidad_producto = ?
                  WHERE id_detalle = ? AND id_pedido = ?';
-         $params = array($this->cantidad, $this->id_detalle, $_SESSION['id_pedido']);
+         $params = array($this->cantidad_producto, $this->id_detalle, $_SESSION['id_pedido']);
          return Database::executeRow($sql, $params);
      }
  
