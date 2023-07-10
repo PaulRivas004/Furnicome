@@ -9,6 +9,17 @@ class ProductoQueries
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, delete).
     */
 
+    //Método para consultar datos a la tabla de productos por medio de una query 
+    public function searchRows($value)
+    {
+        $sql = 'SELECT id_producto, imagen_producto, nombre_producto, descripcion_producto, precio_producto, nombre_categoria, estado_producto
+                FROM producto INNER JOIN categorias USING(id_categoria)
+                WHERE nombre_producto ILIKE ? OR descripcion_producto ILIKE ?
+                ORDER BY nombre_producto';
+        $params = array("%$value%", "%$value%");
+        return Database::getRows($sql, $params);
+    }
+    
     //Método para insertar datos a la tabla de productos por medio de una query 
     public function createRow()
     {
@@ -61,7 +72,7 @@ class ProductoQueries
     }
 
 
-
+    //Método para leer la subcategoria por medio de una query
     public function readSub()
     {
 
@@ -70,14 +81,14 @@ class ProductoQueries
         return Database::getRows($sql);
     }
 
-
+    //Método para cargar el usuario que insertó el producto
     public function cargarUsuario()
     {
         $sql = 'SELECT id_usuario, nombre_usuario, apellido_usuario, correo_usuario, alias_usuario, clave_usuario
                 FROM usuarios';
         return Database::getRows($sql);
     }
-
+    //Método para cargar el usuario que insertó el producto
     public function readproductosSubCategoria()
     {
         $sql = 'SELECT id_producto, imagen_producto, nombre_producto, precio_producto

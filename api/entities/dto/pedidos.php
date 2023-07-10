@@ -31,6 +31,7 @@ class Pedidos extends PedidosQueries
     *   Métodos para validar y asignar valores de los atributos.
     */
 
+    
     public function setId($value)
     {
         if (Validator::validateNaturalNumber($value)) {

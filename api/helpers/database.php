@@ -17,11 +17,11 @@ class Database
     *   Parámetros: $query (sentencia SQL) y $values (arreglo con los valores para la sentencia SQL).
     *   Retorno: booleano (true si la sentencia se ejecuta satisfactoriamente o false en caso contrario).
     */
-    public static function executeRow($query, $values)
+public static function executeRow($query, $values)
     {
         try {
-            // Se crea la conexión mediante la clase PDO con el controlador de PostgreSQL.
-            self::$connection = new PDO('pgsql:host=' . SERVER . ';dbname=' . DATABASE . ';port=5432', USERNAME, PASSWORD);
+            // Se crea la conexión mediante la clase PDO con el controlador para MariaDB.
+            self::$connection = new PDO('mysql:host=' . SERVER . ';dbname=' . DATABASE, USERNAME, PASSWORD);
             // Se prepara la sentencia SQL.
             self::$statement = self::$connection->prepare($query);
             // Se ejecuta la sentencia preparada y se retorna el resultado.

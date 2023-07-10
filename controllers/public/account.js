@@ -185,11 +185,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         <div class="footer-copyright">
             <div class="container">
                 <span>© 2018-2023 Copyright CoffeeShop. Todos los derechos reservados.</span>
-                <span class="right">Diseñado con
-                    <a href="http://materializecss.com/" target="_blank">
-                        <img src="../../resources/img/materialize.png" height="20" style="vertical-align:middle" alt="Materialize">
-                    </a>
-                </span>
             </div>
         </div>
     `;

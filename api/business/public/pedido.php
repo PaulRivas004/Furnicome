@@ -17,7 +17,7 @@ if (isset($_GET['action'])) {
             case 'CreateDetail':
                 $_POST = Validator::validateForm($_POST);
                 if (!$pedido->startOrder()) {
-                    $result['exception'] = 'Ocurrió un problema al obtener el pedido';
+                    $result['exception'] = Database::getException();
                 } elseif (!$pedido->setIdproducto($_POST['id_producto'])) {
                     $result['exception'] = 'Producto incorrecto';
                 } elseif (!$pedido->setCantidad($_POST['cantidad'])) {
@@ -29,6 +29,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = Database::getException();
                 }
                 break;
+            //case para realizar la lectura del detalle del pedido
             case 'readOrderDetail':
                 if (!$pedido->startOrder()) {
                     $result['exception'] = 'Debe agregar un producto al carrito';
@@ -41,6 +42,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'No tiene productos en el carrito';
                 }
                 break;
+            //case para realizar la actualización del detalle
             case 'updateDetail':
                 $_POST = Validator::validateForm($_POST);
                 if (!$pedido->setIdDetalle($_POST['id_detalle'])) {
@@ -54,6 +56,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Ocurrió un problema al modificar la cantidad';
                 }
                 break;
+            //case para realizar la eliminación de un detalle
             case 'deleteDetail':
                 if (!$pedido->setIdDetalle($_POST['id_detalle'])) {
                     $result['exception'] = 'Detalle incorrecto';
@@ -64,6 +67,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Ocurrió un problema al remover el producto';
                 }
                 break;
+            //case para finalizar el pedido del carrito
             case 'finishOrder':
                 if ($pedido->finishOrder()) {
                     $result['status'] = 1;

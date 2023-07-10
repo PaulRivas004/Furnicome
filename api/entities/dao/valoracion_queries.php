@@ -40,7 +40,7 @@ class ValoracionesQueries
         return Database::executeRow($sql, $params);
     }
 
-    //Metodo para eliminar una columna de datos de la tabla por medio del id
+    //Método para eliminar una columna de datos de la tabla por medio del id
     public function deleteRow()
     {
         $sql = 'DELETE FROM valoraciones
@@ -49,7 +49,7 @@ class ValoracionesQueries
         return Database::executeRow($sql, $params);
     }
 
-    //Metodo para consultar datos de la tabla detalle_pedidos y llenar los datos del select
+    //Método para consultar datos de la tabla detalle_pedidos y llenar los datos del select
     public function readDetalle()
     {
         $sql = 'SELECT id_detalle, id_pedido, nombre_producto, cantidad_producto, precio_producto
@@ -57,6 +57,7 @@ class ValoracionesQueries
         return Database::getRows($sql);
     }
 
+    //Método para leer los comentarios del producto
     public function readComentarios()
     {
         $sql = 'SELECT c.nombre_cliente, p.nombre_producto, v.calificacion_producto, v.comentario_producto, fecha_comentario
