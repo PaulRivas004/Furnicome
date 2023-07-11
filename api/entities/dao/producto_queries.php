@@ -97,4 +97,18 @@ class ProductoQueries
         ORDER BY nombre_producto';
         return Database::getRows($sql);
     }
+
+        /*
+    *   Métodos para generar reportes.
+    */
+    public function productosSubcategoria()
+    {
+        $sql = 'SELECT nombre_producto, precio_producto, estado_producto
+                FROM productos
+                INNER JOIN subcategorias USING(id_subcategoria)
+                WHERE id_subcategoria = ?
+                ORDER BY nombre_producto';
+        $params = array($this->id_subcategoria);
+        return Database::getRows($sql, $params);
+        }
 }

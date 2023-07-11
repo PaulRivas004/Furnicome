@@ -34,7 +34,7 @@ SAVE_FORM.addEventListener('submit', async (event) => {
     if (JSON.status) {
         // Se carga nuevamente la tabla para visualizar los cambios.
         fillTable();
-        
+
         // Se muestra un mensaje de éxito.
         sweetAlert(1, JSON.message, true);
     } else {
@@ -71,9 +71,10 @@ async function fillTable(form = null) {
                     Actualizar
                     </button>
                     <button onclick="openDelete(${row.id_subcategoria})" type="button" class="btn btn-danger">Eliminar</button>
+                    <button onclick="openReport(${row.id_subcategoria})" type="button" class="btn btn-danger">reporte</button>
                     </td>
                 </tr>
-            `;      
+            `;
         });
         RECORDS.textContent = JSON.message;
     } else {
@@ -92,7 +93,7 @@ function openCreate() {
     // Se establece el campo de archivo como obligatorio.
     document.getElementById('archivo').required = true;
     // Llamada a la función para llenar el select del formulario. Se encuentra en el archivo components.js
-    fillSelect(SUBCATEGORIA_API, 'readCategorias','categoria');
+    fillSelect(SUBCATEGORIA_API, 'readCategorias', 'categoria');
 }
 
 /*
@@ -116,7 +117,7 @@ async function openUpdate(id) {
         document.getElementById('id').value = JSON.dataset.id_subcategoria;
         document.getElementById('nombre').value = JSON.dataset.nombre_sub;
         document.getElementById('descripcion').value = JSON.dataset.descripcion_sub;
-        fillSelect(SUBCATEGORIA_API, 'readCategorias','categoria', JSON.dataset.id_categoria);
+        fillSelect(SUBCATEGORIA_API, 'readCategorias', 'categoria', JSON.dataset.id_categoria);
         // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
     } else {
         sweetAlert(2, JSON.exception, false);
@@ -150,43 +151,57 @@ async function openDelete(id) {
     }
 }
 
+/*
+*   Función para abrir el reporte de productos de una categoría.
+*   Parámetros: id (identificador del registro seleccionado).
+*   Retorno: ninguno.
+*/
+function openReport(id) {
+    // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
+    const PATH = new URL(`${SERVER_URL}reports/dashboard/producto_subcategoria.php`);
+    // Se agrega un parámetro a la ruta con el valor del registro seleccionado.
+    PATH.searchParams.append('id_subcategoria', id);
+    // Se abre el reporte en una nueva pestaña del navegador web.
+    window.open(PATH.href);
+}
+
 //Buscador
-(function(document) {
+(function (document) {
     'buscador';
 
-    var LightTableFilter = (function(Arr) {
+    var LightTableFilter = (function (Arr) {
 
-      var _input;
+        var _input;
 
-      function _onInputEvent(e) {
-        _input = e.target;
-        var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
-        Arr.forEach.call(tables, function(table) {
-          Arr.forEach.call(table.tBodies, function(tbody) {
-            Arr.forEach.call(tbody.rows, _filter);
-          });
-        });
-      }
-
-      function _filter(row) {
-        var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
-        row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
-      }
-
-      return {
-        init: function() {
-          var inputs = document.getElementsByClassName('light-table-filter');
-          Arr.forEach.call(inputs, function(input) {
-            input.oninput = _onInputEvent;
-          });
+        function _onInputEvent(e) {
+            _input = e.target;
+            var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
+            Arr.forEach.call(tables, function (table) {
+                Arr.forEach.call(table.tBodies, function (tbody) {
+                    Arr.forEach.call(tbody.rows, _filter);
+                });
+            });
         }
-      };
+
+        function _filter(row) {
+            var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
+            row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+        }
+
+        return {
+            init: function () {
+                var inputs = document.getElementsByClassName('light-table-filter');
+                Arr.forEach.call(inputs, function (input) {
+                    input.oninput = _onInputEvent;
+                });
+            }
+        };
     })(Array.prototype);
 
-    document.addEventListener('readystatechange', function() {
-      if (document.readyState === 'complete') {
-        LightTableFilter.init();
-      }
+    document.addEventListener('readystatechange', function () {
+        if (document.readyState === 'complete') {
+            LightTableFilter.init();
+        }
     });
 
-  })(document);
+})(document);

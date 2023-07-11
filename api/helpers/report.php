@@ -1,13 +1,15 @@
 <?php
-require_once('../../libraries/fpdf182/fpdf.php');
+// Se incluye la clase para generar archivos PDF.
+require_once('../../libraries/fpdf185/fpdf.php');
 
-/**
-*   Clase para definir las plantillas de los reportes del sitio privado. Para más información http://www.fpdf.org/
+/*
+*   Clase para definir las plantillas de los reportes del sitio privado.
+*   Para más información http://www.fpdf.org/
 */
 class Report extends FPDF
 {
     // Constante para definir la ruta de las vistas del sitio privado.
-    const CLIENT_URL = 'http://localhost/furnicom/views/dashboard/';
+    const CLIENT_URL = 'http://localhost/coffeeshop/views/dashboard/';
     // Propiedad para guardar el título del reporte.
     private $title = null;
 
@@ -22,7 +24,7 @@ class Report extends FPDF
         ini_set('date.timezone', 'America/El_Salvador');
         // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en los reportes.
         session_start();
-        // Se verifica si un administrador ha iniciado sesión para generar el documento, de lo contrario se direcciona a main.php
+        // Se verifica si un administrador ha iniciado sesión para generar el documento, de lo contrario se direcciona a la página web principal.
         if (isset($_SESSION['id_usuario'])) {
             // Se asigna el título del documento a la propiedad de la clase.
             $this->title = $title;
@@ -30,12 +32,12 @@ class Report extends FPDF
             $this->setTitle('Dashboard - Reporte', true);
             // Se establecen los margenes del documento (izquierdo, superior y derecho).
             $this->setMargins(15, 15, 15);
-            // Se añade una nueva página al documento (orientación vertical y formato carta) y se llama al método header()
+            // Se añade una nueva página al documento con orientación vertical y formato carta, llamando implícitamente al método header()
             $this->addPage('p', 'letter');
             // Se define un alias para el número total de páginas que se muestra en el pie del documento.
             $this->aliasNbPages();
         } else {
-            header('location:'.self::CLIENT_URL);
+            header('location:' . self::CLIENT_URL);
         }
     }
 
@@ -64,7 +66,8 @@ class Report extends FPDF
         // Se ubica la fecha y hora del servidor.
         $this->cell(20);
         $this->setFont('Arial', '', 10);
-        $this->cell(166, 10, 'Fecha/Hora: '.date('d-m-Y H:i:s'), 0, 1, 'C');
+        $this->cell(166, 10, 'Fecha/Hora: ' . date('d-m-Y H:i:s'), 0, 1, 'C');
+        $this->cell(166, 10, 'usuario:'. $_SESSION['id_usuario'], 0, 1, 'C');
         // Se agrega un salto de línea para mostrar el contenido principal del documento.
         $this->ln(10);
     }
@@ -75,12 +78,11 @@ class Report extends FPDF
     */
     public function footer()
     {
-        // Se establece la posición para el número de página (a 15 milimetros del final).
+        // Se establece la posición para el número de página (a 15 milímetros del final).
         $this->setY(-15);
         // Se establece la fuente para el número de página.
         $this->setFont('Arial', 'I', 8);
         // Se imprime una celda con el número de página.
-        $this->cell(0, 10, $this->encodeString('Página ').$this->pageNo().'/{nb}', 0, 0, 'C');
+        $this->cell(0, 10, $this->encodeString('Página ') . $this->pageNo() . '/{nb}', 0, 0, 'C');
     }
 }
-?>

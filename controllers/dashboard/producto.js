@@ -103,7 +103,7 @@ async function openUpdate(id) {
     const FORM = new FormData();
     FORM.append('id', id);
     const JSON = await dataFetch(PRODUCTO_API, 'readOne', FORM);
-    
+
     if (JSON.status) {
         document.getElementById('id').value = JSON.dataset.id_producto;
         fillSelect(PRODUCTO_API, 'readSub', 'subcategoria', JSON.dataset.id_subcategoria);
@@ -149,42 +149,42 @@ async function openDelete(id) {
 }
 
 //Buscador
-(function(document) {
+(function (document) {
     'buscador';
 
-    var LightTableFilter = (function(Arr) {
+    var LightTableFilter = (function (Arr) {
 
-      var _input;
+        var _input;
 
-      function _onInputEvent(e) {
-        _input = e.target;
-        var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
-        Arr.forEach.call(tables, function(table) {
-          Arr.forEach.call(table.tBodies, function(tbody) {
-            Arr.forEach.call(tbody.rows, _filter);
-          });
-        });
-      }
-
-      function _filter(row) {
-        var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
-        row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
-      }
-
-      return {
-        init: function() {
-          var inputs = document.getElementsByClassName('light-table-filter');
-          Arr.forEach.call(inputs, function(input) {
-            input.oninput = _onInputEvent;
-          });
+        function _onInputEvent(e) {
+            _input = e.target;
+            var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
+            Arr.forEach.call(tables, function (table) {
+                Arr.forEach.call(table.tBodies, function (tbody) {
+                    Arr.forEach.call(tbody.rows, _filter);
+                });
+            });
         }
-      };
+
+        function _filter(row) {
+            var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
+            row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+        }
+
+        return {
+            init: function () {
+                var inputs = document.getElementsByClassName('light-table-filter');
+                Arr.forEach.call(inputs, function (input) {
+                    input.oninput = _onInputEvent;
+                });
+            }
+        };
     })(Array.prototype);
 
-    document.addEventListener('readystatechange', function() {
-      if (document.readyState === 'complete') {
-        LightTableFilter.init();
-      }
+    document.addEventListener('readystatechange', function () {
+        if (document.readyState === 'complete') {
+            LightTableFilter.init();
+        }
     });
 
-  })(document);
+})(document);
