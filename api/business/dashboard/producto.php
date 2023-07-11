@@ -52,10 +52,6 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Seleccione una subcategoría';
                 }elseif (!$producto->setSubcategoria($_POST['subcategoria'])) {
                     $result['exception'] = 'Subcategoría incorrecta';
-                }elseif (!isset($_POST['usuario'])) {
-                    $result['exception'] = 'Seleccione el usuario que ingresa el producto';
-                }elseif (!$producto->setIdUsu($_POST['usuario'])) {
-                    $result['exception'] = 'Usuario incorrecto';    
                 } elseif(!$producto->setNombre($_POST['nombre'])) {
                     $result['exception'] = 'Nombre incorrecto';
                 } elseif (!$producto->setDescripcion($_POST['descripcion'])) {

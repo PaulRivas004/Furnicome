@@ -67,7 +67,7 @@ async function fillTable(form = null) {
                     <td>${row.nombre_producto}</td>
                     <td>${row.descripcion_producto}</td>
                     <td>${row.precio_producto}</td>
-                    <td>${row.imagen_producto}</td>
+                    <td><img src="${SERVER_URL}images/productos/${row.imagen_producto}" class="materialboxed" height="100"></td>
                     <td>${row.estado_producto}</td>
                     <td>${row.existencia_producto}</td>
                     <td>
@@ -97,7 +97,6 @@ function openCreate() {
     document.getElementById('archivo').required = true;
     // Llamada a la función para llenar el select del formulario. Se encuentra en el archivo components.js
     fillSelect(PRODUCTO_API, 'readSub', 'subcategoria');
-    fillSelect(PRODUCTO_API, 'cargarUsuario', 'usuario');
 }
 
 async function openUpdate(id) {
