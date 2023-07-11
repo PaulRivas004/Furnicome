@@ -64,14 +64,14 @@ async function fillTable(form = null) {
                 <tr>
                     <td>${row.nombre_sub}</td>
                     <td>${row.descripcion_sub}</td>
-                    <td>${row.imagen}</td>
+                    <td><img src="${SERVER_URL}images/subcategorias/${row.imagen}" class="materialboxed" height="100"></td>
                     <td>${row.nombre_categoria}</td>
                     <td>
                     <button onclick="openUpdate(${row.id_subcategoria})" type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target=".exampleModal">
                     Actualizar
                     </button>
                     <button onclick="openDelete(${row.id_subcategoria})" type="button" class="btn btn-danger">Eliminar</button>
-                    <button onclick="openReport(${row.id_subcategoria})" type="button" class="btn btn-danger">reporte</button>
+                    <button onclick="openReport(${row.id_subcategoria})" type="button" class="btn btn-warning">reporte</button>
                     </td>
                 </tr>
             `;
