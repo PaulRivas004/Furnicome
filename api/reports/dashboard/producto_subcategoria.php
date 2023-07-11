@@ -2,7 +2,7 @@
 // Se incluye la clase con las plantillas para generar reportes.
 require_once('../../helpers/report.php');
 
-
+a
 // Se instancia la clase para crear el reporte.
 $pdf = new Report;
 // Se verifica si existe un valor para la categoría, de lo contrario se muestra un mensaje.
