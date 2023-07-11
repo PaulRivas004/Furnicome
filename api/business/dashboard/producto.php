@@ -152,20 +152,20 @@ if (isset($_GET['action'])) {
                 }
                 break;
                 //Sacar un grafico dependiendo de cuantas categorias existen
-            case 'cantidadProductosCategoria':
-                if ($result['dataset'] = $producto->cantidadProductosCategoria()) {
-                    $result['status'] = 1;
-                } else {
-                    $result['exception'] = 'No hay datos disponibles';
-                }
-                break;
-            case 'porcentajeProductosCategoria':
-                if ($result['dataset'] = $producto->porcentajeProductosCategoria()) {
-                    $result['status'] = 1;
-                } else {
-                    $result['exception'] = 'No hay datos disponibles';
-                }
-                break;
+                case 'cantidadProductosSubCategoria':
+                    if ($result['dataset'] = $producto->cantidadProductosSubCategoria()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['exception'] = 'No hay datos disponibles';
+                    }
+                    break;
+                    case 'cantidadProductosexistencia':
+                        if ($result['dataset'] = $producto->cantidadProductosExistencia()) {
+                            $result['status'] = 1;
+                        } else {
+                            $result['exception'] = 'No hay datos disponibles';
+                        }
+                        break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }

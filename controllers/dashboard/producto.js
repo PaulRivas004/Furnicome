@@ -148,6 +148,8 @@ async function openDelete(id) {
     }
 }
 
+
+
 //Buscador
 (function (document) {
     'buscador';
