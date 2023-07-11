@@ -82,49 +82,49 @@ class PedidosQueries
     }
 
      // Método para agregar un producto al carrito de compras.
-     public function createDetail()
-     {
+    public function createDetail()
+    {
          // Se realiza una subconsulta para obtener el precio del producto.
-         $sql = 'INSERT INTO detalle_pedidos(id_pedido, id_producto, cantidad_producto, precio_producto)
-                 VALUES(?, ?, ?, (SELECT precio_producto FROM productos WHERE id_producto = ?))';
-         $params = array($this->id_pedido, $this->id_producto, $this->cantidad_producto, $this->id_producto);
-         return Database::executeRow($sql, $params);
-     }
- 
+        $sql = 'INSERT INTO detalle_pedidos(id_pedido, id_producto, cantidad_producto, precio_producto)
+                VALUES(?, ?, ?, (SELECT precio_producto FROM productos WHERE id_producto = ?))';
+        $params = array($this->id_pedido, $this->id_producto, $this->cantidad_producto, $this->id_producto);
+        return Database::executeRow($sql, $params);
+    }
+
      // Método para obtener los productos que se encuentran en el carrito de compras.
-     public function readOrderDetail()
-     {
-         $sql = 'SELECT id_detalle, nombre_producto, detalle_pedidos.precio_producto, detalle_pedidos.cantidad_producto
-         FROM pedidos INNER JOIN detalle_pedidos USING(id_pedido) INNER JOIN productos USING(id_producto)
-         WHERE id_pedido = ?';
-         $params = array($this->id_pedido);
-         return Database::getRows($sql, $params);
-     }
- 
+    public function readOrderDetail()
+    {
+        $sql = 'SELECT id_detalle, nombre_producto, detalle_pedidos.precio_producto, detalle_pedidos.cantidad_producto
+        FROM pedidos INNER JOIN detalle_pedidos USING(id_pedido) INNER JOIN productos USING(id_producto)
+        WHERE id_pedido = ?';
+        $params = array($this->id_pedido);
+        return Database::getRows($sql, $params);
+    }
+
      // Método para finalizar un pedido por parte del cliente.
-     public function finishOrder()
-     {
+    public function finishOrder()
+    {
          // Se establece la zona horaria local para obtener la fecha del servidor.
-         date_default_timezone_set('America/El_Salvador');
-         $date = date('Y-m-d');
-         $this->estado = 1;
-         $sql = 'UPDATE pedidos
-                 SET estado_pedido = ?, fecha_pedido = ?
-                 WHERE id_pedido = ?';
-         $params = array($this->estado, $date, $_SESSION['id_pedido']);
-         return Database::executeRow($sql, $params);
-     }
- 
+        date_default_timezone_set('America/El_Salvador');
+        $date = date('Y-m-d');
+        $this->estado = 1;
+        $sql = 'UPDATE pedidos
+                SET estado_pedido = ?, fecha_pedido = ?
+                WHERE id_pedido = ?';
+        $params = array($this->estado, $date, $_SESSION['id_pedido']);
+        return Database::executeRow($sql, $params);
+    }
+
      // Método para actualizar la cantidad de un producto agregado al carrito de compras.
-     public function updateDetail()
-     {
-         $sql = 'UPDATE detalle_pedidos
-                 SET cantidad_producto = ?
-                 WHERE id_detalle = ? AND id_pedido = ?';
-         $params = array($this->cantidad_producto, $this->id_detalle, $_SESSION['id_pedido']);
-         return Database::executeRow($sql, $params);
-     }
- 
+    public function updateDetail()
+    {
+        $sql = 'UPDATE detalle_pedidos
+                SET cantidad_producto = ?
+                WHERE id_detalle = ? AND id_pedido = ?';
+        $params = array($this->cantidad_producto, $this->id_detalle, $_SESSION['id_pedido']);
+        return Database::executeRow($sql, $params);
+    }
+
      // Método para eliminar un producto que se encuentra en el carrito de compras.
      public function deleteDetail()
      {
@@ -133,8 +133,6 @@ class PedidosQueries
          $params = array($this->id_detalle, $_SESSION['id_pedido']);
          return Database::executeRow($sql, $params);
      }
-
-
  }
  
 
