@@ -80,7 +80,7 @@ async function graficoLinealCategorias() {
 }
 
 /*
-*   Función asíncrona para mostrar en un gráfico de barras la cantidad de productos por categoría.
+*   Función asíncrona para mostrar en un gráfico polar para la cantidad de productos vendidos.
 *   Parámetros: ninguno.
 *   Retorno: ninguno.
 */
@@ -96,10 +96,10 @@ async function graficoPolarVendidos() {
         DATA.dataset.forEach(row => {
             // Se agregan los datos a los arreglos.
             productos.push(row.nombre_producto);
-            ventas_producto.push(row.cantidad_producto);
+            ventas_producto.push(row.cantidad_vendida);
         });
         // Llamada a la función que genera y muestra un gráfico de barras. Se encuentra en el archivo components.js
-        PolarGraph('chart3', productos, ventas_producto, 'Nombre del producto', 'Cantidad de productos vendidos');
+        PolarGraph('chart3', productos, ventas_producto, 'Total vendidos', 'Top 5 productos con cantidades más vendidas');
     } else {
         document.getElementById('chart3').remove();
         console.log(DATA.exception);
