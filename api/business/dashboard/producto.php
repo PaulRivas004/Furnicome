@@ -161,7 +161,14 @@ if (isset($_GET['action'])) {
                         } else {
                             $result['exception'] = 'No hay datos disponibles';
                         }
-                        break;
+                    break;
+                    case 'cantidadProductosVendidos':
+                        if ($result['dataset'] = $producto->cantidadProductosVendidos()) {
+                            $result['status'] = 1;
+                        } else {
+                            $result['exception'] = 'No hay datos disponibles';
+                        }
+                    break;
             default:
                 $result['exception'] = 'Acción no disponible dentro de la sesión';
         }

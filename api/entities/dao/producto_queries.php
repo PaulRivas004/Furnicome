@@ -114,7 +114,7 @@ class ProductoQueries
 
          //Generar el grafico de subacategorias 
     
-        public function cantidadProductosSubCategoria()
+    public function cantidadProductosSubCategoria()
         {
             $sql = 'SELECT nombre_sub, COUNT(id_producto) existencia_producto
                     FROM productos
@@ -122,18 +122,32 @@ class ProductoQueries
                     GROUP BY nombre_sub ORDER BY existencia_producto DESC';
             return Database::getRows($sql);
         }
-        public function cantidadProductosExistencia()
+
+    public function cantidadProductosExistencia()
         {
             $sql = 'SELECT nombre_producto, existencia_producto
                     FROM productos
                     ORDER BY existencia_producto DESC LIMIT 5';
             return Database::getRows($sql);
         }
-        public function ReporteGeneral()
+
+    public function ReporteGeneral()
         {
             $sql = 'SELECT nombre_producto, precio_producto, estado_producto
                     FROM productos
                     ORDER BY nombre_producto DESC ';
+            return Database::getRows($sql);
+        }
+
+        public function cantidadProductosVendidos()
+        {
+            $sql = 'SELECT p.id_producto, p.nombre_producto, SUM(dp.cantidad_producto) AS cantidad_vendida
+            FROM productos p
+            LEFT JOIN detalle_pedidos dp USING(id_producto)
+            LEFT JOIN pedidos pe USING(id_pedido)
+            WHERE pe.estado_pedido = 1
+            GROUP BY p.id_producto, p.nombre_producto
+            ORDER BY cantidad_vendida DESC LIMIT 5';
             return Database::getRows($sql);
         }
 }

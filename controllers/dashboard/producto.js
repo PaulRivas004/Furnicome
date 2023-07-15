@@ -69,11 +69,9 @@ async function fillTable(form = null) {
             TBODY_ROWS.innerHTML += `
                 <tr>
                     <td>${row.nombre_sub}</td>
-                    <td>${row.nombre_usuario}</td>
                     <td>${row.nombre_producto}</td>
                     <td>${row.descripcion_producto}</td>
                     <td>${row.precio_producto}</td>
-                    <td><img src="${SERVER_URL}images/productos/${row.imagen_producto}" class="materialboxed" height="100"></td>
                     <td>${txtestado}</td>
                     <td>${row.existencia_producto}</td>
                     <td>

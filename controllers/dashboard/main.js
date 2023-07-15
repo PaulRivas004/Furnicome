@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Se llaman a la funciones que generan los gráficos en la página web.
     graficoBarrasSubCategorias();
     graficoLinealCategorias();
+    graficoPolarVendidos();
 });
 
 /*
@@ -71,9 +72,36 @@ async function graficoLinealCategorias() {
             existencia_producto2.push(row.existencia_producto);
         });
         // Llamada a la función que genera y muestra un gráfico de barras. Se encuentra en el archivo components.js
-        LineGraph('chart2', nombre, existencia_producto2, 'Estado del producto', 'Top 5 de productos con más existencia');
+        LineGraph('chart2', nombre, existencia_producto2, 'Cantidad del producto', 'Top 5 de productos con más existencia');
     } else {
         document.getElementById('chart2').remove();
+        console.log(DATA.exception);
+    }
+}
+
+/*
+*   Función asíncrona para mostrar en un gráfico de barras la cantidad de productos por categoría.
+*   Parámetros: ninguno.
+*   Retorno: ninguno.
+*/
+async function graficoPolarVendidos() {
+    // Petición para obtener los datos del gráfico.
+    const DATA = await dataFetch(PRODUCTO_API, 'cantidadProductosVendidos');
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
+    if (DATA.status) {
+        // Se declaran los arreglos para guardar los datos a graficar.
+        let productos = [];
+        let ventas_producto = [];
+        // Se recorre el conjunto de registros fila por fila a través del objeto row.
+        DATA.dataset.forEach(row => {
+            // Se agregan los datos a los arreglos.
+            productos.push(row.nombre_producto);
+            ventas_producto.push(row.cantidad_producto);
+        });
+        // Llamada a la función que genera y muestra un gráfico de barras. Se encuentra en el archivo components.js
+        PolarGraph('chart3', productos, ventas_producto, 'Nombre del producto', 'Cantidad de productos vendidos');
+    } else {
+        document.getElementById('chart3').remove();
         console.log(DATA.exception);
     }
 }
