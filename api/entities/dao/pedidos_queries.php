@@ -18,6 +18,15 @@ class PedidosQueries
         return Database::getRows($sql);
     }
 
+    public function readAllPedidosTrue()
+    {
+        $sql = 'SELECT id_pedido, estado_pedido, fecha_pedido, direccion_pedido
+                FROM pedidos INNER JOIN clientes USING(id_cliente)
+                WHERE estado_pedido = true
+                ORDER BY id_pedido ASC';
+        return Database::getRows($sql);
+    }
+
     //Método para consultar una columna específica de la tabla por medio de su id
     public function readOne()
     {

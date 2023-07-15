@@ -145,7 +145,7 @@ class ProductoQueries
             FROM productos p
             LEFT JOIN detalle_pedidos dp USING(id_producto)
             LEFT JOIN pedidos pe USING(id_pedido)
-            WHERE pe.estado_pedido = 1
+            WHERE pe.estado_pedido = true
             GROUP BY p.id_producto, p.nombre_producto
             ORDER BY cantidad_vendida DESC LIMIT 5';
             return Database::getRows($sql);
