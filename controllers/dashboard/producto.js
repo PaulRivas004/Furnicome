@@ -59,6 +59,12 @@ async function fillTable(form = null) {
     if (JSON.status) {
         // Se recorre el conjunto de registros fila por fila.
         JSON.dataset.forEach(row => {
+            txtestado = null;
+            if(row.estado_producto == 1){
+                txtestado = 'activo'
+            }else{
+                txtestado = 'inactivo'
+            }
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             TBODY_ROWS.innerHTML += `
                 <tr>
@@ -68,7 +74,7 @@ async function fillTable(form = null) {
                     <td>${row.descripcion_producto}</td>
                     <td>${row.precio_producto}</td>
                     <td><img src="${SERVER_URL}images/productos/${row.imagen_producto}" class="materialboxed" height="100"></td>
-                    <td>${row.estado_producto}</td>
+                    <td>${txtestado}</td>
                     <td>${row.existencia_producto}</td>
                     <td>
                     <button onclick="openUpdate(${row.id_producto})" type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target=".exampleModal">
