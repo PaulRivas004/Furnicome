@@ -70,4 +70,5 @@ class ValoracionesQueries
         $params = array($this->id_producto);
         return Database::getRows($sql, $params);
     }
+
 }

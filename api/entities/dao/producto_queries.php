@@ -56,9 +56,9 @@ class ProductoQueries
         ($this->imagen_producto) ? Validator::deleteFile($this->getRuta(), $current_image) : $this->imagen = $current_image;
 
         $sql = 'UPDATE productos
-                SET id_subcategoria = ?, id_usuario = ?, nombre_producto = ?, descripcion_producto = ?, precio_producto = ?, imagen_producto = ?, estado_producto = ?, existencia_producto = ?
+                SET id_subcategoria = ?, nombre_producto = ?, descripcion_producto = ?, precio_producto = ?, imagen_producto = ?, estado_producto = ?, existencia_producto = ?
                 WHERE id_producto = ?';
-        $params = array($this->id_subcategoria, $this->id_usuario, $this->nombre_producto, $this->descripcion_producto, $this->precio_producto, $this->imagen_producto, $this->estado_producto, $this->existencia_producto, $this->id_producto);
+        $params = array($this->id_subcategoria, $this->nombre_producto, $this->descripcion_producto, $this->precio_producto, $this->imagen_producto, $this->estado_producto, $this->existencia_producto, $this->id_producto);
         return Database::executeRow($sql, $params);
     }
 
@@ -129,5 +129,11 @@ class ProductoQueries
                     ORDER BY existencia_producto DESC LIMIT 5';
             return Database::getRows($sql);
         }
-    
+        public function ReporteGeneral()
+        {
+            $sql = 'SELECT nombre_producto, precio_producto, estado_producto
+                    FROM productos
+                    ORDER BY nombre_producto DESC ';
+            return Database::getRows($sql);
+        }
 }
