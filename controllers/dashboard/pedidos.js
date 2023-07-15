@@ -179,6 +179,13 @@ function openReport() {
   window.open(PATH.href);
 }
 
+function openReport2() {
+  // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
+  const PATH = new URL(`${SERVER_URL}reports/dashboard/pedidos_en_proceso.php`);
+  // Se abre el reporte en una nueva pestaña del navegador web.
+  window.open(PATH.href);
+}
+
 //Buscador
 (function (document) {
   'buscador';
