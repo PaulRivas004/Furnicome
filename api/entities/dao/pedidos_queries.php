@@ -22,7 +22,7 @@ class PedidosQueries
     {
         $sql = 'SELECT id_pedido, estado_pedido, fecha_pedido, direccion_pedido
                 FROM pedidos INNER JOIN clientes USING(id_cliente)
-                WHERE estado_pedido = true
+                WHERE estado_pedido = 1
                 ORDER BY id_pedido ASC';
         return Database::getRows($sql);
     }

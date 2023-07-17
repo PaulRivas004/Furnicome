@@ -29,7 +29,7 @@ if ($dataPedidos = $pedidos->readAllPedidosTrue()) {
     // Se recorren los registros fila por fila.
     foreach ($dataPedidos as $rowPedidos) {
         // Se imprime una celda con el nombre de la categoría.
-        $pdf->cell(0, 10, $pdf->encodeString('Estado de los pedidos: ' . $rowPedidos['estado_pedido']), 1, 1, 'C', 1);
+        $pdf->cell(0, 10, $pdf->encodeString('Estado de los pedidos: Finalizados'), 1, 1, 'C', 1);
         // Se instancia el módelo Producto para procesar los datos.
         $pedidos = new Pedidos;
         // Se establece la categoría para obtener sus productos, de lo contrario se imprime un mensaje de error.
