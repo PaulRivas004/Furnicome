@@ -99,7 +99,7 @@ async function graficoPolarVendidos() {
             ventas_producto.push(row.cantidad_vendida);
         });
         // Llamada a la función que genera y muestra un gráfico de barras. Se encuentra en el archivo components.js
-        PolarGraph('chart3', productos, ventas_producto, 'Total vendidos', 'Top 5 productos con cantidades más vendidas');
+        PolarGraph('chart3', productos, ventas_producto, 'Total de unidades', 'Top 5 de productos más vendidos');
     } else {
         document.getElementById('chart3').remove();
         console.log(DATA.exception);

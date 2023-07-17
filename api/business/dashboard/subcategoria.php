@@ -97,7 +97,7 @@ if (isset($_GET['action'])) {
                     $result['exception'] = Validator::getFileError();
                 } elseif ($subcategoria->updateRow($data['imagen'])) {
                     $result['status'] = 1;
-                    if (Validator::saveFile($_FILES['archivo'], $categoria->getRuta(), $categoria->getImagen())) {
+                    if (Validator::saveFile($_FILES['archivo'], $subcategoria->getRuta(), $subcategoria->getImagen())) {
                         $result['message'] = 'Subcategoría modificada correctamente';
                     } else {
                         $result['message'] = 'Subcategoría modificada pero no se guardó la imagen';

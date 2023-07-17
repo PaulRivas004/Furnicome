@@ -17,9 +17,9 @@ if ($dataPedidos = $pedidos->readAllPedidosTrue()) {
     // Se establece la fuente para los encabezados.
     $pdf->setFont('Times', 'B', 11);
     // Se imprimen las celdas con los encabezados.
-    $pdf->cell(40, 10, 'N° pedido', 1, 0, 'C', 1);
+    $pdf->cell(40, 10, $pdf->encodeString('N° pedido'), 1, 0, 'C', 1);
     $pdf->cell(40, 10, 'Fecha', 1, 0, 'C', 1);
-    $pdf->cell(106, 10, 'Direccion', 1, 1, 'C', 1);
+    $pdf->cell(106, 10, $pdf->encodeString('Dirección'), 1, 1, 'C', 1);
 
     // Se establece un color de relleno para mostrar el nombre de la categoría.
     $pdf->setFillColor(225);
@@ -28,27 +28,10 @@ if ($dataPedidos = $pedidos->readAllPedidosTrue()) {
 
     // Se recorren los registros fila por fila.
     foreach ($dataPedidos as $rowPedidos) {
-        // Se imprime una celda con el nombre de la categoría.
-        $pdf->cell(0, 10, $pdf->encodeString('Estado de los pedidos: Finalizados'), 1, 1, 'C', 1);
-        // Se instancia el módelo Producto para procesar los datos.
-        $pedidos = new Pedidos;
-        // Se establece la categoría para obtener sus productos, de lo contrario se imprime un mensaje de error.
-        if ($pedidos->setId($rowPedidos['id_pedido']) ) {
-            // Se verifica si existen registros para mostrar, de lo contrario se imprime un mensaje.
-            if ($dataPedidos = $pedidos->readAllPedidosTrue()) {
-                // Se recorren los registros fila por fila.
-                foreach ($dataPedidos as $rowPedidos) {
-                    // Se imprimen las celdas con los datos de los productos.
-                    $pdf->cell(40, 10, $pdf->encodeString($rowPedidos['id_pedido']), 1, 0);
-                    $pdf->cell(40, 10, $rowPedidos['fecha_pedido'], 1, 0);
-                    $pdf->cell(106, 10, $rowPedidos['direccion_pedido'], 1, 1);
-                }
-            } else {
-                $pdf->cell(0, 10, $pdf->encodeString('No hay pedidos para estado finalizado'), 1, 1);
-            }
-        } else {
-            $pdf->cell(0, 10, $pdf->encodeString('Pedido incorrecto o inexistente'), 1, 1);
-        }
+        // Se imprimen las celdas con los datos de los productos.
+        $pdf->cell(40, 10, $pdf->encodeString($rowPedidos['id_pedido']), 1, 0);
+        $pdf->cell(40, 10, $rowPedidos['fecha_pedido'], 1, 0);
+        $pdf->cell(106, 10, $pdf->encodeString($rowPedidos['direccion_pedido']), 1, 1);
     }
 } else {
     $pdf->cell(0, 10, $pdf->encodeString('No hay pedidos para mostrar'), 1, 1);

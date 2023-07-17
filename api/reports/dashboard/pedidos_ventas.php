@@ -21,8 +21,9 @@ if ($dataSubcategorias = $subcategoria->readAll()) {
     // Se establece la fuente para los encabezados.
     $pdf->setFont('Times', 'B', 11);
     // Se imprimen las celdas con los encabezados.
-    $pdf->cell(110, 10, 'Producto', 1, 0, 'C', 1);
+    $pdf->cell(80, 10, 'Producto', 1, 0, 'C', 1);
     $pdf->cell(40, 10, 'Unidades vendidas', 1, 0, 'C', 1);
+    $pdf->cell(30, 10, 'Precio unitario', 1, 0, 'C', 1);
     $pdf->cell(36, 10, 'Subtotal (US$)', 1, 1, 'C', 1);
 
     // Se establece un color de relleno para mostrar el nombre de la categoría.
@@ -33,7 +34,7 @@ if ($dataSubcategorias = $subcategoria->readAll()) {
     // Se recorren los registros fila por fila.
     foreach ($dataSubcategorias as $rowSubcategoria) {
         // Se imprime una celda con el nombre de la categoría.
-        $pdf->cell(0, 10, $pdf->encodeString('Subcategoría: ' . $rowSubcategoria['nombre_sub']), 1, 1, 'C', 1);
+        $pdf->cell(186, 10, $pdf->encodeString('Subcategoría: ' . $rowSubcategoria['nombre_sub']), 1, 1, 'C', 1);
         // Se instancia el módelo Producto para procesar los datos.
         $producto = new Producto;
         $pedido = new Pedidos;
@@ -44,8 +45,9 @@ if ($dataSubcategorias = $subcategoria->readAll()) {
                 // Se recorren los registros fila por fila.
                 foreach ($dataVentas as $rowDetalle) {
                     // Se imprimen las celdas con los datos de los productos.
-                    $pdf->cell(110, 10, $pdf->encodeString($rowDetalle['nombre_producto']), 1, 0);
+                    $pdf->cell(80, 10, $pdf->encodeString($rowDetalle['nombre_producto']), 1, 0);
                     $pdf->cell(40, 10, $rowDetalle['total_cantidad'], 1, 0);
+                    $pdf->cell(30, 10, $pdf->encodeString($rowDetalle['precio_producto']), 1, 0);
                     $pdf->cell(36, 10, $rowDetalle['subtotal'], 1, 1);
                 }
             } else {
