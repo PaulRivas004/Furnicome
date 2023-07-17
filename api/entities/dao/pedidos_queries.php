@@ -152,6 +152,16 @@ class PedidosQueries
         return Database::executeRow($sql, $params);
     }
 
+    public function comprobanteFactura()
+    {
+        $sql = 'SELECT fecha_pedido, nombre_producto, precio_producto
+        FROM pedidos
+        INNER JOIN productos USING (id_producto)
+        WHERE id_pedido = ?';
+        $params = array($this->id_pedido);
+        return Database::getRows($sql, $params);
+    }
+
 
 }
 
