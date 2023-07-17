@@ -15,29 +15,29 @@
 
 <body>
     <header>
-
     </header>
-
     <main>
         <div class="container">
             <!-- Button trigger modal -->
-
             <div class="container col-6">
                 <label>Buscar Pedido:</label>
                 <input class="form-control me-2 light-table-filter" data-table="table" type="text">
             </div>
-            <div class="row">
-                <div class="col">
-                    <p>Generar reporte de pedidos finalizados</p>
-                    <button onclick="openReport()" type="button" class="btn btn-warning">Generar reporte</button>
+            <div class="container">
+                <h3 class="center-align">reportes:</h3>
+                <div class="row">
+                    <div class="col-sm-12 col-md-6 col-lg-4 triplexd">
+                        <button onclick="openReport()" type="button" class="btn btn-warning">Pedidos finalizados</button>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-4 triplexd">
+                        <button onclick="openReport2()" type="button" class="btn btn-warning">Pedidos en proceso</button>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-4 triplexd">
+                        <button onclick="openReport3()" type="button" class="btn btn-warning">Ventas generadas</button>
+                    </div>
                 </div>
-                <div class="col">
-                    <p>Generar reporte de pedidos en proceso</p>
-                    <button onclick="openReport2()" type="button" class="btn btn-warning">Generar reporte</button>
-
-                </div>
-
             </div>
+            
             <!-- Modal -->
             <div class="modal exampleModal" id="save-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">

@@ -144,13 +144,15 @@ class PedidosQueries
     }
 
      // Método para eliminar un producto que se encuentra en el carrito de compras.
-     public function deleteDetail()
-     {
-         $sql = 'DELETE FROM detalle_pedidos
-                 WHERE id_detalle = ? AND id_pedido = ?';
-         $params = array($this->id_detalle, $_SESSION['id_pedido']);
-         return Database::executeRow($sql, $params);
-     }
- }
- 
+    public function deleteDetail()
+    {
+        $sql = 'DELETE FROM detalle_pedidos
+                WHERE id_detalle = ? AND id_pedido = ?';
+        $params = array($this->id_detalle, $_SESSION['id_pedido']);
+        return Database::executeRow($sql, $params);
+    }
+
+
+}
+
 

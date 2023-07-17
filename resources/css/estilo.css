@@ -254,7 +254,7 @@ header{
 footer{
     margin-top: 200px;
 }
- 
+    
 /* carrito */
 .cr1{
 margin-bottom: 25px;
@@ -273,7 +273,7 @@ justify-content: center;
 }
 
 .row1, .row2{
-   margin: 50px;
+    margin: 50px;
 }
 
 
@@ -293,4 +293,8 @@ justify-content: center;
     align-items: center;
     justify-content: center;
     margin-top: 50px;
+}
+
+.triplexd{
+    margin-bottom: 20px;
 }

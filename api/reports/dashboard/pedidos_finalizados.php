@@ -41,7 +41,7 @@ if ($dataPedidos = $pedidos->readAllPedidosTrue()) {
                     // Se imprimen las celdas con los datos de los productos.
                     $pdf->cell(40, 10, $pdf->encodeString($rowPedidos['id_pedido']), 1, 0);
                     $pdf->cell(40, 10, $rowPedidos['fecha_pedido'], 1, 0);
-                    $pdf->cell(106, 10, $rowPedidos['direccion_pedido'], 1, 0);
+                    $pdf->cell(106, 10, $rowPedidos['direccion_pedido'], 1, 1);
                 }
             } else {
                 $pdf->cell(0, 10, $pdf->encodeString('No hay pedidos para estado finalizado'), 1, 1);

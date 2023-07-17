@@ -101,6 +101,7 @@ class ProductoQueries
         /*
     *   Métodos para generar reportes.
     */
+    //Generar reporte de los productos que hay en una subcategoria
     public function productosSubcategoria()
     {
         $sql = 'SELECT nombre_producto, precio_producto, estado_producto
@@ -112,8 +113,7 @@ class ProductoQueries
         return Database::getRows($sql, $params);
         }
 
-         //Generar el grafico de subacategorias 
-    
+    //Generar el grafico de los productos en las subacategorias 
     public function cantidadProductosSubCategoria()
         {
             $sql = 'SELECT nombre_sub, COUNT(id_producto) existencia_producto
@@ -122,6 +122,7 @@ class ProductoQueries
                     GROUP BY nombre_sub ORDER BY existencia_producto DESC';
             return Database::getRows($sql);
         }
+
 
     public function cantidadProductosExistencia()
         {
@@ -149,5 +150,23 @@ class ProductoQueries
             GROUP BY p.id_producto, p.nombre_producto
             ORDER BY cantidad_vendida DESC LIMIT 5';
             return Database::getRows($sql);
+        }
+        
+            //consulta para un reporte que muestre el total de ventas de cada producto con estado del pedido "1" que significa vendido
+    public function productosVentas()
+    {
+        $sql = 'SELECT sub.nombre_sub AS subcategoria,
+        pro.nombre_producto,
+        SUM(dp.cantidad_producto) AS total_cantidad,
+        SUM(dp.cantidad_producto * dp.precio_producto) AS subtotal
+        FROM subcategorias sub
+        INNER JOIN productos pro USING(id_subcategoria)
+        INNER JOIN detalle_pedidos dp USING(id_producto)
+        INNER JOIN pedidos pe USING(id_pedido)
+        WHERE sub.id_subcategoria = ? and pe.estado_pedido = 1
+        GROUP BY sub.nombre_sub, pro.nombre_producto
+        ORDER BY sub.nombre_sub, pro.nombre_producto DESC';
+        $params = array($this->id_subcategoria);
+        return Database::getRows($sql, $params);
         }
 }
