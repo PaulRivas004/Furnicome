@@ -16,9 +16,9 @@ if (isset($_GET['id_producto'])) {
     // Se establece el valor de la categoría, de lo contrario se muestra un mensaje.
     if ($valoracion->setId($_GET['id_producto']) && $valoracion->setIdProducto($_GET['id_producto'])) {
         // Se verifica si la categoría existe, de lo contrario se muestra un mensaje.
-        if ($rowValoracion= $valoracion->readOne() ) {
+        if ($rowValoracion= $valoracion->readValoracion() ) {
             // Se inicia el reporte con el encabezado del documento.
-            $pdf->startReport('Valoraciones de producto' . $rowValoracion['id_valoracion'] );
+            $pdf->startReport('Valoraciones de producto: ' . $rowValoracion['nombre_producto'] );
             // Se verifica si existen registros para mostrar, de lo contrario se imprime un mensaje.
             if ($dataValoracion = $valoracion->readComentarios()) {
                 // Se establece un color de relleno para los encabezados.

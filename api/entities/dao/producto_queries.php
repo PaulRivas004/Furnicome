@@ -123,7 +123,17 @@ class ProductoQueries
             return Database::getRows($sql);
         }
 
+    //Generar el grafico de los clientes con más reportes
+    public function clientesPedidos()
+    {
+        $sql = 'SELECT nombre_cliente, COUNT(id_pedido) pedidos_realizados
+        FROM pedidos
+        INNER JOIN clientes USING(id_cliente)
+        GROUP BY nombre_cliente ORDER BY pedidos_realizados DESC LIMIT 5';
+        return Database::getRows($sql);
+    }
 
+    //consulta para ver la cantidad de productos en existencia con finalidad de un gráfico
     public function cantidadProductosExistencia()
         {
             $sql = 'SELECT nombre_producto, existencia_producto
@@ -153,6 +163,7 @@ class ProductoQueries
             return Database::getRows($sql);
         }
 
+        //consulta para ver la cantidad de productos vendidos con finalidad de reportes
         public function cantidadProductosVendidos()
         {
             $sql = 'SELECT p.nombre_producto, SUM(dp.cantidad_producto) AS total_cantidad

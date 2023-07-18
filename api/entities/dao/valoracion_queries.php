@@ -30,6 +30,7 @@ class ValoracionesQueries
         return Database::getRow($sql, $params);
     }
 
+
     //Método para realizar la actualización de la tabla por medio de una query parametrizada
     public function updateRow()
     {
@@ -71,4 +72,15 @@ class ValoracionesQueries
         return Database::getRows($sql, $params);
     }
 
+            //Método para consultar una columna específica de la tabla por medio de su id
+        public function readValoracion()
+        {
+            $sql = 'SELECT id_valoracion, id_detalle, calificacion_producto, comentario_producto, fecha_comentario, estado_comentario, nombre_producto
+            FROM valoraciones
+            INNER JOIN detalle_pedidos USING(id_detalle)
+            INNER JOIN productos USING(id_producto)
+            WHERE id_valoracion = ?';
+            $params = array($this->id);
+            return Database::getRow($sql, $params);
+        }
 }
