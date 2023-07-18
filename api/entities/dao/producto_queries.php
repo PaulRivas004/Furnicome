@@ -142,7 +142,7 @@ class ProductoQueries
         }
 
         //consulta para un reporte que muestre los productos con mejores valoraciones en la tienda
-        public function cantidadProductosVendidos()
+        public function cantidadValoraciones()
         {
             $sql = 'SELECT nombre_producto, ROUND(AVG(calificacion_producto), 2) promedio 
             FROM valoraciones v 
@@ -150,6 +150,18 @@ class ProductoQueries
             INNER JOIN productos p USING(id_producto) 
             GROUP BY nombre_producto 
             ORDER BY promedio DESC LIMIT 5';
+            return Database::getRows($sql);
+        }
+
+        public function cantidadProductosVendidos()
+        {
+            $sql = 'SELECT p.nombre_producto, SUM(dp.cantidad_producto) AS total_cantidad
+            FROM productos p
+            JOIN detalle_pedidos dp USING(id_producto)
+            JOIN pedidos pe USING(id_pedido)
+            WHERE pe.estado_pedido = 1
+            GROUP BY p.nombre_producto
+            ORDER BY total_cantidad DESC LIMIT 5';
             return Database::getRows($sql);
         }
         
