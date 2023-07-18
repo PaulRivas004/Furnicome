@@ -26,17 +26,17 @@ if (isset($_GET['id_producto'])) {
                 // Se establece la fuente para los encabezados.
                 $pdf->setFont('Times', 'B', 11);
                 // Se imprimen las celdas con los encabezados.
-                $pdf->cell(126, 10, 'Comentario', 1, 0, 'C', 1);
-                $pdf->cell(30, 10, 'Calificacion', 1, 0, 'C', 1);
-                $pdf->cell(30, 10, 'Fecha', 1, 1, 'C', 1);
+                $pdf->cell(116, 10, 'Comentario', 1, 0, 'C', 1);
+                $pdf->cell(30, 10, $pdf->encodeString('Calificación'), 1, 0, 'C', 1);
+                $pdf->cell(40, 10, $pdf->encodeString('Fecha de publicación'), 1, 1, 'C', 1);
                 // Se establece la fuente para los datos de los productos.
                 $pdf->setFont('Times', '', 11);
                 // Se recorren los registros fila por fila.
                 foreach ($dataValoracion as $rowValoracion) {
                     // Se imprimen las celdas con los datos de los productos.
-                    $pdf->cell(126, 10, $pdf->encodeString($rowValoracion['comentario_producto']), 1, 0);
+                    $pdf->cell(116, 10, $pdf->encodeString($rowValoracion['comentario_producto']), 1, 0);
                     $pdf->cell(30, 10, $rowValoracion['calificacion_producto'], 1, 0);
-                    $pdf->cell(30, 10, $rowValoracion['fecha_comentario'], 1, 1);
+                    $pdf->cell(40, 10, $rowValoracion['fecha_comentario'], 1, 1);
                 }
             } else {
                 $pdf->cell(0, 10, $pdf->encodeString('No hay valoraciones para el producto'), 1, 1);
