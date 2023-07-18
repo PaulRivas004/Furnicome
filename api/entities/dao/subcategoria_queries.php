@@ -79,4 +79,12 @@ class SubcategoriaQueries
                 FROM categorias';
             return Database::getRows($sql);
     }
+
+    public function readSubXCategorias()
+    {
+        $sql = 'SELECT nombre_categoria, nombre_sub
+        FROM subcategorias 
+        INNER JOIN categorias USING(id_categoria)';
+            return Database::getRows($sql);
+    }
 }
