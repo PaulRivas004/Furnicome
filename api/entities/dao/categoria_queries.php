@@ -56,4 +56,13 @@ class CategoriaQueries
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
+
+    public function readSubXCategorias()
+    {
+        $sql = 'SELECT categorias.nombre_categoria, subcategorias.nombre_sub
+        FROM categorias
+        LEFT JOIN subcategorias ON categorias.id_categoria = subcategorias.id_categoria
+        ORDER BY categorias.nombre_categoria, subcategorias.nombre_sub;';
+            return Database::getRows($sql);
+    }
 }

@@ -170,7 +170,7 @@ function openReport2() {
     const PATH = new URL(`${SERVER_URL}reports/dashboard/subcategorias_por_categoria.php`);
     // Se abre el reporte en una nueva pestaña del navegador web.
     window.open(PATH.href);
-}
+  }
 
 //Buscador
 (function (document) {
