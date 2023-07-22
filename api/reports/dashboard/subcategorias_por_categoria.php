@@ -17,8 +17,8 @@ if ($dataCategorias = $categorias->readSubXCategorias()) {
     // Se establece la fuente para los encabezados.
     $pdf->setFont('Times', 'B', 11);
     // Se imprimen las celdas con los encabezados.
-    $pdf->cell(40, 10, $pdf->encodeString('Nombre categoria'), 1, 0, 'C', 1);
-    $pdf->cell(106, 10, $pdf->encodeString('subcategoria existente'), 1, 1, 'C', 1);
+    $pdf->cell(90, 10, $pdf->encodeString('Nombre categoria'), 1, 0, 'C', 1);
+    $pdf->cell(100, 10, $pdf->encodeString('subcategoria existente'), 1, 1, 'C', 1);
 
     // Se establece un color de relleno para mostrar el nombre de la categoría.
     $pdf->setFillColor(225);
@@ -28,8 +28,8 @@ if ($dataCategorias = $categorias->readSubXCategorias()) {
     // Se recorren los registros fila por fila.
     foreach ($dataCategorias as $rowCategoria) {
         // Se imprimen las celdas con los datos de los productos.
-        $pdf->cell(40, 10, $pdf->encodeString($rowCategoria['nombre_categoria']), 1, 0);
-        $pdf->cell(106, 10, $pdf->encodeString($rowCategoria['subcategorias']), 1, 1);
+        $pdf->cell(90, 10, $pdf->encodeString($rowCategoria['nombre_categoria']), 1, 0);
+        $pdf->cell(100, 10, $pdf->encodeString($rowCategoria['subcategorias']), 1, 1);
     }
 } else {
     $pdf->cell(0, 10, $pdf->encodeString('No hay pedidos para mostrar'), 1, 1);
