@@ -29,7 +29,7 @@ if ($dataCategorias = $categorias->readSubXCategorias()) {
     foreach ($dataCategorias as $rowCategoria) {
         // Se imprimen las celdas con los datos de los productos.
         $pdf->cell(40, 10, $pdf->encodeString($rowCategoria['nombre_categoria']), 1, 0);
-        $pdf->cell(106, 10, $pdf->encodeString($rowCategoria['nombre_sub']), 1, 1);
+        $pdf->cell(106, 10, $pdf->encodeString($rowCategoria['subcategorias']), 1, 1);
     }
 } else {
     $pdf->cell(0, 10, $pdf->encodeString('No hay pedidos para mostrar'), 1, 1);

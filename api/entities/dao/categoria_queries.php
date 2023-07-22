@@ -59,10 +59,12 @@ class CategoriaQueries
 
     public function readSubXCategorias()
     {
-        $sql = 'SELECT categorias.nombre_categoria, subcategorias.nombre_sub
+        $sql = 'SELECT categorias.nombre_categoria, GROUP_CONCAT(subcategorias.nombre_sub) AS subcategorias
         FROM categorias
         LEFT JOIN subcategorias ON categorias.id_categoria = subcategorias.id_categoria
-        ORDER BY categorias.nombre_categoria, subcategorias.nombre_sub;';
+        GROUP BY categorias.nombre_categoria
+        ORDER BY categorias.nombre_categoria;
+        ';
             return Database::getRows($sql);
     }
 }
