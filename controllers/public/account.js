@@ -44,6 +44,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             <li class="nav-item">
                 <a class="nav-link" href="../../views/public/about_us.html">Sobre nosotros</a>
             </li>
+            <li class="nav-item">
+            <a class="nav-link" href="../../views/public/mis_pedidos.html">Mis pedidos</a>
+        </li>
         </ul>
         <!-- Left links -->
     </div>

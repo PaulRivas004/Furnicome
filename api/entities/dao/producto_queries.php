@@ -194,4 +194,18 @@ class ProductoQueries
         $params = array($this->id_subcategoria);
         return Database::getRows($sql, $params);
         }
+
+        public function comprobanteFactura()
+        {
+            $sql = 'SELECT detalle_pedidos.id_detalle, productos.nombre_producto, detalle_pedidos.precio_producto, detalle_pedidos.cantidad_producto,
+            SUM(detalle_pedidos.cantidad_producto * detalle_pedidos.precio_producto) AS Monto_total
+        FROM pedidos
+        INNER JOIN detalle_pedidos USING(id_pedido)
+        INNER JOIN productos USING(id_producto)
+        WHERE id_pedido = ?
+        GROUP BY detalle_pedidos.id_detalle, productos.nombre_producto, detalle_pedidos.precio_producto, detalle_pedidos.cantidad_producto;
+        ';
+            $params = array($_SESSION['id_pedido']);
+            return Database::getRows($sql, $params);
+        }
 }
