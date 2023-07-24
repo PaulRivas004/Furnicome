@@ -34,6 +34,7 @@ if ($dataSubcategorias = $subcategoria->readAll()) {
     // Se recorren los registros fila por fila.
     foreach ($dataSubcategorias as $rowSubcategoria) {
         // Se imprime una celda con el nombre de la categoría.
+        $pdf->setFillColor(238, 220, 170);
         $pdf->cell(186, 10, $pdf->encodeString('Subcategoría: ' . $rowSubcategoria['nombre_sub']), 1, 1, 'C', 1);
         // Se instancia el módelo Producto para procesar los datos.
         $producto = new Producto;

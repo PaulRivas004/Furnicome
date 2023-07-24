@@ -8,14 +8,17 @@ require_once('../../entities/dto/pedidos.php');
 $pedido = new Pedidos;
 // Se instancia la clase para crear el reporte.
 $pdf = new Report;
+
 // Se inicia el reporte con el encabezado del documento.
 $pdf->startReport('Comprobante de pago');
+
 // Se instancia el módelo Categoría para obtener los datos.
 
 // Se establece un color de relleno para los encabezados.
-$pdf->setFillColor(175);
+$pdf->setFillColor(215, 198, 153);
 // Se establece la fuente para los encabezados.
-$pdf->setFont('Helvetica', 'B', 11);
+$pdf->setFont('Arial', 'B', 11);
+
 // Se imprimen las celdas con los encabezados.
 $pdf->cell(86, 10, $pdf->encodeString('Producto'), 1, 0, 'C', 1);
 $pdf->cell(20, 10, 'Unidades', 1, 0, 'C', 1);
@@ -36,10 +39,12 @@ if ($dataVentas = $pedido->comprobanteFactura()) {
     foreach ($dataVentas as $rowPedido) {
         // Se imprimen las celdas con los datos de los productos.
         $pdf->cell(86, 10,$pdf->encodeString( $rowPedido['nombre_producto']), 1, 0);
-        $pdf->cell(20, 10, $rowPedido['cantidad_producto'], 1, 0);
+        $pdf->cell(20, 10, $rowPedido['cantidad_producto'], 1, 0, 'C');
         $pdf->cell(40, 10, $rowPedido['precio_producto'], 1, 0);
         $pdf->cell(40, 10, $rowPedido['Monto_total'], 1, 1);
 
+        $pdf->setFillColor(215, 198, 153);
+        $pdf->setFont('Helvetica', 'B', 12);
         $totalPrecio += $rowPedido['Monto_total'];
     }
     

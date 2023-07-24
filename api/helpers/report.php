@@ -75,6 +75,7 @@ class Report extends FPDF
         $this->cell(178, 10, 'Usuario: '. $_SESSION['alias_usuario'], 0, 1, 'C');
         // Se agrega un salto de línea para mostrar el contenido principal del documento.
         $this->ln(10);
+        
     }
 
     /*
