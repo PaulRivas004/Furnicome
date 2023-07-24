@@ -42,7 +42,7 @@ ITEM_FORM.addEventListener('submit', async (event) => {
 async function readOrderDetail() {
     // Petición para obtener los datos del pedido en proceso.
     const JSON = await dataFetch(PEDIDO_API, 'readOrderDetail');
-   PARAMS.get('id');
+    PARAMS.get('id');
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (JSON.status) {
         // Se inicializa el cuerpo de la tabla.
@@ -114,6 +114,9 @@ async function finishOrder() {
             sweetAlert(2, JSON.exception, false);
         }
     }
+    const PATH = new URL(`${SERVER_URL}reports/public/comprobante_factura.php`);
+    // Se abre el reporte en una nueva pestaña del navegador web.
+    window.open(PATH.href);
 }
 
 /*

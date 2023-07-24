@@ -123,7 +123,7 @@ class ProductoQueries
             return Database::getRows($sql);
         }
 
-    //Generar el grafico de los clientes con más reportes
+    //Generar el grafico de los clientes con más pedidos
     public function clientesPedidos()
     {
         $sql = 'SELECT nombre_cliente, COUNT(id_pedido) pedidos_realizados
