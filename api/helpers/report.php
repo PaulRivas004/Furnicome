@@ -58,16 +58,21 @@ class Report extends FPDF
     public function header()
     {
         // Se establece el logo.
-        $this->image('../../images/FURNICOM.png', 15, 15, 50);
+        
+        $this->image('../../images/header.png', 0, 0, 220);
+        $this->image('../../images/FURNICOM.png', 10, 5, 60);
+
+        $this->ln(30);
+
         // Se ubica el título.
-        $this->cell(20);
-        $this->setFont('Arial', 'B', 15);
+        $this->cell(10);
+        $this->setFont('Times', 'B', 15);
         $this->cell(166, 10, $this->encodeString($this->title), 0, 1, 'C');
         // Se ubica la fecha y hora del servidor.
-        $this->cell(20);
+        $this->cell(10);
         $this->setFont('Arial', '', 10);
         $this->cell(162, 10, 'Fecha/Hora: ' . date('d-m-Y H:i:s'), 0, 1, 'C');
-        $this->cell(178, 10, 'usuario: '. $_SESSION['alias_usuario'], 0, 1, 'C');
+        $this->cell(178, 10, 'Usuario: '. $_SESSION['alias_usuario'], 0, 1, 'C');
         // Se agrega un salto de línea para mostrar el contenido principal del documento.
         $this->ln(10);
     }
@@ -78,11 +83,13 @@ class Report extends FPDF
     */
     public function footer()
     {
+        $this->image('../../images/footer.png', 0, 220, 220);
+
         // Se establece la posición para el número de página (a 15 milímetros del final).
         $this->setY(-15);
         // Se establece la fuente para el número de página.
-        $this->setFont('Arial', 'I', 8);
+        $this->setFont('Helvetica', 'I', 8);
         // Se imprime una celda con el número de página.
-        $this->cell(0, 10, $this->encodeString('Página ') . $this->pageNo() . '/{nb}', 0, 0, 'C');
+        $this->cell(0, 15, $this->encodeString(' ') . $this->pageNo() . '/{nb}', 0, 0, 'C');
     }
 }
