@@ -166,6 +166,15 @@ class PedidosQueries
         return Database::getRows($sql, $params);
     }
 
+    public function InfoClienteFactura()
+    {
+        $sql = 'SELECT  nombre_cliente, fecha_pedido, direccion_pedido
+                FROM pedidos INNER JOIN clientes USING(id_cliente)
+                WHERE id_pedido = ?';
+        $params = array($_SESSION['id_pedido']);
+        return Database::getRow($sql, $params);
+    }
+
     //SELECT id_detalle, nombre_producto, detalle_pedidos.precio_producto, detalle_pedidos.cantidad_producto
     //FROM pedidos INNER JOIN detalle_pedidos USING(id_pedido) INNER JOIN productos USING(id_producto)
     //WHERE id_cliente = 1 AND estado_pedido = true;
